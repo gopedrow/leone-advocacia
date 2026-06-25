@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+/*
+  Design System — Leone Advocacia | Direito da Saúde
+  Conceito: união entre Direito, Saúde, Tecnologia e Confiança.
+  Paleta: azul petróleo / azul marinho profundo (primária),
+  verde esmeralda suave (secundária), dourado discreto (destaque),
+  neutros (branco, cinza claro, cinza escuro).
+*/
+
+@theme {
+  /* ---- Cores de marca ---- */
+  --color-navy-50: #eef2f7;
+  --color-navy-100: #d4dde9;
+  --color-navy-200: #a9bbd2;
+  --color-navy-300: #7e98bb;
+  --color-navy-400: #53769f;
+  --color-navy-500: #2f5680;
+  --color-navy-600: #1f3f63;
+  --color-navy-700: #16304d;  /* azul marinho profundo */
+  --color-navy-800: #0f2238;
+  --color-navy-900: #0a1827;
+
+  --color-petrol-50: #e9f2f3;
+  --color-petrol-100: #c6dee0;
+  --color-petrol-200: #93c0c4;
+  --color-petrol-300: #5e9ea4;
+  --color-petrol-400: #357f86;
+  --color-petrol-500: #1d646b;  /* azul petróleo */
+  --color-petrol-600: #145057;
+  --color-petrol-700: #103f45;
+  --color-petrol-800: #0c3035;
+  --color-petrol-900: #082125;
+
+  --color-emerald-50: #ecf7f1;
+  --color-emerald-100: #cdeadb;
+  --color-emerald-200: #9bd5b7;
+  --color-emerald-300: #65bd90;
+  --color-emerald-400: #3aa471;  /* verde esmeralda suave */
+  --color-emerald-500: #258a5c;
+  --color-emerald-600: #1b6e49;
+  --color-emerald-700: #16573a;
+
+  --color-gold-300: #e3c98b;
+  --color-gold-400: #d4b46a;
+  --color-gold-500: #c39a45;  /* dourado discreto */
+  --color-gold-600: #a67f33;
+
+  /* ---- Neutros ---- */
+  --color-ink: #111820;
+  --color-muted: #5b6672;
+  --color-line: #e4e8ee;
+  --color-surface: #f7f9fb;
+
+  /* ---- Tipografia ---- */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-cinzel), ui-serif, Georgia, serif;
+
+  /* ---- Raios e sombras ---- */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+
+  --shadow-soft: 0 1px 2px rgba(16, 48, 77, 0.04), 0 8px 24px rgba(16, 48, 77, 0.06);
+  --shadow-card: 0 1px 3px rgba(16, 48, 77, 0.06), 0 12px 32px rgba(16, 48, 77, 0.08);
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: var(--color-ink);
+}
+
+* {
+  border-color: var(--color-line);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-feature-settings: "cv11", "ss01";
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Foco acessível e consistente (WCAG 2.4.7) */
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-petrol-500);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Respeita preferências de movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@utility container-page {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 80rem;
+  padding-inline: 1.25rem;
+}
+
+/* Link "pular para o conteúdo" para leitores de tela / teclado */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  z-index: 100;
+  background: var(--color-navy-700);
+  color: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: 0 0 var(--radius-md) 0;
+}
+.skip-link:focus {
+  left: 0;
+}

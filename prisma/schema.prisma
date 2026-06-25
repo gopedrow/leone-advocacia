@@ -1,0 +1,474 @@
+// Plataforma Leone Advocacia — Direito da Saúde
+// Banco modular preparado para evoluir (área do cliente, painel admin,
+// conteúdo jurídico e integrações futuras com tribunais).
+//
+// Dev: SQLite. Produção: troque o provider para "postgresql".
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ─────────────────────────────────────────────
+// Usuários e acesso
+// ─────────────────────────────────────────────
+enum Role {
+  CLIENT
+  ADMIN
+}
+
+model User {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         Role     @default(CLIENT)
+  cpf          String?
+  phone        String?
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Cliente
+  processes     Process[]      @relation("ClientProcesses")
+  documents     Document[]
+  notifications Notification[]
+  sentMessages     Message[]   @relation("MessageSender")
+  receivedMessages Message[]   @relation("MessageRecipient")
+
+  // Autoria de conteúdo (admin)
+  articles       Article[]
+  jurisprudences Jurisprudence[]
+  auditLogs      AuditLog[]
+
+  // Perfil cadastral (cliente)
+  clientProfile     ClientProfile?
+  signatureRequests SignatureRequest[] @relation("ClientSignatures")
+  payments          Payment[]          @relation("ClientPayments")
+}
+
+// ─────────────────────────────────────────────
+// Assinaturas (documentos para assinar)
+// ─────────────────────────────────────────────
+enum SignatureDocType {
+  CONTRATO_HONORARIOS
+  PROCURACAO
+  DECLARACAO
+  OUTRO
+}
+
+enum SignatureStatus {
+  PENDENTE
+  ASSINADO_DIGITAL
+  ASSINADO_FISICO
+  RECUSADO
+}
+
+model SignatureRequest {
+  id       String           @id @default(cuid())
+  clientId String
+  client   User             @relation("ClientSignatures", fields: [clientId], references: [id], onDelete: Cascade)
+  title    String
+  type     SignatureDocType @default(OUTRO)
+  status   SignatureStatus  @default(PENDENTE)
+
+  fileKey  String? // documento original disponibilizado para assinatura
+  fileName String?
+
+  // Assinatura eletrônica por aceite
+  signerName String?
+  signerIp   String?
+  signedAt   DateTime?
+
+  // Assinatura física (upload do documento assinado pelo cliente)
+  signedFileKey  String?
+  signedFileName String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([clientId])
+}
+
+// ─────────────────────────────────────────────
+// Financeiro (honorários / pagamentos)
+// ─────────────────────────────────────────────
+enum PaymentStatus {
+  PENDENTE
+  PAGO
+  ATRASADO
+  CANCELADO
+}
+
+model Payment {
+  id          String        @id @default(cuid())
+  clientId    String
+  client      User          @relation("ClientPayments", fields: [clientId], references: [id], onDelete: Cascade)
+  description String
+  amount      Float
+  dueDate     DateTime?
+  paidDate    DateTime?
+  status      PaymentStatus @default(PENDENTE)
+  method      PaymentMethod?
+  createdAt   DateTime      @default(now())
+
+  @@index([clientId])
+}
+
+// ─────────────────────────────────────────────
+// Perfil cadastral do cliente (dados operacionais)
+// ─────────────────────────────────────────────
+enum PersonType {
+  PF // Pessoa Física
+  PJ // Pessoa Jurídica
+}
+
+enum FeeModality {
+  AVISTA
+  PARCELADO
+  EXITO
+  ENTRADA_PARCELAMENTO
+  MENSALIDADE
+  HIBRIDO
+}
+
+enum PaymentMethod {
+  PIX
+  CARTAO
+  BOLETO
+  TRANSFERENCIA
+  DINHEIRO
+}
+
+model ClientProfile {
+  id     String @id @default(cuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  personType PersonType @default(PF)
+
+  // Pessoa física
+  rg            String?
+  maritalStatus String?
+  profession    String?
+  nationality   String? @default("brasileiro(a)")
+
+  // Pessoa jurídica
+  companyName String?
+  cnpj        String?
+  legalRep    String? // representante legal
+
+  // Endereço
+  cep        String?
+  street     String?
+  number     String?
+  complement String?
+  district   String?
+  city       String?
+  state      String?
+
+  // Demanda (Direito da Saúde)
+  demandType String?
+
+  // Contrato e honorários
+  feeModality      FeeModality?
+  feeValue         String?
+  contractDate     DateTime?
+  paymentMethod    PaymentMethod?
+  contractSigned   Boolean        @default(false)
+  contractFileKey  String?
+  contractFileName String?
+
+  // Outros
+  observation   String?
+  qualification String? // qualificação processual gerada
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ─────────────────────────────────────────────
+// Gestão processual
+// ─────────────────────────────────────────────
+enum ProcessStatus {
+  ANALISE        // Análise do caso
+  DISTRIBUIDO    // Distribuído
+  EM_ANDAMENTO   // Em andamento
+  RECURSO        // Em fase recursal
+  SUSPENSO       // Suspenso
+  ENCERRADO      // Encerrado / arquivado
+}
+
+model Process {
+  id           String        @id @default(cuid())
+  number       String        @unique // nº CNJ
+  title        String
+  court        String?       // Tribunal
+  jurisdiction String?       // Vara / comarca
+  className    String?       // Classe processual
+  subject      String?       // Assunto
+  status       ProcessStatus @default(ANALISE)
+  origin       IntegrationSource @default(MANUAL) // origem do dado
+  distributedAt DateTime?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  clientId  String
+  client    User       @relation("ClientProcesses", fields: [clientId], references: [id], onDelete: Cascade)
+  movements Movement[]
+  documents Document[]
+
+  @@index([clientId])
+  @@index([status])
+}
+
+model Movement {
+  id          String   @id @default(cuid())
+  date        DateTime
+  title       String
+  description String?
+  source      IntegrationSource @default(MANUAL)
+  externalId  String?  // id da movimentação no sistema do tribunal
+  createdAt   DateTime @default(now())
+
+  processId String
+  process   Process @relation(fields: [processId], references: [id], onDelete: Cascade)
+
+  @@index([processId])
+}
+
+// ─────────────────────────────────────────────
+// Documentos
+// ─────────────────────────────────────────────
+enum DocumentCategory {
+  PETICAO
+  DECISAO
+  CONTRATO
+  PROCURACAO
+  LAUDO_MEDICO
+  COMPROVANTE
+  OUTRO
+}
+
+model Document {
+  id        String           @id @default(cuid())
+  name      String
+  category  DocumentCategory @default(OUTRO)
+  mimeType  String?
+  size      Int?
+  storageKey String          // caminho/objeto no storage
+  createdAt DateTime         @default(now())
+
+  ownerId   String
+  owner     User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  processId String?
+  process   Process? @relation(fields: [processId], references: [id], onDelete: SetNull)
+
+  @@index([ownerId])
+  @@index([processId])
+}
+
+// ─────────────────────────────────────────────
+// Mensagens e notificações
+// ─────────────────────────────────────────────
+model Message {
+  id          String   @id @default(cuid())
+  body        String
+  read        Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  senderId    String
+  sender      User     @relation("MessageSender", fields: [senderId], references: [id], onDelete: Cascade)
+  recipientId String
+  recipient   User     @relation("MessageRecipient", fields: [recipientId], references: [id], onDelete: Cascade)
+
+  @@index([recipientId])
+}
+
+enum NotificationType {
+  MOVEMENT
+  MESSAGE
+  DEADLINE
+  DOCUMENT
+  SYSTEM
+}
+
+model Notification {
+  id        String           @id @default(cuid())
+  type      NotificationType @default(SYSTEM)
+  title     String
+  body      String?
+  link      String?
+  read      Boolean          @default(false)
+  createdAt DateTime         @default(now())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+// ─────────────────────────────────────────────
+// Rastreio de campanhas (cliques em links rastreados)
+// ─────────────────────────────────────────────
+enum ClickTarget {
+  WHATSAPP
+  INSTAGRAM
+  OUTRO
+}
+
+model CampaignClick {
+  id        String      @id @default(cuid())
+  target    ClickTarget
+  source    String? // utm_source (ex.: instagram, meta)
+  campaign  String? // utm_campaign (ex.: medicamentos-out)
+  medium    String? // utm_medium (ex.: cpc, stories)
+  content   String? // utm_content (variação do anúncio)
+  referrer  String?
+  ip        String?
+  userAgent String?
+  createdAt DateTime    @default(now())
+
+  @@index([campaign])
+  @@index([target])
+  @@index([createdAt])
+}
+
+// Prazos / agenda
+model Deadline {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  dueDate     DateTime
+  done        Boolean  @default(false)
+  processNumber String?
+  createdAt   DateTime @default(now())
+
+  @@index([dueDate])
+}
+
+// ─────────────────────────────────────────────
+// Conteúdo jurídico (blog + jurisprudência + FAQ)
+// ─────────────────────────────────────────────
+enum ContentStatus {
+  DRAFT
+  PUBLISHED
+}
+
+model Category {
+  id       String    @id @default(cuid())
+  name     String    @unique
+  slug     String    @unique
+  articles Article[]
+}
+
+model Article {
+  id          String        @id @default(cuid())
+  title       String
+  slug        String        @unique
+  excerpt     String?
+  content     String        // markdown/HTML
+  coverImage  String?
+  status      ContentStatus @default(DRAFT)
+  readMinutes Int           @default(5)
+  publishedAt DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  authorId   String
+  author     User      @relation(fields: [authorId], references: [id])
+  categoryId String?
+  category   Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+
+  @@index([status])
+}
+
+enum Tribunal {
+  STJ
+  STF
+  TJ
+  TRF
+  OUTRO
+}
+
+model Jurisprudence {
+  id          String        @id @default(cuid())
+  title       String
+  slug        String        @unique
+  tribunal    Tribunal      @default(STJ)
+  reference   String?       // ex.: REsp 1.234.567/GO
+  summary     String        // ementa/resumo
+  decisionDate DateTime?
+  tags        String?       // separado por vírgula
+  status      ContentStatus @default(PUBLISHED)
+  createdAt   DateTime      @default(now())
+
+  authorId String?
+  author   User?   @relation(fields: [authorId], references: [id], onDelete: SetNull)
+
+  @@index([tribunal])
+}
+
+model FaqItem {
+  id       String  @id @default(cuid())
+  question String
+  answer   String
+  category String?
+  order    Int     @default(0)
+  active   Boolean @default(true)
+}
+
+// ─────────────────────────────────────────────
+// Captação de leads (formulário de contato)
+// ─────────────────────────────────────────────
+enum LeadStatus {
+  NEW
+  CONTACTED
+  QUALIFIED
+  CLOSED
+}
+
+model Lead {
+  id        String     @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  subject   String?
+  message   String
+  status    LeadStatus @default(NEW)
+  createdAt DateTime   @default(now())
+
+  @@index([status])
+}
+
+// ─────────────────────────────────────────────
+// Segurança / LGPD — auditoria
+// ─────────────────────────────────────────────
+model AuditLog {
+  id        String   @id @default(cuid())
+  action    String   // ex.: LOGIN, CREATE_PROCESS, UPDATE_CLIENT
+  entity    String?
+  entityId  String?
+  ip        String?
+  userAgent String?
+  createdAt DateTime @default(now())
+
+  userId String?
+  user   User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([action])
+}
+
+// Origem do dado — usado para integrações futuras com tribunais
+enum IntegrationSource {
+  MANUAL
+  PJE
+  ESAJ
+  PROJUDI
+  EPROC
+}
