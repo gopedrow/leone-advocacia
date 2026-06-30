@@ -306,7 +306,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 <!-- TOOLBAR -->
 <div id="toolbar">
-  <select class="tb-select" id="block-type" style="width:116px" onmousedown="e_prevent(event)" onchange="applyBlockType(this.value)">
+  <select class="tb-select" id="block-type" style="width:116px" onmousedown="saveSelectionBeforeColor()" onchange="applyBlockType(this.value)">
     <option value="p">Parágrafo</option>
     <option value="h1">Título 1</option>
     <option value="h2">Título 2</option>
@@ -316,7 +316,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <option value="pre">Código</option>
     <option value="blockquote">Citação</option>
   </select>
-  <select class="tb-select" id="font-family" style="width:150px" onmousedown="e_prevent(event)" onchange="applyFont(this.value)">
+  <select class="tb-select" id="font-family" style="width:150px" onmousedown="saveSelectionBeforeColor()" onchange="applyFont(this.value)">
     <optgroup label="── Sans-serif ──">
       <option value="Inter,sans-serif">Inter</option>
       <option value="Roboto,sans-serif">Roboto</option>
@@ -507,7 +507,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <option value="Monoton,cursive">Monoton</option>
     </optgroup>
   </select>
-  <select class="tb-select" id="font-size" style="width:52px" onmousedown="e_prevent(event)" onchange="applyFontSize(this.value)">
+  <select class="tb-select" id="font-size" style="width:52px" onmousedown="saveSelectionBeforeColor()" onchange="applyFontSize(this.value)">
     <option>8</option><option>9</option><option>10</option><option>11</option>
     <option selected>12</option><option>14</option><option>16</option><option>18</option>
     <option>20</option><option>24</option><option>28</option><option>32</option>
@@ -645,7 +645,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
           </div>
           <div class="prop-row">
             <span class="prop-label">Espaçamento</span>
-            <select class="prop-input" onmousedown="e_prevent(event)" onchange="applyLineHeight(this.value)">
+            <select class="prop-input" onmousedown="saveSelectionBeforeColor()" onchange="applyLineHeight(this.value)">
               <option value="1.2">Simples</option>
               <option value="1.5">1.5x</option>
               <option value="1.7" selected>Padrão</option>
@@ -704,7 +704,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div class="panel-body">
         <div class="prop-row">
           <span class="prop-label">Tamanho</span>
-          <select class="prop-input" onmousedown="e_prevent(event)" onchange="setPageSize(this.value)">
+          <select class="prop-input" onmousedown="saveSelectionBeforeColor()" onchange="setPageSize(this.value)">
             <option value="794x1123">A4</option>
             <option value="816x1056">Carta</option>
             <option value="1123x794">A4 paisagem</option>
@@ -713,7 +713,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         </div>
         <div class="prop-row">
           <span class="prop-label">Margem</span>
-          <select class="prop-input" onmousedown="e_prevent(event)" onchange="setMargin(this.value)">
+          <select class="prop-input" onmousedown="saveSelectionBeforeColor()" onchange="setMargin(this.value)">
             <option value="72px 80px">Normal</option>
             <option value="36px 40px">Estreita</option>
             <option value="96px 120px">Larga</option>
@@ -1046,7 +1046,12 @@ function applyColor(cmd, color) {
 }
 
 // ── FONT / SIZE ──
+// Os controles abaixo são <select> nativos: ao abrir a lista, o foco sai do
+// editor e a seleção de texto se perde. Por isso, igual aos seletores de cor,
+// eles salvam a seleção no mousedown (saveSelectionBeforeColor) e cada função
+// a restaura (restoreSelection) antes de aplicar a mudança.
 function applyFont(f) {
+  restoreSelection();
   const ed = getEditor();
   if (!ed) return;
   ed.focus();
@@ -1054,11 +1059,15 @@ function applyFont(f) {
 }
 
 function applyFontSize(px) {
+  restoreSelection();
   const ed = getEditor();
   if (!ed) return;
   ed.focus();
   const sel = window.getSelection();
-  if (!sel || sel.isCollapsed) return;
+  if (!sel || sel.isCollapsed || !sel.rangeCount) {
+    showNotif('Selecione um texto para mudar o tamanho');
+    return;
+  }
   const range = sel.getRangeAt(0);
   // Wrap selection in a span with font-size
   try {
@@ -1072,20 +1081,24 @@ function applyFontSize(px) {
   } catch(e) {
     document.execCommand('fontSize', false, '3');
   }
+  triggerChange();
 }
 
 function applyBlockType(tag) {
+  restoreSelection();
   const ed = getEditor();
   if (!ed) return;
   ed.focus();
   document.execCommand('formatBlock', false, tag);
+  triggerChange();
 }
 
 function applyLineHeight(v) {
+  restoreSelection();
   const ed = getEditor();
   if (!ed) return;
   const sel = window.getSelection();
-  if (!sel || !sel.rangeCount) return;
+  if (!sel || !sel.rangeCount) { ed.style.lineHeight = v; return; }
   let node = sel.anchorNode;
   while (node && node.nodeType !== 1) node = node.parentNode;
   if (node && node !== ed) node.style.lineHeight = v;
