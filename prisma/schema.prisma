@@ -234,10 +234,12 @@ model Movement {
   description String?
   source      IntegrationSource @default(MANUAL)
   externalId  String?  // id da movimentação no sistema do tribunal
+  noDeadline  Boolean  @default(false) // admin indicou que não há prazo p/ esta movimentação
   createdAt   DateTime @default(now())
 
   processId String
   process   Process @relation(fields: [processId], references: [id], onDelete: Cascade)
+  deadline  Deadline? // prazo vinculado a esta movimentação (se houver)
 
   @@index([processId])
 }
@@ -348,6 +350,10 @@ model Deadline {
   done        Boolean  @default(false)
   processNumber String?
   createdAt   DateTime @default(now())
+
+  // Vínculo opcional com uma movimentação de processo (1-1)
+  movementId String?   @unique
+  movement   Movement? @relation(fields: [movementId], references: [id], onDelete: Cascade)
 
   @@index([dueDate])
 }

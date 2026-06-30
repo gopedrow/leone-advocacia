@@ -4,6 +4,7 @@ import { prisma } from "@/lib/db";
 import { safeQuery } from "@/lib/safe-query";
 import { PageTitle } from "@/components/dashboard/StatCard";
 import { ButtonLink } from "@/components/ui/Button";
+import { Icon } from "@/components/ui/Icon";
 import { formatDate } from "@/lib/labels";
 import { toggleClientActive } from "./actions";
 
@@ -16,7 +17,10 @@ export default async function AdminClientes() {
       prisma.user.findMany({
         where: { role: "CLIENT" },
         orderBy: { createdAt: "desc" },
-        include: { _count: { select: { processes: true } } },
+        include: {
+          _count: { select: { processes: true } },
+          signatureRequests: { select: { status: true } },
+        },
       }),
     []
   );
@@ -37,6 +41,7 @@ export default async function AdminClientes() {
               <th className="px-5 py-3 font-semibold">Nome</th>
               <th className="px-5 py-3 font-semibold">E-mail</th>
               <th className="px-5 py-3 font-semibold">Processos</th>
+              <th className="px-5 py-3 font-semibold">Documentos</th>
               <th className="px-5 py-3 font-semibold">Desde</th>
               <th className="px-5 py-3 font-semibold">Status</th>
               <th className="px-5 py-3 text-right font-semibold">Ações</th>
@@ -45,7 +50,7 @@ export default async function AdminClientes() {
           <tbody className="divide-y divide-line">
             {clients.length === 0 ? (
               <tr>
-                <td colSpan={6} className="px-5 py-10 text-center text-muted">
+                <td colSpan={7} className="px-5 py-10 text-center text-muted">
                   Nenhum cliente cadastrado. Clique em “Novo cliente” para começar.
                 </td>
               </tr>
@@ -59,6 +64,30 @@ export default async function AdminClientes() {
                   </td>
                   <td className="px-5 py-4 text-muted">{c.email}</td>
                   <td className="px-5 py-4 text-muted">{c._count.processes}</td>
+                  <td className="px-5 py-4">
+                    {(() => {
+                      const sigs = c.signatureRequests;
+                      const total = sigs.length;
+                      const signedAll =
+                        total > 0 &&
+                        sigs.every(
+                          (s) => s.status === "ASSINADO_DIGITAL" || s.status === "ASSINADO_FISICO"
+                        );
+                      const color =
+                        total === 0 ? "text-red-500" : signedAll ? "text-emerald-600" : "text-gold-500";
+                      const title =
+                        total === 0
+                          ? "Nenhum documento enviado para assinatura"
+                          : signedAll
+                            ? "Todos os documentos assinados"
+                            : "Documento(s) aguardando assinatura";
+                      return (
+                        <Link href={`/admin/clientes/${c.id}`} title={title} className={`inline-flex ${color}`}>
+                          <Icon name="document" className="h-5 w-5" />
+                        </Link>
+                      );
+                    })()}
+                  </td>
                   <td className="px-5 py-4 text-muted">{formatDate(c.createdAt)}</td>
                   <td className="px-5 py-4">
                     <span className={`rounded-full px-2.5 py-1 text-xs font-semibold ${c.active ? "bg-emerald-50 text-emerald-700" : "bg-gray-100 text-gray-500"}`}>

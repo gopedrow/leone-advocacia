@@ -84,6 +84,12 @@ export const icons = {
       <path d="M4 12l5 5 11-11" />
     </svg>
   ),
+  clock: (p: IconProps) => (
+    <svg className={cn(base, p.className)} {...common}>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 7.5V12l3 2" />
+    </svg>
+  ),
   spark: (p: IconProps) => (
     <svg className={cn(base, p.className)} {...common}>
       <path d="M12 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2 2-6z" />

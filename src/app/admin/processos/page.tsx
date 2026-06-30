@@ -4,6 +4,7 @@ import { prisma } from "@/lib/db";
 import { safeQuery } from "@/lib/safe-query";
 import { PageTitle } from "@/components/dashboard/StatCard";
 import { ButtonLink } from "@/components/ui/Button";
+import { Icon } from "@/components/ui/Icon";
 import { processStatusLabel, processStatusClass, formatDate } from "@/lib/labels";
 
 export const dynamic = "force-dynamic";
@@ -14,7 +15,11 @@ export default async function AdminProcessos() {
     () =>
       prisma.process.findMany({
         orderBy: { updatedAt: "desc" },
-        include: { client: { select: { name: true } }, _count: { select: { movements: true } } },
+        include: {
+          client: { select: { name: true } },
+          _count: { select: { movements: true } },
+          movements: { select: { noDeadline: true, deadline: { select: { id: true } } } },
+        },
       }),
     []
   );
@@ -36,6 +41,7 @@ export default async function AdminProcessos() {
               <th className="px-5 py-3 font-semibold">Cliente</th>
               <th className="px-5 py-3 font-semibold">Tribunal</th>
               <th className="px-5 py-3 font-semibold">Mov.</th>
+              <th className="px-5 py-3 font-semibold">Prazos</th>
               <th className="px-5 py-3 font-semibold">Status</th>
               <th className="px-5 py-3 font-semibold">Atualizado</th>
             </tr>
@@ -43,7 +49,7 @@ export default async function AdminProcessos() {
           <tbody className="divide-y divide-line">
             {processes.length === 0 ? (
               <tr>
-                <td colSpan={6} className="px-5 py-10 text-center text-muted">
+                <td colSpan={7} className="px-5 py-10 text-center text-muted">
                   Nenhum processo cadastrado. Clique em “Novo processo” para começar.
                 </td>
               </tr>
@@ -59,6 +65,19 @@ export default async function AdminProcessos() {
                   <td className="px-5 py-4 text-muted">{p.client.name}</td>
                   <td className="px-5 py-4 text-muted">{p.court ?? "—"}</td>
                   <td className="px-5 py-4 text-muted">{p._count.movements}</td>
+                  <td className="px-5 py-4">
+                    {(() => {
+                      const pending = p.movements.filter((m) => !m.deadline && !m.noDeadline).length;
+                      const color = pending > 0 ? "text-gold-500" : p.movements.length > 0 ? "text-emerald-600" : "text-navy-300";
+                      const title = pending > 0 ? `${pending} movimentação(ões) com prazo pendente` : "Prazos em dia";
+                      return (
+                        <Link href={`/admin/processos/${p.id}`} title={title} className={`inline-flex items-center gap-1 ${color}`}>
+                          <Icon name="clock" className="h-5 w-5" />
+                          {pending > 0 && <span className="text-xs font-semibold">{pending}</span>}
+                        </Link>
+                      );
+                    })()}
+                  </td>
                   <td className="px-5 py-4">
                     <span className={`rounded-full px-2.5 py-1 text-xs font-semibold ${processStatusClass[p.status]}`}>
                       {processStatusLabel[p.status]}

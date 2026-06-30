@@ -7,6 +7,7 @@ import { PageTitle } from "@/components/dashboard/StatCard";
 import { Button } from "@/components/ui/Button";
 import { ProcessForm } from "@/components/admin/ProcessForm";
 import { MovementForm } from "@/components/admin/MovementForm";
+import { MovementDeadline } from "@/components/admin/MovementDeadline";
 import { deleteProcess, updateProcess } from "../actions";
 import { formatDate } from "@/lib/labels";
 
@@ -24,7 +25,10 @@ export default async function EditarProcessoPage({ params }: Params) {
       () =>
         prisma.process.findUnique({
           where: { id },
-          include: { movements: { orderBy: { date: "desc" } }, client: { select: { name: true } } },
+          include: {
+            movements: { orderBy: { date: "desc" }, include: { deadline: true } },
+            client: { select: { name: true } },
+          },
         }),
       null
     ),
@@ -90,9 +94,20 @@ export default async function EditarProcessoPage({ params }: Params) {
                 {proc.movements.map((m) => (
                   <li key={m.id} className="relative">
                     <span className="absolute -left-[1.6rem] top-1 h-3 w-3 rounded-full bg-petrol-500 ring-4 ring-surface" />
-                    <p className="text-xs text-muted">{formatDate(m.date)}</p>
-                    <p className="font-medium text-navy-800">{m.title}</p>
-                    {m.description && <p className="mt-1 text-sm text-muted">{m.description}</p>}
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <p className="text-xs text-muted">{formatDate(m.date)}</p>
+                        <p className="font-medium text-navy-800">{m.title}</p>
+                        {m.description && <p className="mt-1 text-sm text-muted">{m.description}</p>}
+                      </div>
+                      <MovementDeadline
+                        movementId={m.id}
+                        processId={proc.id}
+                        movementTitle={m.title}
+                        status={m.deadline ? "set" : m.noDeadline ? "none" : "pending"}
+                        dueLabel={m.deadline ? formatDate(m.deadline.dueDate) : null}
+                      />
+                    </div>
                   </li>
                 ))}
               </ol>

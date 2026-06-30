@@ -148,6 +148,68 @@ export async function addMovement(
   return { ok: true, message: "Movimentação adicionada e cliente notificado." };
 }
 
+/** Cadastra (ou atualiza) o prazo de uma movimentação. */
+export async function setMovementDeadline(formData: FormData) {
+  const admin = await requireAdmin();
+  const movementId = String(formData.get("movementId") || "");
+  const processId = String(formData.get("processId") || "");
+  const title = String(formData.get("title") || "").trim();
+  const dueDate = String(formData.get("dueDate") || "");
+  if (!movementId || !dueDate) return;
+
+  const mov = await prisma.movement.findUnique({ where: { id: movementId }, include: { process: true } });
+  if (!mov) return;
+
+  const data = {
+    title: title || mov.title,
+    dueDate: new Date(dueDate),
+    processNumber: mov.process.number,
+    movementId,
+  };
+
+  // Upsert do prazo vinculado à movimentação + tira a marca "sem prazo".
+  await prisma.deadline.upsert({
+    where: { movementId },
+    create: data,
+    update: { title: data.title, dueDate: data.dueDate },
+  });
+  await prisma.movement.update({ where: { id: movementId }, data: { noDeadline: false } });
+
+  await audit({ action: "DEADLINE_SET", userId: admin.sub, entity: "Movement", entityId: movementId, ...(await meta()) });
+  revalidatePath(`/admin/processos/${processId}`);
+  revalidatePath("/admin/processos");
+  revalidatePath("/admin/prazos");
+}
+
+/** Remove o prazo vinculado à movimentação (volta a ficar pendente). */
+export async function clearMovementDeadline(formData: FormData) {
+  const admin = await requireAdmin();
+  const movementId = String(formData.get("movementId") || "");
+  const processId = String(formData.get("processId") || "");
+  if (!movementId) return;
+  await prisma.deadline.deleteMany({ where: { movementId } });
+  await prisma.movement.update({ where: { id: movementId }, data: { noDeadline: false } });
+  await audit({ action: "DEADLINE_CLEARED", userId: admin.sub, entity: "Movement", entityId: movementId, ...(await meta()) });
+  revalidatePath(`/admin/processos/${processId}`);
+  revalidatePath("/admin/processos");
+  revalidatePath("/admin/prazos");
+}
+
+/** Marca a movimentação como "sem prazo" (ou desfaz). */
+export async function setMovementNoDeadline(formData: FormData) {
+  const admin = await requireAdmin();
+  const movementId = String(formData.get("movementId") || "");
+  const processId = String(formData.get("processId") || "");
+  const value = String(formData.get("value") || "true") === "true";
+  if (!movementId) return;
+  // Ao marcar "sem prazo", remove qualquer prazo eventualmente cadastrado.
+  if (value) await prisma.deadline.deleteMany({ where: { movementId } });
+  await prisma.movement.update({ where: { id: movementId }, data: { noDeadline: value } });
+  await audit({ action: "MOVEMENT_NO_DEADLINE", userId: admin.sub, entity: "Movement", entityId: movementId, ...(await meta()) });
+  revalidatePath(`/admin/processos/${processId}`);
+  revalidatePath("/admin/processos");
+}
+
 export async function deleteProcess(formData: FormData) {
   const admin = await requireAdmin();
   const id = String(formData.get("id") || "");
