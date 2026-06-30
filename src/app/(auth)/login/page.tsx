@@ -27,11 +27,6 @@ export default async function LoginPage() {
           Esqueci minha senha
         </Link>
       </div>
-
-      <p className="mt-6 rounded-lg bg-surface p-3 text-center text-xs text-muted">
-        Demonstração — Cliente: <strong>cliente@exemplo.com</strong> / cliente123 ·{" "}
-        Admin: <strong>leticia@leoneadvocacia.com.br</strong> / admin123
-      </p>
     </div>
   );
 }

@@ -462,7 +462,7 @@ export default function NegativaDeCoberturaPage() {
             Teve um procedimento negado pelo plano?
           </h2>
           <p className="mt-4 text-lg text-navy-100">
-            Analisamos sua negativa com sigilo e indicamos o melhor caminho — inclusive a possibilidade de
+            Analisamos sua negativa com sigilo e indicamos o melhor caminho inclusive a possibilidade de
             liminar quando há urgência.
           </p>
           <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
