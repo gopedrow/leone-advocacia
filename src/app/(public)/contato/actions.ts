@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import { prisma } from "@/lib/db";
 import { leadSchema } from "@/lib/validation";
 import { audit } from "@/lib/audit";
+import { sendMetaEvent } from "@/lib/meta/capi";
 
 export type ContactState = {
   ok: boolean;
@@ -53,6 +54,18 @@ export async function submitContact(
       ip: h.get("x-forwarded-for"),
       userAgent: h.get("user-agent"),
     });
+
+    // Envia a conversão "Lead" ao Meta (Conversions API).
+    // Não bloqueia a resposta nem quebra o envio caso o Meta falhe.
+    await sendMetaEvent({
+      eventName: "Lead",
+      email: parsed.data.email,
+      phone: parsed.data.phone,
+      sourceUrl: h.get("referer") ?? undefined,
+      clientIp: h.get("x-forwarded-for"),
+      userAgent: h.get("user-agent"),
+      eventId: lead.id,
+    }).catch(() => {});
     return {
       ok: true,
       message: "Mensagem enviada com sucesso! Retornaremos em breve.",

@@ -19,6 +19,16 @@ const targetLabel: Record<string, string> = {
   OUTRO: "Outro",
 };
 
+const sourceLabel: Record<string, string> = {
+  SITE_FORM: "Formulário",
+  META_LEAD_ADS: "Anúncio Meta",
+};
+
+const sourceClass: Record<string, string> = {
+  SITE_FORM: "bg-navy-50 text-navy-700",
+  META_LEAD_ADS: "bg-emerald-50 text-emerald-700",
+};
+
 export default async function AdminLeads() {
   await requireAdmin();
 
@@ -118,9 +128,16 @@ export default async function AdminLeads() {
               <li key={l.id} className="rounded-xl border border-line bg-white p-5">
                 <div className="flex flex-wrap items-start justify-between gap-2">
                   <div>
-                    <p className="font-medium text-navy-800">{l.name}</p>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <p className="font-medium text-navy-800">{l.name}</p>
+                      <span
+                        className={`rounded-full px-2 py-0.5 text-[11px] font-semibold ${sourceClass[l.source] ?? "bg-navy-50 text-navy-700"}`}
+                      >
+                        {sourceLabel[l.source] ?? l.source}
+                      </span>
+                    </div>
                     <p className="text-sm text-muted">
-                      {l.email}
+                      {l.email ?? "—"}
                       {l.phone ? ` · ${l.phone}` : ""}
                     </p>
                   </div>
@@ -132,7 +149,14 @@ export default async function AdminLeads() {
                   </div>
                 </div>
                 {l.subject && <p className="mt-3 text-sm font-medium text-navy-700">{l.subject}</p>}
-                <p className="mt-1 text-sm text-muted">{l.message}</p>
+                {l.message && <p className="mt-1 text-sm text-muted">{l.message}</p>}
+                {(l.campaignName || l.adName) && (
+                  <p className="mt-2 text-xs text-muted">
+                    {l.campaignName ? `Campanha: ${l.campaignName}` : ""}
+                    {l.campaignName && l.adName ? " · " : ""}
+                    {l.adName ? `Anúncio: ${l.adName}` : ""}
+                  </p>
+                )}
               </li>
             ))}
           </ul>

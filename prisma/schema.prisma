@@ -433,17 +433,30 @@ enum LeadStatus {
   CLOSED
 }
 
+enum LeadSource {
+  SITE_FORM // formulário de contato do site
+  META_LEAD_ADS // formulário de anúncio do Facebook/Instagram
+}
+
 model Lead {
-  id        String     @id @default(cuid())
-  name      String
-  email     String
-  phone     String?
-  subject   String?
-  message   String
-  status    LeadStatus @default(NEW)
-  createdAt DateTime   @default(now())
+  id           String     @id @default(cuid())
+  name         String
+  email        String?
+  phone        String?
+  subject      String?
+  message      String?
+  status       LeadStatus @default(NEW)
+  source       LeadSource @default(SITE_FORM)
+  externalId   String?    @unique // leadgen_id do Meta (evita duplicar)
+  formId       String? // id do formulário de anúncio
+  adId         String? // id do anúncio
+  adName       String? // nome do anúncio
+  campaignName String? // nome da campanha
+  raw          Json? // payload bruto recebido do Meta
+  createdAt    DateTime   @default(now())
 
   @@index([status])
+  @@index([source])
 }
 
 // ─────────────────────────────────────────────
