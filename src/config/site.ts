@@ -18,7 +18,7 @@ export const site = {
   contact: {
     phone: "(62) 99871-0007",
     whatsapp: process.env.NEXT_PUBLIC_WHATSAPP ?? "5562998710007",
-    email: "[PREENCHER: contato@dominio.com.br]",
+    email: "leticialeoneadv@gmail.com",
     address: {
       street: "Av. Edmundo P. de Abreu, 387 — Setor Bela Vista (Cond. Portal da Cidade)",
       city: "Goiânia",

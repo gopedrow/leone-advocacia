@@ -25,7 +25,7 @@ const criterios = [
   },
   {
     title: "Ausência de alternativa no rol",
-    desc: "Não pode existir outro tratamento já listado que resolva o seu caso de forma adequada — ou é preciso comprovar por que ele não serve para você.",
+    desc: "Não pode existir outro tratamento já listado que resolva o seu caso de forma adequada ou é preciso comprovar por que ele não serve para você.",
   },
   {
     title: "Comprovação científica de eficácia",
@@ -83,7 +83,7 @@ const faq = [
     id: "reembolso",
     question: "Posso pedir o dinheiro de volta se paguei o tratamento por conta própria?",
     answer:
-      "Sim. Se a negativa foi ilícita e você arcou com o custo, é possível pleitear o reembolso — e, quando a recusa era indevida, esse reembolso tende a ser integral, e não limitado às tabelas do plano. Guarde todos os comprovantes de pagamento.",
+      "Sim. Se a negativa foi ilícita e você arcou com o custo, é possível pleitear o reembolso e, quando a recusa era indevida, esse reembolso tende a ser integral, e não limitado às tabelas do plano. Guarde todos os comprovantes de pagamento.",
   },
   {
     id: "dano-moral",
@@ -115,11 +115,11 @@ const fontes: { label: string; href?: string }[] = [
     href: "https://www.stj.jus.br/sites/portalp/Paginas/Comunicacao/Noticias/Sumulas.aspx",
   },
   {
-    label: "Código de Processo Civil (Lei 13.105/2015), art. 300 — tutela de urgência (liminar)",
+    label: "Código de Processo Civil (Lei 13.105/2015), art. 300 tutela de urgência (liminar)",
     href: "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm",
   },
   {
-    label: "ANS — Agência Nacional de Saúde Suplementar (canais e rol de procedimentos)",
+    label: "ANS Agência Nacional de Saúde Suplementar (canais e rol de procedimentos)",
     href: "https://www.gov.br/ans/pt-br",
   },
 ];
@@ -142,7 +142,7 @@ export default function NegativaDeCoberturaPage() {
     <>
       <PageHero
         title="O plano negou seu exame, cirurgia ou internação?"
-        description="Negativas abusivas podem ser revertidas — muitas vezes em poucos dias, por decisão liminar. Entenda o que a lei e os tribunais garantem a você neste momento."
+        description="Negativas abusivas podem ser revertidas muitas vezes em poucos dias, por decisão liminar. Entenda o que a lei e os tribunais garantem a você neste momento."
         breadcrumb={[{ label: "Áreas de atuação" }, { label: "Negativa de cobertura" }]}
       />
 
@@ -152,7 +152,7 @@ export default function NegativaDeCoberturaPage() {
           <p>
             Receber um &ldquo;não&rdquo; do plano de saúde no meio de um tratamento é mais do que um problema
             burocrático. Costuma chegar justamente quando você está fragilizado, com pressa, e dependendo de
-            uma autorização para seguir adiante. A boa notícia é que <strong>nem toda negativa é válida</strong> —
+            uma autorização para seguir adiante. A boa notícia é que <strong>nem toda negativa é válida</strong>
             e a lei brasileira oferece caminhos concretos para reverter recusas indevidas, inclusive de forma
             rápida quando há urgência.
           </p>
@@ -169,7 +169,7 @@ export default function NegativaDeCoberturaPage() {
           <SectionHeading
             align="left"
             eyebrow="O ponto de partida"
-            title="Você é um consumidor — e isso muda tudo"
+            title="Você é um consumidor e isso muda tudo"
           />
           <p className="mt-6 leading-relaxed text-navy-700">
             A relação entre você e a operadora do plano é protegida pelo{" "}
@@ -182,7 +182,7 @@ export default function NegativaDeCoberturaPage() {
               operadora.
             </Bullet>
             <Bullet>
-              Cláusulas que colocam o consumidor em desvantagem exagerada são <strong>nulas</strong> — não valem,
+              Cláusulas que colocam o consumidor em desvantagem exagerada são <strong>nulas</strong> não valem,
               mesmo que estejam escritas no contrato que você assinou.
             </Bullet>
             <Bullet>
@@ -299,7 +299,7 @@ export default function NegativaDeCoberturaPage() {
               O que isso garante a você
             </p>
             <p className="leading-relaxed text-navy-700">
-              Se a sua negativa se encaixa em uma dessas situações, há forte base legal para exigir a cobertura —
+              Se a sua negativa se encaixa em uma dessas situações, há forte base legal para exigir a cobertura
               e, quando necessário, levar o caso à Justiça com boas chances de êxito.
             </p>
           </div>
@@ -328,7 +328,7 @@ export default function NegativaDeCoberturaPage() {
                 O que o juiz avalia
               </h4>
               <p className="mt-2 leading-relaxed text-navy-100">
-                Que o seu direito é provável (a recusa parece indevida) e que há perigo na demora — risco à sua
+                Que o seu direito é provável (a recusa parece indevida) e que há perigo na demora risco à sua
                 saúde se o tratamento atrasar.
               </p>
             </div>
@@ -362,7 +362,7 @@ export default function NegativaDeCoberturaPage() {
             .
           </p>
           <p className="mt-4 leading-relaxed text-navy-700">
-            Para receber indenização, é preciso demonstrar algo a mais do que o aborrecimento — por exemplo:
+            Para receber indenização, é preciso demonstrar algo a mais do que o aborrecimento por exemplo:
           </p>
           <ul className="mt-6 space-y-3">
             <Bullet>
@@ -380,8 +380,8 @@ export default function NegativaDeCoberturaPage() {
             </Bullet>
           </ul>
           <p className="mt-6 leading-relaxed text-navy-700">
-            Em casos de paciente especialmente vulnerável — como uma criança com TEA que tem o tratamento
-            interrompido abruptamente —, o dano moral pode ser presumido a partir das circunstâncias. O ponto
+            Em casos de paciente especialmente vulnerável como uma criança com TEA que tem o tratamento
+            interrompido abruptamente, o dano moral pode ser presumido a partir das circunstâncias. O ponto
             central é:{" "}
             <strong>
               o direito ao tratamento é uma coisa; a indenização é outra, e depende de prova.
@@ -448,7 +448,7 @@ export default function NegativaDeCoberturaPage() {
           </ul>
           <p className="mt-8 rounded-xl border border-line bg-white p-6 text-sm leading-relaxed text-muted">
             Este material tem finalidade exclusivamente informativa e não substitui a orientação de um advogado.
-            Cada negativa tem particularidades próprias — documentos, prazos e contexto clínico — que precisam
+            Cada negativa tem particularidades próprias documentos, prazos e contexto clínico que precisam
             ser analisadas individualmente. Se você está diante de uma recusa, especialmente com urgência de
             saúde, busque orientação jurídica o quanto antes.
           </p>
