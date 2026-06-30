@@ -182,6 +182,45 @@ export const stats = [
 ];
 
 /**
+ * Depoimentos — conteúdo GENÉRICO/ILUSTRATIVO.
+ * ➜ Substitua por avaliações reais e autorizadas pelos clientes.
+ *   Foco na experiência de atendimento (sem prometer resultados),
+ *   em linha com as regras de publicidade da OAB.
+ */
+export const testimonials: { quote: string; author: string }[] = [
+  {
+    quote:
+      "Fui tratada com muita atenção e respeito em um momento delicado. Explicaram cada etapa de forma clara e acessível.",
+    author: "M. S. — Goiânia/GO",
+  },
+  {
+    quote:
+      "Profissionalismo e transparência do início ao fim. Sempre soube exatamente em que pé estava o meu caso.",
+    author: "R. A. — Aparecida de Goiânia/GO",
+  },
+  {
+    quote:
+      "Atendimento humano e dedicado. Senti segurança e confiança durante todo o acompanhamento.",
+    author: "J. P. — Goiânia/GO",
+  },
+  {
+    quote:
+      "Comunicação clara e acompanhamento próximo. Recomendo a quem busca orientação séria e cuidadosa.",
+    author: "C. F. — Senador Canedo/GO",
+  },
+  {
+    quote:
+      "Escuta atenta e linguagem simples. Tirei todas as minhas dúvidas com tranquilidade.",
+    author: "L. M. — Goiânia/GO",
+  },
+  {
+    quote:
+      "Seriedade e comprometimento em cada etapa. Um atendimento que transmite confiança.",
+    author: "A. T. — Goiânia/GO",
+  },
+];
+
+/**
  * Biografia / Sobre — texto profissional editável.
  * Substitua pelos dados reais da trajetória da Dra. Letícia Leone.
  */

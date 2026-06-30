@@ -7,7 +7,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { LegalServiceJsonLd } from "@/components/seo/JsonLd";
 import { site, whatsappLink } from "@/config/site";
-import { demands, patientRights, steps, differentials, stats, about } from "@/config/content";
+import { demands, patientRights, steps, differentials, stats, testimonials, about } from "@/config/content";
 
 export default function HomePage() {
   return (
@@ -267,21 +267,15 @@ function Differentials() {
 
 /* ────────────────────── Depoimentos ───────────────────── */
 function Testimonials() {
-  // Área preparada para avaliações e casos de sucesso (alimentável depois).
-  const placeholders = [
-    "Atendimento atencioso e ágil. Conseguimos a liberação do tratamento por liminar.",
-    "Profissionalismo e transparência do início ao fim do processo.",
-    "Explicação clara de cada etapa. Recomendo a todos que precisam.",
-  ];
   return (
     <Section className="bg-surface">
       <SectionHeading
         eyebrow="Depoimentos"
         title="O que dizem nossos clientes"
-        description="Espaço reservado para avaliações e casos de sucesso (substitua pelos depoimentos reais)."
+        description="A experiência de quem contou com um atendimento próximo, técnico e humanizado."
       />
       <div className="mt-12 grid gap-6 lg:grid-cols-3">
-        {placeholders.map((t, i) => (
+        {testimonials.map((t, i) => (
           <Card key={i}>
             <div className="flex gap-1 text-gold-500" aria-label="5 de 5 estrelas">
               {Array.from({ length: 5 }).map((_, s) => (
@@ -290,8 +284,8 @@ function Testimonials() {
                 </svg>
               ))}
             </div>
-            <p className="mt-4 leading-relaxed text-navy-700">&ldquo;{t}&rdquo;</p>
-            <p className="mt-4 text-sm font-medium text-muted">Cliente — [PREENCHER]</p>
+            <p className="mt-4 leading-relaxed text-navy-700">&ldquo;{t.quote}&rdquo;</p>
+            <p className="mt-4 text-sm font-medium text-muted">{t.author}</p>
           </Card>
         ))}
       </div>
