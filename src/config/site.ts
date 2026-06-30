@@ -41,8 +41,7 @@ export const whatsappLink = (
 /** Itens do menu principal (Header). */
 export const navMain = [
   { label: "Início", href: "/" },
-  { label: "Sobre", href: "/sobre" },
-  { label: "Saúde", href: "/direito-da-saude" },
+  { label: "Sobre", href: "/#sobre" },
   { label: "Jurisprudência", href: "/jurisprudencia" },
   { label: "Dúvidas", href: "/faq" },
   { label: "Contato", href: "/contato" },

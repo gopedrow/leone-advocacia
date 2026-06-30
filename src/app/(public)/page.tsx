@@ -7,7 +7,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { LegalServiceJsonLd } from "@/components/seo/JsonLd";
 import { site, whatsappLink } from "@/config/site";
-import { demands, steps, differentials, stats, about } from "@/config/content";
+import { demands, patientRights, steps, differentials, stats, about } from "@/config/content";
 
 export default function HomePage() {
   return (
@@ -15,6 +15,7 @@ export default function HomePage() {
       <LegalServiceJsonLd />
       <Hero />
       <Demands />
+      <PatientRights />
       <About />
       <HowItWorks />
       <Differentials />
@@ -80,7 +81,7 @@ function Hero() {
               Agendar Atendimento
             </ButtonLink>
             <ButtonLink
-              href="/direito-da-saude#pacientes"
+              href="/#pacientes"
               variant="outline"
               size="lg"
               className="border-white/30 text-white hover:bg-white/10"
@@ -116,10 +117,10 @@ function Demands() {
             <h3 className="mt-5 text-lg font-semibold text-navy-800">{d.title}</h3>
             <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{d.description}</p>
             <Link
-              href={`/direito-da-saude#${d.slug}`}
+              href="/contato"
               className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-petrol-600 hover:text-petrol-700"
             >
-              Saber mais
+              Avaliar meu caso
               <Icon name="arrowRight" className="h-4 w-4" />
             </Link>
           </Card>
@@ -129,10 +130,48 @@ function Demands() {
   );
 }
 
+/* ─────────────── Direitos do Paciente ─────────────────── */
+function PatientRights() {
+  return (
+    <Section id="pacientes" className="scroll-mt-24">
+      <SectionHeading
+        eyebrow="Direitos do Paciente"
+        title="Seus direitos, de forma simples"
+        description="Informação de caráter educativo. Cada caso deve ser analisado individualmente."
+      />
+      <div className="mt-12 grid gap-6 lg:grid-cols-2">
+        {patientRights.map((t) => (
+          <Card key={t.title}>
+            <div className="flex items-center gap-3">
+              <span className="grid h-11 w-11 place-items-center rounded-lg bg-emerald-50 text-emerald-600">
+                <Icon name={t.icon} className="h-5 w-5" />
+              </span>
+              <h3 className="font-serif text-xl font-semibold text-navy-800">{t.title}</h3>
+            </div>
+            <ul className="mt-5 space-y-3">
+              {t.items.map((it) => (
+                <li key={it} className="flex gap-2.5 text-sm leading-relaxed text-navy-700">
+                  <Icon name="check" className="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" />
+                  {it}
+                </li>
+              ))}
+            </ul>
+          </Card>
+        ))}
+      </div>
+      <div className="mt-10 text-center">
+        <ButtonLink href="/faq" variant="outline" size="lg">
+          Ver perguntas frequentes
+        </ButtonLink>
+      </div>
+    </Section>
+  );
+}
+
 /* ───────────────────────── Sobre ──────────────────────── */
 function About() {
   return (
-    <Section id="sobre">
+    <Section id="sobre" className="scroll-mt-24">
       <div className="grid items-center gap-12 lg:grid-cols-2">
         <div className="relative mx-auto w-full max-w-md">
           <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-navy-50 ring-1 ring-line">
@@ -155,11 +194,12 @@ function About() {
             title={site.lawyerName}
           />
           <p className="mt-4 text-lg leading-relaxed text-muted">{about.intro}</p>
-          {about.bio.slice(0, 2).map((p, i) => (
+          {about.bio.map((p, i) => (
             <p key={i} className="mt-4 leading-relaxed text-muted">
               {p}
             </p>
           ))}
+          <p className="mt-6 text-sm font-medium text-petrol-600">{site.oab}</p>
 
           <dl className="mt-8 grid grid-cols-3 gap-4 border-t border-line pt-8">
             {stats.map((s) => (
@@ -169,10 +209,6 @@ function About() {
               </div>
             ))}
           </dl>
-
-          <ButtonLink href="/sobre" variant="outline" className="mt-8">
-            Conhecer a trajetória
-          </ButtonLink>
         </div>
       </div>
     </Section>
