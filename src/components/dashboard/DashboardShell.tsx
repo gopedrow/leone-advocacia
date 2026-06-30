@@ -38,7 +38,7 @@ export function DashboardShell({
         </nav>
         <div className="border-t border-line p-4">
           <p className="text-sm font-medium text-navy-800">{user.name}</p>
-          <p className="text-xs text-muted">{user.role === "ADMIN" ? "Administradora" : "Cliente"}</p>
+          <p className="text-xs text-muted">{user.role === "ADMIN" ? "Administrador(a)" : "Cliente"}</p>
           <LogoutButton className="mt-3 text-sm font-medium text-petrol-600 hover:text-petrol-700" />
         </div>
       </aside>
