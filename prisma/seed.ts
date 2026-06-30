@@ -6,64 +6,70 @@ const prisma = new PrismaClient();
 async function main() {
   console.log("🌱 Semeando banco de dados...");
 
-  const adminPass = await bcrypt.hash("admin123", 10);
-  const clientPass = await bcrypt.hash("cliente123", 10);
+  // Credenciais do admin via variáveis de ambiente (NÃO ficam no GitHub).
+  // Defina ADMIN_EMAIL e ADMIN_PASSWORD ao rodar o seed em produção.
+  const adminEmail = (process.env.ADMIN_EMAIL ?? "leticia@leoneadvocacia.com.br").toLowerCase();
+  const adminPassword = process.env.ADMIN_PASSWORD ?? "admin123";
+  const adminPass = await bcrypt.hash(adminPassword, 10);
 
   // Admin — Dra. Letícia Leone
   const admin = await prisma.user.upsert({
-    where: { email: "leticia@leoneadvocacia.com.br" },
+    where: { email: adminEmail },
     update: {},
     create: {
       name: "Dra. Letícia Leone",
-      email: "leticia@leoneadvocacia.com.br",
+      email: adminEmail,
       passwordHash: adminPass,
       role: Role.ADMIN,
     },
   });
 
-  // Cliente de demonstração
-  const client = await prisma.user.upsert({
-    where: { email: "cliente@exemplo.com" },
-    update: {},
-    create: {
-      name: "Maria Oliveira",
-      email: "cliente@exemplo.com",
-      passwordHash: clientPass,
-      role: Role.CLIENT,
-      phone: "(62) 90000-0000",
-    },
-  });
-
-  // Processo de exemplo
-  const proc = await prisma.process.upsert({
-    where: { number: "0001234-56.2026.8.09.0051" },
-    update: {},
-    create: {
-      number: "0001234-56.2026.8.09.0051",
-      title: "Obrigação de fazer — fornecimento de medicamento de alto custo",
-      court: "TJGO",
-      jurisdiction: "3ª Vara da Fazenda Pública de Goiânia",
-      className: "Procedimento Comum Cível",
-      subject: "Saúde / Fornecimento de medicamento",
-      status: ProcessStatus.EM_ANDAMENTO,
-      clientId: client.id,
-      movements: {
-        create: [
-          {
-            date: new Date("2026-05-10"),
-            title: "Distribuição",
-            description: "Ação distribuída por dependência.",
-          },
-          {
-            date: new Date("2026-05-22"),
-            title: "Decisão — Tutela de urgência deferida",
-            description:
-              "Determinado o fornecimento do medicamento no prazo de 10 dias.",
-          },
-        ],
+  // Dados de demonstração (cliente + processo de exemplo).
+  // Só são criados quando SEED_DEMO=true — evita cliente fictício em produção.
+  if (process.env.SEED_DEMO === "true") {
+    const clientPass = await bcrypt.hash("cliente123", 10);
+    const client = await prisma.user.upsert({
+      where: { email: "cliente@exemplo.com" },
+      update: {},
+      create: {
+        name: "Maria Oliveira",
+        email: "cliente@exemplo.com",
+        passwordHash: clientPass,
+        role: Role.CLIENT,
+        phone: "(62) 90000-0000",
       },
-    },
-  });
+    });
+
+    await prisma.process.upsert({
+      where: { number: "0001234-56.2026.8.09.0051" },
+      update: {},
+      create: {
+        number: "0001234-56.2026.8.09.0051",
+        title: "Obrigação de fazer — fornecimento de medicamento de alto custo",
+        court: "TJGO",
+        jurisdiction: "3ª Vara da Fazenda Pública de Goiânia",
+        className: "Procedimento Comum Cível",
+        subject: "Saúde / Fornecimento de medicamento",
+        status: ProcessStatus.EM_ANDAMENTO,
+        clientId: client.id,
+        movements: {
+          create: [
+            {
+              date: new Date("2026-05-10"),
+              title: "Distribuição",
+              description: "Ação distribuída por dependência.",
+            },
+            {
+              date: new Date("2026-05-22"),
+              title: "Decisão — Tutela de urgência deferida",
+              description:
+                "Determinado o fornecimento do medicamento no prazo de 10 dias.",
+            },
+          ],
+        },
+      },
+    });
+  }
 
   // Categorias e artigos
   const cat = await prisma.category.upsert({
@@ -133,8 +139,7 @@ async function main() {
   }
 
   console.log("✅ Seed concluído.");
-  console.log("   Admin:   leticia@leoneadvocacia.com.br / admin123");
-  console.log("   Cliente: cliente@exemplo.com / cliente123");
+  console.log(`   Admin: ${adminEmail}`);
 }
 
 main()

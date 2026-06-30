@@ -2,15 +2,17 @@
 // Banco modular preparado para evoluir (área do cliente, painel admin,
 // conteúdo jurídico e integrações futuras com tribunais).
 //
-// Dev: SQLite. Produção: troque o provider para "postgresql".
+// Banco: PostgreSQL (Neon, via integração do Vercel).
+// url = conexão "pooled"; directUrl = conexão direta (usada em migrações/db push).
 
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DATABASE_URL_UNPOOLED")
 }
 
 // ─────────────────────────────────────────────
