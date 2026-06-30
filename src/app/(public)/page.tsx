@@ -117,7 +117,7 @@ function Demands() {
             <h3 className="mt-5 text-lg font-semibold text-navy-800">{d.title}</h3>
             <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{d.description}</p>
             <Link
-              href="/contato"
+              href={d.href ?? "/contato"}
               className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-petrol-600 hover:text-petrol-700"
             >
               Avaliar meu caso

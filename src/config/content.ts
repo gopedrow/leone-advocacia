@@ -10,6 +10,8 @@ export type Demand = {
   title: string;
   description: string;
   slug: string;
+  /** Página de detalhamento do tema (quando já publicada). */
+  href?: string;
 };
 
 /** Principais Demandas — cards da home. */
@@ -20,6 +22,7 @@ export const demands: Demand[] = [
     description:
       "Plano negou um procedimento, exame ou internação? Negativas abusivas podem ser revertidas, inclusive por liminar.",
     slug: "negativa-de-cobertura",
+    href: "/areas/negativa-de-cobertura",
   },
   {
     icon: "pill",
