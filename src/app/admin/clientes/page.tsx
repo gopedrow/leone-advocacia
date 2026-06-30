@@ -4,7 +4,7 @@ import { prisma } from "@/lib/db";
 import { safeQuery } from "@/lib/safe-query";
 import { PageTitle } from "@/components/dashboard/StatCard";
 import { ButtonLink } from "@/components/ui/Button";
-import { Icon } from "@/components/ui/Icon";
+import { ClientSignatureBadge } from "@/components/admin/ClientSignatureBadge";
 import { formatDate } from "@/lib/labels";
 import { toggleClientActive } from "./actions";
 
@@ -19,7 +19,10 @@ export default async function AdminClientes() {
         orderBy: { createdAt: "desc" },
         include: {
           _count: { select: { processes: true } },
-          signatureRequests: { select: { status: true } },
+          signatureRequests: {
+            select: { id: true, title: true, type: true, status: true, fileKey: true, signedFileKey: true },
+            orderBy: { createdAt: "desc" },
+          },
         },
       }),
     []
@@ -34,9 +37,10 @@ export default async function AdminClientes() {
         </ButtonLink>
       </div>
 
-      <div className="overflow-hidden rounded-xl border border-line bg-white">
-        <table className="w-full text-left text-sm">
-          <thead className="border-b border-line bg-surface text-xs uppercase tracking-wider text-muted">
+      {/* sem overflow-hidden aqui: o ícone de assinatura abre um popover por cima da tabela */}
+      <div className="rounded-xl border border-line bg-white">
+        <table className="w-full overflow-hidden rounded-xl text-left text-sm">
+          <thead className="rounded-t-xl border-b border-line bg-surface text-xs uppercase tracking-wider text-muted">
             <tr>
               <th className="px-5 py-3 font-semibold">Nome</th>
               <th className="px-5 py-3 font-semibold">E-mail</th>
@@ -65,28 +69,7 @@ export default async function AdminClientes() {
                   <td className="px-5 py-4 text-muted">{c.email}</td>
                   <td className="px-5 py-4 text-muted">{c._count.processes}</td>
                   <td className="px-5 py-4">
-                    {(() => {
-                      const sigs = c.signatureRequests;
-                      const total = sigs.length;
-                      const signedAll =
-                        total > 0 &&
-                        sigs.every(
-                          (s) => s.status === "ASSINADO_DIGITAL" || s.status === "ASSINADO_FISICO"
-                        );
-                      const color =
-                        total === 0 ? "text-red-500" : signedAll ? "text-emerald-600" : "text-gold-500";
-                      const title =
-                        total === 0
-                          ? "Nenhum documento enviado para assinatura"
-                          : signedAll
-                            ? "Todos os documentos assinados"
-                            : "Documento(s) aguardando assinatura";
-                      return (
-                        <Link href={`/admin/clientes/${c.id}`} title={title} className={`inline-flex ${color}`}>
-                          <Icon name="document" className="h-5 w-5" />
-                        </Link>
-                      );
-                    })()}
+                    <ClientSignatureBadge clientId={c.id} signatures={c.signatureRequests} />
                   </td>
                   <td className="px-5 py-4 text-muted">{formatDate(c.createdAt)}</td>
                   <td className="px-5 py-4">

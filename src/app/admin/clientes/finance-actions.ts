@@ -18,6 +18,7 @@ function parseBRL(v: string): number {
 
 const revalClient = (id: string) => {
   revalidatePath(`/admin/clientes/${id}`);
+  revalidatePath("/admin/clientes");
   revalidatePath("/admin/assinaturas");
   revalidatePath("/area-cliente/financeiro");
   revalidatePath("/area-cliente/assinaturas");
