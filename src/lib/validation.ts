@@ -114,3 +114,13 @@ export const deadlineSchema = z.object({
   description: opt,
   processNumber: opt,
 });
+
+// ───────────────────────── Documentos / Peças (editor WYSIWYG) ─────────────────────────
+export const petitionCreateSchema = z.object({
+  templateSlug: z.string().min(1, "Selecione um modelo."),
+  title: z.string().min(3, "Informe o título da peça."),
+  clientId: z.string().min(1, "Selecione o cliente."),
+  opposingParty: opt,
+  processId: opt,
+  movementId: opt,
+});

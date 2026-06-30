@@ -35,11 +35,15 @@ model User {
   updatedAt    DateTime @updatedAt
 
   // Cliente
-  processes     Process[]      @relation("ClientProcesses")
-  documents     Document[]
-  notifications Notification[]
-  sentMessages     Message[]   @relation("MessageSender")
-  receivedMessages Message[]   @relation("MessageRecipient")
+  processes        Process[]      @relation("ClientProcesses")
+  documents        Document[]
+  notifications    Notification[]
+  sentMessages     Message[]      @relation("MessageSender")
+  receivedMessages Message[]      @relation("MessageRecipient")
+
+  // Peças jurídicas (geradas no editor WYSIWYG)
+  petitionsAsClient Petition[] @relation("PetitionClient")
+  petitionsAuthored Petition[] @relation("PetitionAuthor")
 
   // Autoria de conteúdo (admin)
   articles       Article[]
@@ -106,16 +110,16 @@ enum PaymentStatus {
 }
 
 model Payment {
-  id          String        @id @default(cuid())
+  id          String         @id @default(cuid())
   clientId    String
-  client      User          @relation("ClientPayments", fields: [clientId], references: [id], onDelete: Cascade)
+  client      User           @relation("ClientPayments", fields: [clientId], references: [id], onDelete: Cascade)
   description String
   amount      Float
   dueDate     DateTime?
   paidDate    DateTime?
-  status      PaymentStatus @default(PENDENTE)
+  status      PaymentStatus  @default(PENDENTE)
   method      PaymentMethod?
-  createdAt   DateTime      @default(now())
+  createdAt   DateTime       @default(now())
 
   @@index([clientId])
 }
@@ -196,50 +200,52 @@ model ClientProfile {
 // Gestão processual
 // ─────────────────────────────────────────────
 enum ProcessStatus {
-  ANALISE        // Análise do caso
-  DISTRIBUIDO    // Distribuído
-  EM_ANDAMENTO   // Em andamento
-  RECURSO        // Em fase recursal
-  SUSPENSO       // Suspenso
-  ENCERRADO      // Encerrado / arquivado
+  ANALISE // Análise do caso
+  DISTRIBUIDO // Distribuído
+  EM_ANDAMENTO // Em andamento
+  RECURSO // Em fase recursal
+  SUSPENSO // Suspenso
+  ENCERRADO // Encerrado / arquivado
 }
 
 model Process {
-  id           String        @id @default(cuid())
-  number       String        @unique // nº CNJ
-  title        String
-  court        String?       // Tribunal
-  jurisdiction String?       // Vara / comarca
-  className    String?       // Classe processual
-  subject      String?       // Assunto
-  status       ProcessStatus @default(ANALISE)
-  origin       IntegrationSource @default(MANUAL) // origem do dado
+  id            String            @id @default(cuid())
+  number        String            @unique // nº CNJ
+  title         String
+  court         String? // Tribunal
+  jurisdiction  String? // Vara / comarca
+  className     String? // Classe processual
+  subject       String? // Assunto
+  status        ProcessStatus     @default(ANALISE)
+  origin        IntegrationSource @default(MANUAL) // origem do dado
   distributedAt DateTime?
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
 
   clientId  String
   client    User       @relation("ClientProcesses", fields: [clientId], references: [id], onDelete: Cascade)
   movements Movement[]
   documents Document[]
+  petitions Petition[]
 
   @@index([clientId])
   @@index([status])
 }
 
 model Movement {
-  id          String   @id @default(cuid())
+  id          String            @id @default(cuid())
   date        DateTime
   title       String
   description String?
   source      IntegrationSource @default(MANUAL)
-  externalId  String?  // id da movimentação no sistema do tribunal
-  noDeadline  Boolean  @default(false) // admin indicou que não há prazo p/ esta movimentação
-  createdAt   DateTime @default(now())
+  externalId  String? // id da movimentação no sistema do tribunal
+  noDeadline  Boolean           @default(false) // admin indicou que não há prazo p/ esta movimentação
+  createdAt   DateTime          @default(now())
 
   processId String
-  process   Process @relation(fields: [processId], references: [id], onDelete: Cascade)
+  process   Process    @relation(fields: [processId], references: [id], onDelete: Cascade)
   deadline  Deadline? // prazo vinculado a esta movimentação (se houver)
+  petitions Petition[] // peças geradas a partir desta movimentação
 
   @@index([processId])
 }
@@ -258,13 +264,13 @@ enum DocumentCategory {
 }
 
 model Document {
-  id        String           @id @default(cuid())
-  name      String
-  category  DocumentCategory @default(OUTRO)
-  mimeType  String?
-  size      Int?
-  storageKey String          // caminho/objeto no storage
-  createdAt DateTime         @default(now())
+  id         String           @id @default(cuid())
+  name       String
+  category   DocumentCategory @default(OUTRO)
+  mimeType   String?
+  size       Int?
+  storageKey String // caminho/objeto no storage
+  createdAt  DateTime         @default(now())
 
   ownerId   String
   owner     User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
@@ -276,18 +282,79 @@ model Document {
 }
 
 // ─────────────────────────────────────────────
+// Editor de peças (petições, recursos, contratos…)
+// ─────────────────────────────────────────────
+enum PetitionCategory {
+  PETICAO_INICIAL
+  CONTESTACAO
+  RECURSO_APELACAO
+  AGRAVO_INSTRUMENTO
+  EMBARGOS_DECLARACAO
+  CONTRARRAZOES
+  RECURSO_ESPECIAL
+  RECURSO_EXTRAORDINARIO
+  MANDADO_SEGURANCA
+  TUTELA_URGENCIA
+  CONTRATO_HONORARIOS
+  PROCURACAO
+  NOTIFICACAO_EXTRAJUDICIAL
+  PARECER
+  EM_BRANCO
+  OUTRO
+}
+
+enum PetitionStatus {
+  RASCUNHO
+  EM_REVISAO
+  FINALIZADA
+  PROTOCOLADA
+}
+
+// Peça jurídica produzida no editor WYSIWYG interno — diferente de `Document`,
+// que representa arquivos enviados/anexados (PDF, imagem, etc.).
+model Petition {
+  id            String           @id @default(cuid())
+  title         String
+  category      PetitionCategory @default(EM_BRANCO)
+  status        PetitionStatus   @default(RASCUNHO)
+  content       String           @db.Text // HTML produzido pelo editor WYSIWYG
+  opposingParty String? // parte contrária da peça
+  templateSlug  String? // modelo de origem (src/config/peticoes.ts), se houver
+
+  clientId String?
+  client   User?   @relation("PetitionClient", fields: [clientId], references: [id], onDelete: SetNull)
+
+  processId String?
+  process   Process? @relation(fields: [processId], references: [id], onDelete: SetNull)
+
+  movementId String?
+  movement   Movement? @relation(fields: [movementId], references: [id], onDelete: SetNull)
+
+  createdById String?
+  createdBy   User?   @relation("PetitionAuthor", fields: [createdById], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([clientId])
+  @@index([processId])
+  @@index([movementId])
+  @@index([status])
+}
+
+// ─────────────────────────────────────────────
 // Mensagens e notificações
 // ─────────────────────────────────────────────
 model Message {
-  id          String   @id @default(cuid())
-  body        String
-  read        Boolean  @default(false)
-  createdAt   DateTime @default(now())
+  id        String   @id @default(cuid())
+  body      String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
 
   senderId    String
-  sender      User     @relation("MessageSender", fields: [senderId], references: [id], onDelete: Cascade)
+  sender      User   @relation("MessageSender", fields: [senderId], references: [id], onDelete: Cascade)
   recipientId String
-  recipient   User     @relation("MessageRecipient", fields: [recipientId], references: [id], onDelete: Cascade)
+  recipient   User   @relation("MessageRecipient", fields: [recipientId], references: [id], onDelete: Cascade)
 
   @@index([recipientId])
 }
@@ -343,13 +410,13 @@ model CampaignClick {
 
 // Prazos / agenda
 model Deadline {
-  id          String   @id @default(cuid())
-  title       String
-  description String?
-  dueDate     DateTime
-  done        Boolean  @default(false)
+  id            String   @id @default(cuid())
+  title         String
+  description   String?
+  dueDate       DateTime
+  done          Boolean  @default(false)
   processNumber String?
-  createdAt   DateTime @default(now())
+  createdAt     DateTime @default(now())
 
   // Vínculo opcional com uma movimentação de processo (1-1)
   movementId String?   @unique
@@ -378,7 +445,7 @@ model Article {
   title       String
   slug        String        @unique
   excerpt     String?
-  content     String        // markdown/HTML
+  content     String // markdown/HTML
   coverImage  String?
   status      ContentStatus @default(DRAFT)
   readMinutes Int           @default(5)
@@ -403,16 +470,16 @@ enum Tribunal {
 }
 
 model Jurisprudence {
-  id          String        @id @default(cuid())
-  title       String
-  slug        String        @unique
-  tribunal    Tribunal      @default(STJ)
-  reference   String?       // ex.: REsp 1.234.567/GO
-  summary     String        // ementa/resumo
+  id           String        @id @default(cuid())
+  title        String
+  slug         String        @unique
+  tribunal     Tribunal      @default(STJ)
+  reference    String? // ex.: REsp 1.234.567/GO
+  summary      String // ementa/resumo
   decisionDate DateTime?
-  tags        String?       // separado por vírgula
-  status      ContentStatus @default(PUBLISHED)
-  createdAt   DateTime      @default(now())
+  tags         String? // separado por vírgula
+  status       ContentStatus @default(PUBLISHED)
+  createdAt    DateTime      @default(now())
 
   authorId String?
   author   User?   @relation(fields: [authorId], references: [id], onDelete: SetNull)
@@ -470,7 +537,7 @@ model Lead {
 // ─────────────────────────────────────────────
 model AuditLog {
   id        String   @id @default(cuid())
-  action    String   // ex.: LOGIN, CREATE_PROCESS, UPDATE_CLIENT
+  action    String // ex.: LOGIN, CREATE_PROCESS, UPDATE_CLIENT
   entity    String?
   entityId  String?
   ip        String?

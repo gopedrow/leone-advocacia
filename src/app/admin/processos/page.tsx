@@ -5,6 +5,7 @@ import { safeQuery } from "@/lib/safe-query";
 import { PageTitle } from "@/components/dashboard/StatCard";
 import { ButtonLink } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
+import { DocIconButton } from "@/components/admin/DocIconButton";
 import { processStatusLabel, processStatusClass, formatDate } from "@/lib/labels";
 
 export const dynamic = "force-dynamic";
@@ -28,9 +29,12 @@ export default async function AdminProcessos() {
     <>
       <div className="mb-8 flex items-center justify-between">
         <PageTitle title="Gestão Processual" />
-        <ButtonLink href="/admin/processos/novo" size="sm">
-          Novo processo
-        </ButtonLink>
+        <div className="flex items-center gap-3">
+          <DocIconButton href="/admin/documentos/novo" title="Gerar petição, recurso ou contrato" />
+          <ButtonLink href="/admin/processos/novo" size="sm">
+            Novo processo
+          </ButtonLink>
+        </div>
       </div>
 
       <div className="overflow-hidden rounded-xl border border-line bg-white">

@@ -76,3 +76,36 @@ export const paymentStatusClass: Record<string, string> = {
   ATRASADO: "bg-red-50 text-red-700",
   CANCELADO: "bg-gray-100 text-gray-500",
 };
+
+export const petitionCategoryLabel: Record<string, string> = {
+  PETICAO_INICIAL: "Petição inicial",
+  CONTESTACAO: "Contestação",
+  RECURSO_APELACAO: "Recurso de apelação",
+  AGRAVO_INSTRUMENTO: "Agravo de instrumento",
+  EMBARGOS_DECLARACAO: "Embargos de declaração",
+  CONTRARRAZOES: "Contrarrazões",
+  RECURSO_ESPECIAL: "Recurso especial",
+  RECURSO_EXTRAORDINARIO: "Recurso extraordinário",
+  MANDADO_SEGURANCA: "Mandado de segurança",
+  TUTELA_URGENCIA: "Tutela de urgência",
+  CONTRATO_HONORARIOS: "Contrato de honorários",
+  PROCURACAO: "Procuração",
+  NOTIFICACAO_EXTRAJUDICIAL: "Notificação extrajudicial",
+  PARECER: "Parecer jurídico",
+  EM_BRANCO: "Documento em branco",
+  OUTRO: "Outro",
+};
+
+export const petitionStatusLabel: Record<string, string> = {
+  RASCUNHO: "Rascunho",
+  EM_REVISAO: "Em revisão",
+  FINALIZADA: "Finalizada",
+  PROTOCOLADA: "Protocolada",
+};
+
+export const petitionStatusClass: Record<string, string> = {
+  RASCUNHO: "bg-gray-100 text-gray-600",
+  EM_REVISAO: "bg-amber-50 text-amber-700",
+  FINALIZADA: "bg-petrol-50 text-petrol-700",
+  PROTOCOLADA: "bg-emerald-50 text-emerald-700",
+};

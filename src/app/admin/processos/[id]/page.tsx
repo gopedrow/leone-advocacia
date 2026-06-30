@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { ProcessForm } from "@/components/admin/ProcessForm";
 import { MovementForm } from "@/components/admin/MovementForm";
 import { MovementDeadline } from "@/components/admin/MovementDeadline";
+import { DocIconButton } from "@/components/admin/DocIconButton";
 import { deleteProcess, updateProcess } from "../actions";
 import { formatDate } from "@/lib/labels";
 
@@ -84,7 +85,14 @@ export default async function EditarProcessoPage({ params }: Params) {
           <MovementForm processId={proc.id} />
 
           <div>
-            <h2 className="mb-4 font-semibold text-navy-800">Linha do tempo</h2>
+            <div className="mb-4 flex items-center justify-between">
+              <h2 className="font-semibold text-navy-800">Linha do tempo</h2>
+              <DocIconButton
+                href={`/admin/documentos/novo?processId=${proc.id}&clientId=${proc.clientId}`}
+                title="Gerar petição para este processo"
+                size="sm"
+              />
+            </div>
             {proc.movements.length === 0 ? (
               <p className="rounded-xl border border-dashed border-line bg-white p-6 text-sm text-muted">
                 Nenhuma movimentação ainda.
@@ -100,13 +108,20 @@ export default async function EditarProcessoPage({ params }: Params) {
                         <p className="font-medium text-navy-800">{m.title}</p>
                         {m.description && <p className="mt-1 text-sm text-muted">{m.description}</p>}
                       </div>
-                      <MovementDeadline
-                        movementId={m.id}
-                        processId={proc.id}
-                        movementTitle={m.title}
-                        status={m.deadline ? "set" : m.noDeadline ? "none" : "pending"}
-                        dueLabel={m.deadline ? formatDate(m.deadline.dueDate) : null}
-                      />
+                      <div className="flex flex-shrink-0 items-center gap-2">
+                        <DocIconButton
+                          href={`/admin/documentos/novo?processId=${proc.id}&movementId=${m.id}&clientId=${proc.clientId}`}
+                          title="Gerar petição a partir desta movimentação"
+                          size="sm"
+                        />
+                        <MovementDeadline
+                          movementId={m.id}
+                          processId={proc.id}
+                          movementTitle={m.title}
+                          status={m.deadline ? "set" : m.noDeadline ? "none" : "pending"}
+                          dueLabel={m.deadline ? formatDate(m.deadline.dueDate) : null}
+                        />
+                      </div>
                     </div>
                   </li>
                 ))}

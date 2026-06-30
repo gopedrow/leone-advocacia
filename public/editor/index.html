@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Editor WYSIWYG</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ABeeZee&family=Abel&family=Abril+Fatface&family=Aclonica&family=Acme&family=Actor&family=Adamina&family=Alata&family=Alegreya&family=Alegreya+Sans&family=Alegreya+Sans+SC&family=Alegreya+SC&family=Aleo&family=Alex+Brush&family=Alfa+Slab+One&family=Alice&family=Alike&family=Allerta&family=Allura&family=Almendra&family=Amatic+SC&family=Amethysta&family=Anaheim&family=Andika&family=Annie+Use+Your+Telescope&family=Anonymous+Pro&family=Antic&family=Antic+Didone&family=Antic+Slab&family=Anton&family=Arbutus+Slab&family=Archivo&family=Archivo+Black&family=Archivo+Narrow&family=Aref+Ruqaa&family=Arima&family=Arimo&family=Arvo&family=Asap&family=Asap+Condensed&family=Asar&family=Assistant&family=Asul&family=Athiti&family=Atkinson+Hyperlegible&family=Aubrey&family=Audiowide&family=Autour+One&family=Average&family=Average+Sans&family=Averia+Libre&family=Bad+Script&family=Baloo+2&family=Balthazar&family=Bangers&family=Barlow&family=Barlow+Condensed&family=Barlow+Semi+Condensed&family=Basic&family=Battambang&family=Baumans&family=Be+Vietnam+Pro&family=Bebas+Neue&family=Belgrano&family=Belleza&family=BenchNine&family=Besley&family=Beth+Ellen&family=Bigelow+Rules&family=Bigshot+One&family=Bilbo&family=BioRhyme&family=Bitter&family=Black+And+White+Picture&family=Black+Han+Sans&family=Black+Ops+One&family=Blinker&family=Bodoni+Moda&family=Boogaloo&family=Bowlby+One&family=Brawler&family=Bree+Serif&family=Brygada+1918&family=Bubblegum+Sans&family=Bungee&family=Cabin&family=Caladea&family=Calistoga&family=Calligraffitti&family=Cambo&family=Candal&family=Cantarell&family=Cantata+One&family=Cardo&family=Carme&family=Carrois+Gothic&family=Carter+One&family=Catamaran&family=Caveat&family=Caveat+Brush&family=Ceviche+One&family=Chakra+Petch&family=Changa&family=Changa+One&family=Chango&family=Charm&family=Charmonman&family=Chathura&family=Chau+Philomene+One&family=Chewy&family=Chicle&family=Chilanka&family=Chivo&family=Chivo+Mono&family=Cinzel&family=Cinzel+Decorative&family=Clicker+Script&family=Coda&family=Comfortaa&family=Comic+Neue&family=Coming+Soon&family=Commissioner&family=Concert+One&family=Condiment&family=Content&family=Contrail+One&family=Convergence&family=Cookie&family=Copse&family=Cormorant&family=Cormorant+Garamond&family=Cormorant+Infant&family=Cormorant+SC&family=Cormorant+Unicase&family=Courgette&family=Cousine&family=Coustard&family=Covered+By+Your+Grace&family=Crafty+Girls&family=Creepster&family=Crete+Round&family=Crimson+Pro&family=Crimson+Text&family=Croissant+One&family=Crushed&family=Cuprum&family=Cute+Font&family=Cutive&family=Cutive+Mono&family=DM+Mono&family=DM+Sans&family=DM+Serif+Display&family=DM+Serif+Text&family=Damion&family=Dancing+Script&family=Dangrek&family=Darker+Grotesque&family=David+Libre&family=Dawning+of+a+New+Day&family=Days+One&family=Dekko&family=Dela+Gothic+One&family=Delius&family=Delius+Swash+Caps&family=Delius+Unicase&family=Della+Respira&family=Denk+One&family=Devonshire&family=Dhurjati&family=Didact+Gothic&family=Diplomata&family=Diplomata+SC&family=Do+Hyeon&family=Dokdo&family=Domine&family=Donegal+One&family=Doppio+One&family=Dorsa&family=Dosis&family=DotGothic16&family=Dr+Sugiyama&family=Duru+Sans&family=Dynalight&family=EB+Garamond&family=Eagle+Lake&family=East+Sea+Dokdo&family=Eater&family=Economica&family=Eczar&family=El+Messiri&family=Electrolize&family=Elsie&family=Elsie+Swash+Caps&family=Emblema+One&family=Emilys+Candy&family=Encode+Sans&family=Encode+Sans+Condensed&family=Encode+Sans+Expanded&family=Encode+Sans+SC&family=Engagement&family=Eras+Demi+ITC&family=Epilogue&family=Erica+One&family=Euphoria+Script&family=Ewert&family=Exo&family=Exo+2&family=Expletus+Sans&family=Explora&family=Fahkwang&family=Familjen+Grotesk&family=Fanwood+Text&family=Farro&family=Farsan&family=Fascinate&family=Fascinate+Inline&family=Faster+One&family=Fauna+One&family=Faustina&family=Federant&family=Federo&family=Felipa&family=Fenix&family=Finger+Paint&family=Finlandica&family=Fira+Code&family=Fira+Mono&family=Fira+Sans&family=Fira+Sans+Condensed&family=Fira+Sans+Extra+Condensed&family=Fjalla+One&family=Fjord+One&family=Flamenco&family=Flavors&family=Fleur+De+Leah&family=Flow+Block&family=Fondamento&family=Fontdiner+Swanky&family=Forest&family=Freehand&family=Fresca&family=Frijole&family=Fruktur&family=Fugaz+One&family=GFS+Didot&family=Gabriela&family=Gaegu&family=Gafata&family=Galada&family=Galdeano&family=Galindo&family=Gamja+Flower&family=Gantari&family=Gayathri&family=Gelasio&family=Gemunu+Libre&family=Genos&family=Gentium+Book+Plus&family=Gentium+Plus&family=Geo&family=Geologica&family=Georama&family=Gideon+Roman&family=Gidugu&family=Gilda+Display&family=Girassol&family=Give+You+Glory&family=Glass+Antiqua&family=Glegoo&family=Gloock&family=Gloria+Hallelujah&family=Glory&family=Gluten&family=Goblin+One&family=Gochi+Hand&family=Goldman&family=Gorditas&family=Gothic+A1&family=Gotu&family=Goudy+Bookletter+1911&family=Graduate&family=Grand+Hotel&family=Grandstander&family=Gravitas+One&family=Great+Vibes&family=Grechen+Fuemen&family=Grenze&family=Grenze+Gotisch&family=Grey+Qo&family=Griffy&family=Gruppo&family=Gudea&family=Gugi&family=Gulzar&family=Gupter&family=Gurajada&family=Gwendolyn&family=Habibi&family=Hachi+Maru+Pop&family=Hahmlet&family=Halant&family=Hammersmith+One&family=Hanalei&family=Hanalei+Fill&family=Handjet&family=Hanuman&family=Happy+Monkey&family=Harmattan&family=Headland+One&family=Heebo&family=Henny+Penny&family=Hepta+Slab&family=Herr+Von+Muellerhoff&family=Hi+Melody&family=Hina+Mincho&family=Hind&family=Hind+Guntur&family=Hind+Madurai&family=Hind+Siliguri&family=Hind+Vadodara&family=Holtwood+One+SC&family=Homemade+Apple&family=Homenaje&family=Hubballi&family=Hurricane&family=IBM+Plex+Mono&family=IBM+Plex+Sans&family=IBM+Plex+Sans+Condensed&family=IBM+Plex+Serif&family=IM+Fell+DW+Pica&family=Ibarra+Real+Nova&family=Iceberg&family=Iceland&family=Imbue&family=Imperial+Script&family=Imprima&family=Inconsolata&family=Inder&family=Indie+Flower&family=Ingrid+Darling&family=Inter&family=Inter+Tight&family=Irish+Grover&family=Island+Moments&family=Istok+Web&family=Italiana&family=Italianno&family=Itim&family=Jacques+Francois&family=Jacques+Francois+Shadow&family=Jaldi&family=JetBrains+Mono&family=Joan&family=Josefin+Sans&family=Josefin+Slab&family=Jost&family=Jua&family=Judson&family=Julee&family=Julius+Sans+One&family=Junge&family=Jura&family=Just+Another+Hand&family=Just+Me+Again+Down+Here&family=K2D&family=Kaisei+Decol&family=Kaisei+HarunoUmi&family=Kaisei+Opti&family=Kaisei+Tokumin&family=Kalam&family=Kameron&family=Kanit&family=Karla&family=Karma&family=Katibeh&family=Kavoon&family=Kdam+Thmor+Pro&family=Keania+One&family=Kelly+Slab&family=Kenia&family=Kite+One&family=Kiwi+Maru&family=Klee+One&family=Knewave&family=KoHo&family=Kodchasan&family=Koh+Santepheap&family=Kolker+Brush&family=Koulen&family=Kranky&family=Kreon&family=Kristi&family=Krona+One&family=Krub&family=Kufam&family=Kulim+Park&family=Kumar+One&family=Kumar+One+Outline&family=Kumbh+Sans&family=Kurale&family=La+Belle+Aurore&family=Lacquer&family=Laila&family=Lakki+Reddy&family=Lalezar&family=Lancelot&family=Langar&family=Lato&family=Lavishly+Yours&family=League+Gothic&family=League+Script&family=League+Spartan&family=Leckerli+One&family=Ledger&family=Lekton&family=Lemon&family=Lemonada&family=Lexend&family=Lexend+Deca&family=Lexend+Exa&family=Lexend+Giga&family=Lexend+Mega&family=Lexend+Peta&family=Lexend+Tera&family=Lexend+Zetta&family=Libre+Barcode+128&family=Libre+Baskerville&family=Libre+Caslon+Display&family=Libre+Caslon+Text&family=Libre+Franklin&family=Licorice&family=Life+Savers&family=Lilita+One&family=Lily+Script+One&family=Limelight&family=Linden+Hill&family=Literata&family=Liu+Jian+Mao+Cao&family=Livvic&family=Lobster&family=Lobster+Two&family=Londrina+Outline&family=Londrina+Shadow&family=Londrina+Sketch&family=Londrina+Solid&family=Long+Cang&family=Lora&family=Love+Light&family=Love+Ya+Like+A+Sister&family=Loved+by+the+King&family=Lovers+Quarrel&family=Luckiest+Guy&family=Lugrasimo&family=Lumanosimo&family=Lunasima&family=Lusitana&family=Lustria&family=Luxurious+Roman&family=Luxurious+Script&family=M+PLUS+1&family=M+PLUS+1+Code&family=M+PLUS+1p&family=M+PLUS+2&family=M+PLUS+Rounded+1c&family=MedievalSharp&family=Macondo&family=Macondo+Swash+Caps&family=Mada&family=Magra&family=Maiden+Orange&family=Maitree&family=Major+Mono+Display&family=Mako&family=Mali&family=Mallanna&family=Mandali&family=Manjari&family=Manrope&family=Mansalva&family=Manuale&family=Marcellus&family=Marcellus+SC&family=Marck+Script&family=Margarine&family=Marhey&family=Markazi+Text&family=Marko+One&family=Marmelad&family=Martel&family=Martel+Sans&family=Marvel&family=Mate&family=Mate+SC&family=Maven+Pro&family=McLaren&family=Mea+Culpa&family=Meddon&family=Medula+One&family=Meera+Inimai&family=Merienda&family=Merriweather&family=Merriweather+Sans&family=Metal&family=Metal+Mania&family=Metamorphous&family=Metrophobic&family=Michroma&family=Milonga&family=Miltonian&family=Miltonian+Tattoo&family=Mina&family=Mingzat&family=Miniver&family=Miriam+Libre&family=Mirza&family=Miss+Fajardose&family=Mitr&family=Mochiy+Pop+One&family=Mochiy+Pop+P+One&family=Modak&family=Modern+Antiqua&family=Mogra&family=Mohave&family=Molengo&family=Molle&family=Monda&family=Monofett&family=Monoton&family=Monsieur+La+Doulaise&family=Montaga&family=Montagu+Slab&family=MonteCarlo&family=Montez&family=Montserrat&family=Montserrat+Alternates&family=Montserrat+Subrayada&family=Moon+Dance&family=Moul&family=Moulpali&family=Mountains+of+Christmas&family=Mouse+Memoirs&family=Mr+Bedfort&family=Mr+Dafoe&family=Mr+De+Haviland&family=Mrs+Saint+Delafield&family=Mrs+Sheppards&family=Mukta&family=Mukta+Mahee&family=Mukta+Malar&family=Mukta+Vaani&family=Mulish&family=Murecho&family=MuseoModerno&family=Mystery+Quest&family=NTR&family=Nanum+Brush+Script&family=Nanum+Gothic&family=Nanum+Gothic+Coding&family=Nanum+Myeongjo&family=Nanum+Pen+Script&family=Nato+Sans&family=Nobile&family=Nokora&family=Norican&family=Nosifer&family=Notable&family=Nothing+You+Could+Do&family=Noticia+Text&family=Noto+Sans&family=Noto+Serif&family=Nova+Cut&family=Nova+Flat&family=Nova+Mono&family=Nova+Oval&family=Nova+Round&family=Nova+Script&family=Nova+Slim&family=Nova+Square&family=Numans&family=Nunito&family=Nunito+Sans&family=Nuosu+SIL&family=Odibee+Sans&family=Odor+Mean+Chey&family=Offside&family=Oi&family=Old+Standard+TT&family=Oldenburg&family=Ole&family=Oleo+Script&family=Oleo+Script+Swash+Caps&family=Onest&family=Open+Sans&family=Oranienbaum&family=Orbit&family=Orbitron&family=Oregano&family=Orelega+One&family=Orienta&family=Original+Surfer&family=Oswald&family=Outfit&family=Over+the+Rainbow&family=Overlock&family=Overlock+SC&family=Overpass&family=Overpass+Mono&family=Ovo&family=Oxanium&family=Oxygen&family=Oxygen+Mono&family=PT+Mono&family=PT+Sans&family=PT+Sans+Caption&family=PT+Sans+Narrow&family=PT+Serif&family=PT+Serif+Caption&family=Pacifico&family=Padauk&family=Palette+Mosaic&family=Pangolin&family=Paprika&family=Parisienne&family=Passero+One&family=Passion+One&family=Passions+Conflict&family=Pathway+Gothic+One&family=Patrick+Hand&family=Patua+One&family=Pavanam&family=Paytone+One&family=Peddana&family=Peralta&family=Permanent+Marker&family=Petit+Formal+Script&family=Petrona&family=Philosopher&family=Piazzolla&family=Piedra&family=Pinyon+Script&family=Pirata+One&family=Plaster&family=Play&family=Playball&family=Playfair+Display&family=Playfair+Display+SC&family=Playfair&family=Plus+Jakarta+Sans&family=Podkova&family=Poiret+One&family=Poller+One&family=Poltawski+Nowy&family=Poly&family=Pompiere&family=Pontano+Sans&family=Poor+Story&family=Poppins&family=Potta+One&family=Pragati+Narrow&family=Praise&family=Prataeh&family=Pridi&family=Princess+Sofia&family=Prociono&family=Prompt&family=Proza+Libre&family=Public+Sans&family=Puppies+Play&family=Puritan&family=Purple+Purse&family=Qahiri&family=Quando&family=Quantico&family=Quattrocento&family=Quattrocento+Sans&family=Questrial&family=Quicksand&family=Quintessential&family=Qwigley&family=Qwitcher+Grypen&family=Racing+Sans+One&family=Radio+Canada&family=Radley&family=Rajdhani&family=Rakkas&family=Raleway&family=Raleway+Dots&family=Ramabhadra&family=Ramaraja&family=Rambla&family=Rammetto+One&family=Rampart+One&family=Ranchers&family=Rancho&family=Ranga&family=Rasa&family=Rationale&family=Ravi+Prakash&family=Readex+Pro&family=Recursive&family=Red+Hat+Display&family=Red+Hat+Mono&family=Red+Hat+Text&family=Red+Rose&family=Redressed&family=Reem+Kufi&family=Reem+Kufi+Fun&family=Reem+Kufi+Ink&family=Reenie+Beanie&family=Reggae+One&family=Revalia&family=Rhodium+Libre&family=Ribeye&family=Ribeye+Marrow&family=Righteous&family=Risque&family=Road+Rage&family=Roboto&family=Roboto+Condensed&family=Roboto+Flex&family=Roboto+Mono&family=Roboto+Serif&family=Roboto+Slab&family=Rochester&family=Rock+Salt&family=RocknRoll+One&family=Rokkitt&family=Romanesco&family=Ropa+Sans&family=Rosario&family=Rosarivo&family=Rouge+Script&family=Rowdies&family=Rozha+One&family=Rubik&family=Rubik+80s+Fade&family=Rubik+Beastly&family=Rubik+Broken+Fax&family=Rubik+Bubbles&family=Rubik+Burned&family=Rubik+Dirt&family=Rubik+Distressed&family=Rubik+Gemstones&family=Rubik+Glitch&family=Rubik+Iso&family=Rubik+Marker+Hatch&family=Rubik+Maze&family=Rubik+Microbe&family=Rubik+Mono+One&family=Rubik+Moonrocks&family=Rubik+Pixels&family=Rubik+Puddles&family=Rubik+Spray+Paint&family=Rubik+Storm&family=Rubik+Vinyl&family=Rubik+Wet+Paint&family=Ruda&family=Rufina&family=Ruge+Boogie&family=Ruluko&family=Rum+Raisin&family=Ruslan+Display&family=Russo+One&family=Ruthie&family=Rye&family=STIX+Two+Text&family=Sacramento&family=Sahitya&family=Sail&family=Saira&family=Saira+Condensed&family=Saira+Extra+Condensed&family=Saira+Semi+Condensed&family=Saira+Stencil+One&family=Salsa&family=Sanchez&family=Sancreek&family=Sansita&family=Sansita+Swashed&family=Sarabun&family=Sarala&family=Sarina&family=Sarpanch&family=Sassy+Frass&family=Satisfy&family=Sawarabi+Gothic&family=Sawarabi+Mincho&family=Scada&family=Scheherazade+New&family=Secular+One&family=Sedgwick+Ave&family=Sedgwick+Ave+Display&family=Sen&family=Sevillana&family=Seymour+One&family=Shanti&family=Share&family=Share+Tech&family=Share+Tech+Mono&family=Shippori+Antique&family=Shippori+Antique+B1&family=Shippori+Mincho&family=Shippori+Mincho+B1&family=Shizuru&family=Shrikhand&family=Siemreap&family=Sigmar&family=Sigmar+One&family=Signika&family=Signika+Negative&family=Simonetta&family=Single+Day&family=Sintony&family=Sirin+Stencil&family=Six+Caps&family=Skranji&family=Slabo+13px&family=Slabo+27px&family=Slackey&family=Slee&family=Smythe&family=Sniglet&family=Snippet&family=Snowburst+One&family=Sofadi+One&family=Sofia&family=Solitreo&family=Solway&family=Song+Myung&family=Sora&family=Sorts+Mill+Goudy&family=Source+Code+Pro&family=Source+Sans+3&family=Source+Serif+4&family=Space+Grotesk&family=Space+Mono&family=Special+Elite&family=Spectral&family=Spectral+SC&family=Spicy+Rice&family=Spinnaker&family=Spirax&family=Splash&family=Spline+Sans&family=Spline+Sans+Mono&family=Squada+One&family=Square+Peg&family=Sree+Krushnadevaraya&family=Sriracha&family=Srisakdi&family=Staatliches&family=Stardos+Stencil&family=Stick&family=Stick+No+Bills&family=Stint+Ultra+Condensed&family=Stint+Ultra+Expanded&family=Stoke&family=Strait&family=Style+Script&family=Stylish&family=Sue+Ellen+Francisco&family=Suez+One&family=Sulphur+Point&family=Sumana&family=Sunflower&family=Sunshiney&family=Supermercado+One&family=Sura&family=Suranna&family=Suravaram&family=Suwannaphum&family=Swanky+and+Moo+Moo&family=Syncopate&family=Syne&family=Syne+Mono&family=Syne+Tactile&family=Tai+Heritage+Pro&family=Tajawal&family=Tangerine&family=Taprom&family=Tauri&family=Taviraj&family=Teko&family=Telex&family=Tenali+Ramakrishna&family=Tenor+Sans&family=Text+Me+One&family=Thasadith&family=The+Girl+Next+Door&family=The+Nautigal&family=Tienne&family=Tillana&family=Timmana&family=Tinos&family=Titan+One&family=Titillium+Web&family=Tomorrow&family=Tourney&family=Trade+Winds&family=Train+One&family=Trirong&family=Trispace&family=Trocchi&family=Trochut&family=Truculenta&family=Turret+Road&family=Twinkle+Star&family=Ubuntu&family=Ubuntu+Condensed&family=Ubuntu+Mono&family=Uchen&family=Ultra&family=Uncial+Antiqua&family=Underdog&family=Unica+One&family=UnifrakturCook&family=UnifrakturMaguntia&family=Unkempt&family=Unlock&family=Unna&family=Updock&family=Urbanist&family=VT323&family=Vampiro+One&family=Varela&family=Varela+Round&family=Varta&family=Vast+Shadow&family=Vesper+Libre&family=Viaoda+Libre&family=Vibes&family=Vibur&family=Vidaloka&family=Viga&family=Voces&family=Volkhov&family=Vollkorn&family=Vollkorn+SC&family=Voltaire&family=Vujahday+Script&family=Waiting+for+the+Sunrise&family=Wallpoet&family=Walter+Turncoat&family=Warnes&family=Water+Brush&family=Waterfall&family=Wellfleet&family=Wendy+One&family=Whisper&family=WindSong&family=Wire+One&family=Wix+Madefor+Display&family=Wix+Madefor+Text&family=Work+Sans&family=Xanh+Mono&family=Yaldevi&family=Yanone+Kaffeesatz&family=Yantramanav&family=Yatra+One&family=Yellowtail&family=Yeon+Sung&family=Yeseva+One&family=Yesteryear&family=Yomogi&family=Yrsa&family=Yuji+Boku&family=Yuji+Mai&family=Yuji+Syuku&family=Yusei+Magic&family=ZCOOL+KuaiLe&family=ZCOOL+QingKe+HuangYou&family=ZCOOL+XiaoWei&family=Zen+Antique&family=Zen+Antique+Soft&family=Zen+Dots&family=Zen+Kaku+Gothic+Antique&family=Zen+Kaku+Gothic+New&family=Zen+Kurenaido&family=Zen+Loop&family=Zen+Maru+Gothic&family=Zen+Old+Mincho&family=Zen+Tokyo+Zoo&family=Zeyada&family=Zhi+Mang+Xing&family=Zilla+Slab&family=Zilla+Slab+Highlight&display=swap">
+<style>
+:root {
+  --border: #e4e4e7;
+  --bg: #fff;
+  --bg-hover: #f4f4f5;
+  --bg-panel: #fafafa;
+  --bg-canvas: #71717a;
+  --text: #09090b;
+  --text-muted: #71717a;
+  --amber: #d97706;
+  --amber-light: #fef3c7;
+  --amber-mid: #f59e0b;
+  --active-bg: #fef3c7;
+  --active-color: #92400e;
+  --radius: 6px;
+  --radius-lg: 10px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.06);
+  --shadow-md: 0 4px 16px rgba(0,0,0,.12);
+  --shadow-page: 0 4px 24px rgba(0,0,0,.22);
+  --transition: 0.2s ease;
+  --transition-slow: 0.3s ease-in-out;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg-canvas);display:flex;flex-direction:column;height:100vh;overflow:hidden;color:var(--text)}
+
+/* ── MENUBAR ── */
+#menubar{display:flex;background:var(--bg);border-bottom:1px solid var(--border);padding:2px 8px;font-size:13px;flex-wrap:wrap;position:relative;z-index:50;box-shadow:var(--shadow-sm)}
+.menu-item{position:relative;padding:5px 10px;cursor:pointer;border-radius:var(--radius);user-select:none;transition:background var(--transition)}
+.menu-item:hover{background:var(--bg-hover)}
+.dropdown{display:none;position:absolute;top:calc(100% + 2px);left:0;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);min-width:210px;z-index:100;box-shadow:var(--shadow-md);padding:4px 0}
+.menu-item:hover .dropdown{display:block;animation:fadeIn .12s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+.dropdown-item{padding:7px 14px;cursor:pointer;font-size:12px;display:flex;align-items:center;gap:9px;color:var(--text);transition:background var(--transition)}
+.dropdown-item:hover{background:var(--bg-hover)}
+.dropdown-item .ti{font-size:14px;color:var(--text-muted);width:16px}
+.dropdown-item kbd{margin-left:auto;font-size:10px;color:var(--text-muted);font-family:monospace;background:var(--bg-hover);padding:1px 6px;border-radius:4px;border:1px solid var(--border)}
+.dd-sep{border-top:1px solid var(--border);margin:4px 0}
+
+/* ── FIND BAR ── */
+#find-bar{display:none;padding:6px 14px;background:#fffbeb;border-bottom:1px solid #fde68a;align-items:center;gap:8px;font-size:12px}
+#find-bar.visible{display:flex;animation:fadeIn .15s ease}
+#find-bar input{border:1px solid var(--border);border-radius:var(--radius);padding:4px 10px;font-size:12px;background:var(--bg);color:var(--text);transition:border-color var(--transition)}
+#find-bar input:focus{outline:none;border-color:var(--amber)}
+.find-btn{border:1px solid var(--border);background:var(--bg);border-radius:var(--radius);padding:3px 10px;font-size:11px;cursor:pointer;color:var(--text);transition:background var(--transition)}
+.find-btn:hover{background:var(--bg-hover)}
+
+/* ── TOOLBAR ── */
+#toolbar{display:flex;flex-wrap:wrap;gap:1px;padding:4px 10px;background:var(--bg);border-bottom:1px solid var(--border);align-items:center;box-shadow:var(--shadow-sm)}
+.tb-sep{width:1px;height:20px;background:var(--border);margin:0 5px}
+.tb-btn{border:none;background:transparent;padding:0 6px;border-radius:var(--radius);cursor:pointer;font-size:15px;color:var(--text-muted);display:flex;align-items:center;justify-content:center;min-width:30px;height:30px;transition:background var(--transition),color var(--transition);position:relative}
+.tb-btn:hover{background:var(--bg-hover);color:var(--text)}
+.tb-btn.active{background:var(--active-bg);color:var(--active-color)}
+.tb-btn[title]:hover::after{content:attr(title);position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:#18181b;color:#fff;font-size:10px;padding:3px 7px;border-radius:4px;white-space:nowrap;pointer-events:none;z-index:99;animation:fadeIn .1s ease}
+.tb-select{border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:12px;padding:2px 6px;border-radius:var(--radius);height:28px;cursor:pointer;transition:border-color var(--transition)}
+.tb-select:focus{outline:none;border-color:var(--amber)}
+.tb-color{width:26px;height:26px;border:1px solid var(--border);border-radius:var(--radius);cursor:pointer;padding:1px;transition:border-color var(--transition)}
+.tb-color:hover{border-color:var(--amber)}
+#zoom-display{font-size:11px;padding:2px 8px;border:1px solid var(--border);border-radius:var(--radius);min-width:52px;text-align:center;background:var(--bg);cursor:default;color:var(--text-muted)}
+
+/* ── RULER ── */
+#rulers{display:flex;background:var(--bg-panel);border-bottom:1px solid var(--border)}
+#v-ruler-corner{width:20px;height:20px;background:var(--bg-panel);border-right:1px solid var(--border);flex-shrink:0}
+#h-ruler{flex:1;height:20px;display:block}
+
+/* ── LAYOUT ── */
+#main{display:flex;flex:1;overflow:hidden}
+
+/* ── SIDEBARS ── */
+#sidebar-left{width:230px;background:var(--bg);border-right:1px solid var(--border);display:flex;flex-direction:column;font-size:12px;overflow-y:auto;transition:width var(--transition-slow),opacity var(--transition-slow)}
+#sidebar-right{width:230px;background:var(--bg);border-left:1px solid var(--border);display:flex;flex-direction:column;font-size:12px;overflow-y:auto;transition:width var(--transition-slow),opacity var(--transition-slow)}
+#sidebar-left.hidden,#sidebar-right.hidden{width:0;opacity:0;overflow:hidden;border:none}
+
+.panel-title{padding:8px 14px;font-weight:600;font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;cursor:pointer;user-select:none;background:var(--bg-panel);transition:background var(--transition)}
+.panel-title:hover{background:var(--bg-hover)}
+.panel-title .ti{transition:transform var(--transition)}
+.panel-title.open .ti{transform:rotate(180deg)}
+
+/* Animated grid collapse */
+.panel-wrap{display:grid;grid-template-rows:0fr;transition:grid-template-rows var(--transition-slow)}
+.panel-wrap.open{grid-template-rows:1fr}
+.panel-inner{overflow:hidden}
+.panel-body{padding:8px 12px}
+
+
+/* ── TREE (estrutura do documento) ── */
+.tree-container{padding:8px 0}
+.tree-ul{list-style:none;padding:0;margin:0}
+.tree-ul .tree-ul{margin-left:12px;padding-left:10px;border-left:1px solid var(--border)}
+.tree-li{position:relative;margin-top:2px}
+.tree-ul .tree-ul .tree-li::before{content:'';position:absolute;left:-10px;top:13px;width:10px;height:1px;background:var(--border)}
+.tree-node{display:flex;align-items:center;gap:7px;padding:3px 8px;border-radius:var(--radius);cursor:pointer;font-size:12px;color:var(--text);transition:background var(--transition);height:26px;user-select:none}
+.tree-node:hover{background:var(--bg-hover)}
+.tree-node.active{background:var(--bg-hover);font-weight:500}
+.tree-node .ti{font-size:13px;color:var(--text-muted);flex-shrink:0}
+.tree-node-text{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tree-chevron{font-size:11px;color:var(--text-muted);transition:transform var(--transition)}
+.tree-chevron.open{transform:rotate(90deg)}
+
+/* Toc items */
+.toc-item{padding:3px 10px;cursor:pointer;color:var(--text-muted);font-size:12px;border-radius:var(--radius);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:background var(--transition),color var(--transition);display:flex;align-items:center;gap:6px}
+.toc-item:hover{background:var(--bg-hover);color:var(--text)}
+.toc-h2{padding-left:20px}
+.toc-h3{padding-left:30px}
+.toc-badge{font-size:9px;background:var(--bg-hover);border-radius:3px;padding:1px 5px;color:var(--text-muted);flex-shrink:0}
+
+/* ── CANVAS ── */
+#canvas-area{flex:1;overflow:auto;background:var(--bg-canvas);display:flex;flex-direction:column;align-items:center;padding:28px 0}
+#pages-wrapper{display:flex;flex-direction:column;align-items:center;gap:0;position:relative}
+
+/* ── PAGE ── */
+.page{width:794px;min-height:1123px;background:#fff;box-shadow:var(--shadow-page);position:relative;flex-shrink:0;transition:transform var(--transition)}
+.page-content{min-height:979px;padding:72px 80px;outline:none;font-size:16px;line-height:1.7;color:#111;caret-color:#111;cursor:text}
+.page-content:focus{outline:none}
+.page-header-bar{padding:10px 80px 6px;font-size:11px;color:#aaa;border-bottom:1px solid #f0f0f0;min-height:32px}
+.page-footer-bar{padding:6px 80px 10px;font-size:11px;color:#aaa;border-top:1px solid #f0f0f0;text-align:center;min-height:32px}
+
+/* Page break band */
+.page-break-band{width:794px;height:32px;background:var(--bg-canvas);display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative}
+.page-break-band::before,.page-break-band::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.15)}
+.page-break-band span{font-size:10px;color:rgba(255,255,255,.35);padding:0 10px;white-space:nowrap}
+.page-num-badge{position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:10px;color:rgba(255,255,255,.3)}
+
+/* ── STATUSBAR ── */
+#statusbar{display:flex;gap:14px;padding:4px 16px;background:var(--bg);border-top:1px solid var(--border);font-size:11px;color:var(--text-muted);align-items:center;flex-shrink:0;box-shadow:0 -1px 2px rgba(0,0,0,.04)}
+.status-item{display:flex;align-items:center;gap:4px;white-space:nowrap}
+.status-item .ti{font-size:13px}
+
+/* ── RIGHT PANEL TABS ── */
+.tab-bar{display:flex;border-bottom:1px solid var(--border);background:var(--bg-panel)}
+.tab{padding:7px 14px;font-size:11px;cursor:pointer;color:var(--text-muted);border-bottom:2px solid transparent;transition:color var(--transition),border-color var(--transition);user-select:none}
+.tab:hover{color:var(--text)}
+.tab.active{color:var(--text);border-bottom-color:var(--amber);font-weight:600}
+
+/* ── PROPS ── */
+.prop-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;gap:8px}
+.prop-label{font-size:11px;color:var(--text-muted);white-space:nowrap}
+.prop-input{border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:11px;padding:3px 7px;border-radius:var(--radius);width:90px;transition:border-color var(--transition)}
+.prop-input:focus{outline:none;border-color:var(--amber)}
+.style-btn-row{display:flex;gap:4px;flex-wrap:wrap;margin:4px 0}
+.style-btn{font-size:11px;padding:4px 9px;border:1px solid var(--border);border-radius:var(--radius);cursor:pointer;background:var(--bg);color:var(--text);transition:background var(--transition),border-color var(--transition)}
+.style-btn:hover{background:var(--bg-hover);border-color:#d4d4d8}
+
+/* ── COLOR PALETTE ── */
+.color-swatches{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;margin:4px 0}
+.swatch{width:18px;height:18px;border-radius:3px;cursor:pointer;border:1px solid rgba(0,0,0,.08);transition:transform var(--transition),box-shadow var(--transition)}
+.swatch:hover{transform:scale(1.25);box-shadow:0 2px 6px rgba(0,0,0,.2);z-index:1;position:relative}
+
+/* ── MODAL ── */
+#modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200;align-items:center;justify-content:center;backdrop-filter:blur(2px)}
+#modal-overlay.visible{display:flex;animation:fadeIn .15s ease}
+.modal{background:var(--bg);border-radius:var(--radius-lg);border:1px solid var(--border);padding:22px;min-width:360px;max-width:500px;box-shadow:var(--shadow-md);animation:slideUp .2s ease}
+@keyframes slideUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.modal h3{font-size:15px;font-weight:600;margin-bottom:14px}
+.modal-field{margin-bottom:11px}
+.modal-field label{font-size:12px;color:var(--text-muted);display:block;margin-bottom:4px}
+.modal-field input,.modal-field select,.modal-field textarea{width:100%;border:1px solid var(--border);border-radius:var(--radius);padding:7px 10px;font-size:13px;background:var(--bg);color:var(--text);transition:border-color var(--transition)}
+.modal-field input:focus,.modal-field select:focus,.modal-field textarea:focus{outline:none;border-color:var(--amber);box-shadow:0 0 0 3px rgba(217,119,6,.1)}
+.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}
+.btn-primary{background:var(--amber);color:#fff;border:none;padding:7px 18px;border-radius:var(--radius);cursor:pointer;font-size:13px;font-weight:500;transition:background var(--transition)}
+.btn-primary:hover{background:#b45309}
+.btn-secondary{background:var(--bg);color:var(--text);border:1px solid var(--border);padding:7px 18px;border-radius:var(--radius);cursor:pointer;font-size:13px;transition:background var(--transition)}
+.btn-secondary:hover{background:var(--bg-hover)}
+
+/* ── CONTEXT MENU ── */
+#context-menu{display:none;position:fixed;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);padding:4px 0;z-index:300;min-width:170px;box-shadow:var(--shadow-md);animation:fadeIn .1s ease}
+.ctx-item{padding:7px 14px;cursor:pointer;font-size:12px;display:flex;align-items:center;gap:8px;color:var(--text);transition:background var(--transition)}
+.ctx-item:hover{background:var(--bg-hover)}
+.ctx-item .ti{font-size:14px;color:var(--text-muted)}
+.ctx-item.danger{color:#dc2626}
+.ctx-item.danger .ti{color:#dc2626}
+.ctx-sep{border-top:1px solid var(--border);margin:3px 0}
+
+/* ── NOTIF ── */
+.notif{position:fixed;bottom:50px;left:50%;transform:translateX(-50%);background:#18181b;color:#fff;border-radius:var(--radius);padding:8px 18px;font-size:12px;z-index:500;pointer-events:none;animation:notifIn .2s ease;white-space:nowrap}
+@keyframes notifIn{from{opacity:0;transform:translateX(-50%) translateY(6px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+
+/* ── SNIPPET ── */
+.snippet-item{padding:4px 8px;cursor:pointer;border-radius:var(--radius);font-size:11px;color:var(--text-muted);display:flex;justify-content:space-between;align-items:center;transition:background var(--transition)}
+.snippet-item:hover{background:var(--bg-hover);color:var(--text)}
+
+/* ── EDITOR CONTENT STYLES ── */
+.page-content h1{font-size:28px;font-weight:700;margin:16px 0 8px;color:#111}
+.page-content h2{font-size:22px;font-weight:600;margin:14px 0 6px;color:#111}
+.page-content h3{font-size:18px;font-weight:600;margin:12px 0 5px;color:#111}
+.page-content h4{font-size:15px;font-weight:600;margin:10px 0 4px}
+.page-content h5,.page-content h6{font-size:13px;font-weight:600;margin:8px 0 3px}
+.page-content blockquote{border-left:3px solid #d1d5db;padding-left:16px;color:#6b7280;margin:12px 0;font-style:italic}
+.page-content pre{background:#f8fafc;padding:14px;border-radius:var(--radius);font-family:monospace;font-size:13px;overflow-x:auto;margin:10px 0;border:1px solid var(--border)}
+.page-content table{border-collapse:collapse;width:100%;margin:10px 0}
+.page-content table td,.page-content table th{border:1px solid #e5e7eb;padding:8px 12px}
+.page-content table th{background:#f9fafb;font-weight:600}
+.page-content ul,.page-content ol{padding-left:24px;margin:8px 0}
+.page-content li{margin:3px 0}
+.page-content a{color:#2563eb;text-decoration:underline}
+.page-content mark{background:#fef9c3;border-radius:2px}
+.page-content .checklist{list-style:none;padding-left:4px}
+.page-content .checklist li{display:flex;align-items:flex-start;gap:8px;margin:4px 0}
+.page-content .checklist input[type=checkbox]{margin-top:4px;flex-shrink:0;accent-color:var(--amber)}
+.page-content hr{border:none;border-top:1px solid var(--border);margin:16px 0}
+.page-content img{max-width:100%;border-radius:var(--radius)}
+
+/* Insert grid */
+.insert-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:8px 12px}
+.insert-btn{border:1px solid var(--border);border-radius:var(--radius);background:var(--bg);color:var(--text);padding:10px 4px;text-align:center;cursor:pointer;font-size:11px;transition:background var(--transition),border-color var(--transition)}
+.insert-btn:hover{background:var(--bg-hover);border-color:#d4d4d8}
+.insert-btn .ti{display:block;font-size:20px;color:var(--amber);margin-bottom:4px}
+
+/* Zoom fade on canvas */
+#canvas-area{scroll-behavior:smooth}
+</style>
+</head>
+<body>
+
+<!-- MENUBAR -->
+<div id="menubar">
+  <div class="menu-item">Arquivo<div class="dropdown">
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="newDoc()"><i class="ti ti-file-plus"></i>Novo<kbd>Ctrl+N</kbd></div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="openFile()"><i class="ti ti-folder-open"></i>Abrir<kbd>Ctrl+O</kbd></div>
+    <div class="dd-sep"></div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="saveDoc()"><i class="ti ti-device-floppy"></i>Salvar<kbd>Ctrl+S</kbd></div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="saveAs('html')"><i class="ti ti-download"></i>Exportar HTML</div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="saveAs('txt')"><i class="ti ti-txt"></i>Exportar TXT</div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="saveAs('md')"><i class="ti ti-markdown"></i>Exportar Markdown</div>
+    <div class="dd-sep"></div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="printDoc()"><i class="ti ti-printer"></i>Imprimir<kbd>Ctrl+P</kbd></div>
+  </div></div>
+  <div class="menu-item">Editar<div class="dropdown">
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="execCmd('undo')"><i class="ti ti-arrow-back-up"></i>Desfazer<kbd>Ctrl+Z</kbd></div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="execCmd('redo')"><i class="ti ti-arrow-forward-up"></i>Refazer<kbd>Ctrl+Y</kbd></div>
+    <div class="dd-sep"></div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="execCmd('cut')"><i class="ti ti-cut"></i>Recortar<kbd>Ctrl+X</kbd></div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="execCmd('copy')"><i class="ti ti-copy"></i>Copiar<kbd>Ctrl+C</kbd></div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="pastePlain()"><i class="ti ti-clipboard-text"></i>Colar sem formato<kbd>Ctrl+Shift+V</kbd></div>
+    <div class="dd-sep"></div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="execCmd('selectAll')"><i class="ti ti-select-all"></i>Selecionar tudo<kbd>Ctrl+A</kbd></div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="toggleFind(false)"><i class="ti ti-search"></i>Localizar<kbd>Ctrl+F</kbd></div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="toggleFind(true)"><i class="ti ti-replace"></i>Localizar e substituir<kbd>Ctrl+H</kbd></div>
+  </div></div>
+  <div class="menu-item">Inserir<div class="dropdown">
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="insertTable()"><i class="ti ti-table"></i>Tabela</div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="insertLink()"><i class="ti ti-link"></i>Link<kbd>Ctrl+K</kbd></div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="insertImage()"><i class="ti ti-photo"></i>Imagem</div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="insertHR()"><i class="ti ti-minus"></i>Linha divisória</div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="insertCodeBlock()"><i class="ti ti-code"></i>Bloco de código</div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="insertBlockquote()"><i class="ti ti-quote"></i>Citação</div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="insertChecklist()"><i class="ti ti-checkbox"></i>Lista de tarefas</div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="insertEmoji()"><i class="ti ti-mood-smile"></i>Emoji</div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="insertSpecialChar()"><i class="ti ti-omega"></i>Caractere especial</div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="insertFootnote()"><i class="ti ti-subscript-2"></i>Nota de rodapé</div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="addPageManual()"><i class="ti ti-file-plus"></i>Nova página</div>
+  </div></div>
+  <div class="menu-item">Formatar<div class="dropdown">
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="fmt('bold')"><i class="ti ti-bold"></i>Negrito<kbd>Ctrl+B</kbd></div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="fmt('italic')"><i class="ti ti-italic"></i>Itálico<kbd>Ctrl+I</kbd></div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="fmt('underline')"><i class="ti ti-underline"></i>Sublinhado<kbd>Ctrl+U</kbd></div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="fmt('strikeThrough')"><i class="ti ti-strikethrough"></i>Tachado</div>
+    <div class="dd-sep"></div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="fmt('removeFormat')"><i class="ti ti-eraser"></i>Limpar formatação</div>
+    <div class="dd-sep"></div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="changeCase('upper')"><i class="ti ti-letter-case-upper"></i>MAIÚSCULAS</div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="changeCase('lower')"><i class="ti ti-letter-case-lower"></i>minúsculas</div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="changeCase('title')"><i class="ti ti-letter-case"></i>Capitalizar</div>
+  </div></div>
+  <div class="menu-item">Exibir<div class="dropdown">
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="togglePanel('left')"><i class="ti ti-layout-sidebar"></i>Painel esquerdo</div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="togglePanel('right')"><i class="ti ti-layout-sidebar-right"></i>Painel direito</div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="toggleRuler()"><i class="ti ti-ruler-2"></i>Régua</div>
+    <div class="dd-sep"></div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="setZoom(75)"><i class="ti ti-zoom-out"></i>75%</div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="setZoom(100)"><i class="ti ti-zoom-check"></i>100%</div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="setZoom(125)"><i class="ti ti-zoom-in"></i>125%</div>
+    <div class="dd-sep"></div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="toggleHTMLView()"><i class="ti ti-code"></i>Ver HTML fonte</div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="toggleDarkPage()"><i class="ti ti-moon"></i>Tema escuro</div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="toggleFocusMode()"><i class="ti ti-eye"></i>Modo foco</div>
+  </div></div>
+  <div class="menu-item">Ferramentas<div class="dropdown">
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="wordCount()"><i class="ti ti-123"></i>Contagem de palavras</div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="autoSaveToggle()"><i class="ti ti-refresh"></i>Alternar auto-salvar</div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="insertTemplate()"><i class="ti ti-template"></i>Inserir modelo</div>
+    <div class="dropdown-item" onmousedown="e_prevent(event)" onclick="showShortcuts()"><i class="ti ti-keyboard"></i>Atalhos de teclado</div>
+  </div></div>
+</div>
+
+<!-- FIND BAR -->
+<div id="find-bar">
+  <i class="ti ti-search" style="font-size:14px;color:var(--text-muted)"></i>
+  <input id="find-input" placeholder="Localizar..." style="width:160px">
+  <input id="replace-input" placeholder="Substituir..." style="width:150px;display:none">
+  <button class="find-btn" onmousedown="e_prevent(event)" onclick="findNext()">Próximo</button>
+  <button class="find-btn" id="replace-btn" onmousedown="e_prevent(event)" onclick="replaceCurrent()" style="display:none">Substituir</button>
+  <button class="find-btn" id="replace-all-btn" onmousedown="e_prevent(event)" onclick="replaceAll()" style="display:none">Todos</button>
+  <span id="find-count" style="font-size:11px;color:var(--text-muted)"></span>
+  <button class="tb-btn" onmousedown="e_prevent(event)" onclick="closeFindBar()" style="margin-left:auto"><i class="ti ti-x"></i></button>
+</div>
+
+<!-- TOOLBAR -->
+<div id="toolbar">
+  <select class="tb-select" id="block-type" style="width:116px" onmousedown="e_prevent(event)" onchange="applyBlockType(this.value)">
+    <option value="p">Parágrafo</option>
+    <option value="h1">Título 1</option>
+    <option value="h2">Título 2</option>
+    <option value="h3">Título 3</option>
+    <option value="h4">Título 4</option>
+    <option value="h5">Título 5</option>
+    <option value="pre">Código</option>
+    <option value="blockquote">Citação</option>
+  </select>
+  <select class="tb-select" id="font-family" style="width:150px" onmousedown="e_prevent(event)" onchange="applyFont(this.value)">
+    <optgroup label="── Sans-serif ──">
+      <option value="Inter,sans-serif">Inter</option>
+      <option value="Roboto,sans-serif">Roboto</option>
+      <option value="Open Sans,sans-serif">Open Sans</option>
+      <option value="Lato,sans-serif">Lato</option>
+      <option value="Poppins,sans-serif">Poppins</option>
+      <option value="Montserrat,sans-serif">Montserrat</option>
+      <option value="Nunito,sans-serif">Nunito</option>
+      <option value="Raleway,sans-serif">Raleway</option>
+      <option value="Oswald,sans-serif">Oswald</option>
+      <option value="Ubuntu,sans-serif">Ubuntu</option>
+      <option value="Mulish,sans-serif">Mulish</option>
+      <option value="Outfit,sans-serif">Outfit</option>
+      <option value="DM Sans,sans-serif">DM Sans</option>
+      <option value="Plus Jakarta Sans,sans-serif">Plus Jakarta Sans</option>
+      <option value="Manrope,sans-serif">Manrope</option>
+      <option value="Work Sans,sans-serif">Work Sans</option>
+      <option value="Barlow,sans-serif">Barlow</option>
+      <option value="Exo 2,sans-serif">Exo 2</option>
+      <option value="Jost,sans-serif">Jost</option>
+      <option value="Karla,sans-serif">Karla</option>
+      <option value="Lexend,sans-serif">Lexend</option>
+      <option value="Figtree,sans-serif">Figtree</option>
+      <option value="Cabin,sans-serif">Cabin</option>
+      <option value="Quicksand,sans-serif">Quicksand</option>
+      <option value="Sora,sans-serif">Sora</option>
+      <option value="Space Grotesk,sans-serif">Space Grotesk</option>
+      <option value="Commissioner,sans-serif">Commissioner</option>
+      <option value="Urbanist,sans-serif">Urbanist</option>
+      <option value="Public Sans,sans-serif">Public Sans</option>
+      <option value="Wix Madefor Text,sans-serif">Wix Madefor Text</option>
+      <option value="Onest,sans-serif">Onest</option>
+      <option value="Geologica,sans-serif">Geologica</option>
+      <option value="IBM Plex Sans,sans-serif">IBM Plex Sans</option>
+      <option value="Fira Sans,sans-serif">Fira Sans</option>
+      <option value="Source Sans 3,sans-serif">Source Sans 3</option>
+      <option value="Helvetica,sans-serif">Helvetica</option>
+      <option value="Arial,sans-serif">Arial</option>
+      <option value="Verdana,sans-serif">Verdana</option>
+      <option value="Trebuchet MS,sans-serif">Trebuchet MS</option>
+      <option value="Tahoma,sans-serif">Tahoma</option>
+    </optgroup>
+    <optgroup label="── Serif ──">
+      <option value="Georgia,serif">Georgia</option>
+      <option value="Merriweather,serif">Merriweather</option>
+      <option value="Playfair Display,serif">Playfair Display</option>
+      <option value="Lora,serif">Lora</option>
+      <option value="Crimson Pro,serif">Crimson Pro</option>
+      <option value="Cormorant Garamond,serif">Cormorant Garamond</option>
+      <option value="EB Garamond,serif">EB Garamond</option>
+      <option value="Libre Baskerville,serif">Libre Baskerville</option>
+      <option value="Spectral,serif">Spectral</option>
+      <option value="Bitter,serif">Bitter</option>
+      <option value="Arvo,serif">Arvo</option>
+      <option value="Rokkitt,serif">Rokkitt</option>
+      <option value="Zilla Slab,serif">Zilla Slab</option>
+      <option value="Vollkorn,serif">Vollkorn</option>
+      <option value="Alegreya,serif">Alegreya</option>
+      <option value="Domine,serif">Domine</option>
+      <option value="DM Serif Display,serif">DM Serif Display</option>
+      <option value="Bodoni Moda,serif">Bodoni Moda</option>
+      <option value="Cardo,serif">Cardo</option>
+      <option value="Gloock,serif">Gloock</option>
+      <option value="Literata,serif">Literata</option>
+      <option value="Brygada 1918,serif">Brygada 1918</option>
+      <option value="STIX Two Text,serif">STIX Two Text</option>
+      <option value="Source Serif 4,serif">Source Serif 4</option>
+      <option value="IBM Plex Serif,serif">IBM Plex Serif</option>
+      <option value="PT Serif,serif">PT Serif</option>
+      <option value="Noto Serif,serif">Noto Serif</option>
+      <option value="Old Standard TT,serif">Old Standard TT</option>
+      <option value="Times New Roman,serif">Times New Roman</option>
+    </optgroup>
+    <optgroup label="── Monoespaçada ──">
+      <option value="JetBrains Mono,monospace">JetBrains Mono</option>
+      <option value="Fira Code,monospace">Fira Code</option>
+      <option value="Source Code Pro,monospace">Source Code Pro</option>
+      <option value="Roboto Mono,monospace">Roboto Mono</option>
+      <option value="IBM Plex Mono,monospace">IBM Plex Mono</option>
+      <option value="DM Mono,monospace">DM Mono</option>
+      <option value="Space Mono,monospace">Space Mono</option>
+      <option value="Inconsolata,monospace">Inconsolata</option>
+      <option value="Chivo Mono,monospace">Chivo Mono</option>
+      <option value="Overpass Mono,monospace">Overpass Mono</option>
+      <option value="Oxygen Mono,monospace">Oxygen Mono</option>
+      <option value="Ubuntu Mono,monospace">Ubuntu Mono</option>
+      <option value="PT Mono,monospace">PT Mono</option>
+      <option value="Share Tech Mono,monospace">Share Tech Mono</option>
+      <option value="Xanh Mono,monospace">Xanh Mono</option>
+      <option value="Courier New,monospace">Courier New</option>
+    </optgroup>
+    <optgroup label="── Display / Título ──">
+      <option value="Bebas Neue,sans-serif">Bebas Neue</option>
+      <option value="Anton,sans-serif">Anton</option>
+      <option value="Black Han Sans,sans-serif">Black Han Sans</option>
+      <option value="Staatliches,sans-serif">Staatliches</option>
+      <option value="Squada One,sans-serif">Squada One</option>
+      <option value="Righteous,sans-serif">Righteous</option>
+      <option value="Fjalla One,sans-serif">Fjalla One</option>
+      <option value="Alfa Slab One,serif">Alfa Slab One</option>
+      <option value="Ultra,serif">Ultra</option>
+      <option value="Boogaloo,sans-serif">Boogaloo</option>
+      <option value="Comfortaa,sans-serif">Comfortaa</option>
+      <option value="Fredoka One,sans-serif">Fredoka One</option>
+      <option value="Pacifico,sans-serif">Pacifico</option>
+      <option value="Lobster,sans-serif">Lobster</option>
+      <option value="Bungee,sans-serif">Bungee</option>
+      <option value="Cinzel,serif">Cinzel</option>
+      <option value="Cinzel Decorative,serif">Cinzel Decorative</option>
+      <option value="Poiret One,sans-serif">Poiret One</option>
+      <option value="Josefin Sans,sans-serif">Josefin Sans</option>
+      <option value="Josefin Slab,serif">Josefin Slab</option>
+      <option value="Abril Fatface,serif">Abril Fatface</option>
+      <option value="Russo One,sans-serif">Russo One</option>
+      <option value="Orbitron,sans-serif">Orbitron</option>
+      <option value="Audiowide,sans-serif">Audiowide</option>
+      <option value="Chakra Petch,sans-serif">Chakra Petch</option>
+      <option value="Exo,sans-serif">Exo</option>
+      <option value="Turret Road,sans-serif">Turret Road</option>
+      <option value="Teko,sans-serif">Teko</option>
+      <option value="Rajdhani,sans-serif">Rajdhani</option>
+      <option value="League Spartan,sans-serif">League Spartan</option>
+      <option value="Dela Gothic One,sans-serif">Dela Gothic One</option>
+    </optgroup>
+    <optgroup label="── Manuscrita / Script ──">
+      <option value="Dancing Script,cursive">Dancing Script</option>
+      <option value="Pacifico,cursive">Pacifico</option>
+      <option value="Caveat,cursive">Caveat</option>
+      <option value="Satisfy,cursive">Satisfy</option>
+      <option value="Kalam,cursive">Kalam</option>
+      <option value="Patrick Hand,cursive">Patrick Hand</option>
+      <option value="Indie Flower,cursive">Indie Flower</option>
+      <option value="Courgette,cursive">Courgette</option>
+      <option value="Sacramento,cursive">Sacramento</option>
+      <option value="Great Vibes,cursive">Great Vibes</option>
+      <option value="Pinyon Script,cursive">Pinyon Script</option>
+      <option value="Alex Brush,cursive">Alex Brush</option>
+      <option value="Allura,cursive">Allura</option>
+      <option value="Tangerine,cursive">Tangerine</option>
+      <option value="Cookie,cursive">Cookie</option>
+      <option value="Marck Script,cursive">Marck Script</option>
+      <option value="Yellowtail,cursive">Yellowtail</option>
+      <option value="Bad Script,cursive">Bad Script</option>
+      <option value="Shadows Into Light,cursive">Shadows Into Light</option>
+      <option value="Permanent Marker,cursive">Permanent Marker</option>
+      <option value="Lobster Two,cursive">Lobster Two</option>
+      <option value="Parisienne,cursive">Parisienne</option>
+      <option value="Merienda,cursive">Merienda</option>
+      <option value="Hurricane,cursive">Hurricane</option>
+      <option value="Imperial Script,cursive">Imperial Script</option>
+      <option value="Waterfall,cursive">Waterfall</option>
+      <option value="Luxurious Script,cursive">Luxurious Script</option>
+      <option value="Monsieur La Doulaise,cursive">Monsieur La Doulaise</option>
+      <option value="Mrs Saint Delafield,cursive">Mrs Saint Delafield</option>
+      <option value="Ruthie,cursive">Ruthie</option>
+      <option value="Sevillana,cursive">Sevillana</option>
+    </optgroup>
+    <optgroup label="── Condensada ──">
+      <option value="Barlow Condensed,sans-serif">Barlow Condensed</option>
+      <option value="Roboto Condensed,sans-serif">Roboto Condensed</option>
+      <option value="Encode Sans Condensed,sans-serif">Encode Sans Condensed</option>
+      <option value="Saira Condensed,sans-serif">Saira Condensed</option>
+      <option value="Asap Condensed,sans-serif">Asap Condensed</option>
+      <option value="Fira Sans Condensed,sans-serif">Fira Sans Condensed</option>
+      <option value="IBM Plex Sans Condensed,sans-serif">IBM Plex Sans Condensed</option>
+      <option value="PT Sans Narrow,sans-serif">PT Sans Narrow</option>
+      <option value="Archivo Narrow,sans-serif">Archivo Narrow</option>
+      <option value="Kanit,sans-serif">Kanit</option>
+      <option value="BenchNine,sans-serif">BenchNine</option>
+      <option value="Six Caps,sans-serif">Six Caps</option>
+      <option value="Yanone Kaffeesatz,sans-serif">Yanone Kaffeesatz</option>
+    </optgroup>
+    <optgroup label="── Decorativa / Arte ──">
+      <option value="Amatic SC,cursive">Amatic SC</option>
+      <option value="Fredericka the Great,serif">Fredericka the Great</option>
+      <option value="Metamorphous,serif">Metamorphous</option>
+      <option value="Pirata One,cursive">Pirata One</option>
+      <option value="Cinzel Decorative,serif">Cinzel Decorative</option>
+      <option value="MedievalSharp,serif">MedievalSharp</option>
+      <option value="Grenze Gotisch,cursive">Grenze Gotisch</option>
+      <option value="UnifrakturMaguntia,cursive">UnifrakturMaguntia</option>
+      <option value="Creepster,cursive">Creepster</option>
+      <option value="Ewert,serif">Ewert</option>
+      <option value="Eater,cursive">Eater</option>
+      <option value="Metal Mania,cursive">Metal Mania</option>
+      <option value="Bungee,sans-serif">Bungee</option>
+      <option value="Limelight,cursive">Limelight</option>
+      <option value="Monoton,cursive">Monoton</option>
+    </optgroup>
+  </select>
+  <select class="tb-select" id="font-size" style="width:52px" onmousedown="e_prevent(event)" onchange="applyFontSize(this.value)">
+    <option>8</option><option>9</option><option>10</option><option>11</option>
+    <option selected>12</option><option>14</option><option>16</option><option>18</option>
+    <option>20</option><option>24</option><option>28</option><option>32</option>
+    <option>36</option><option>48</option><option>60</option><option>72</option>
+  </select>
+  <div class="tb-sep"></div>
+  <button class="tb-btn" id="btn-bold"   onmousedown="e_prevent(event)" onclick="fmt('bold')"        title="Negrito (Ctrl+B)"><i class="ti ti-bold"></i></button>
+  <button class="tb-btn" id="btn-italic" onmousedown="e_prevent(event)" onclick="fmt('italic')"      title="Itálico (Ctrl+I)"><i class="ti ti-italic"></i></button>
+  <button class="tb-btn" id="btn-under"  onmousedown="e_prevent(event)" onclick="fmt('underline')"   title="Sublinhado (Ctrl+U)"><i class="ti ti-underline"></i></button>
+  <button class="tb-btn"                 onmousedown="e_prevent(event)" onclick="fmt('strikeThrough')" title="Tachado"><i class="ti ti-strikethrough"></i></button>
+  <button class="tb-btn"                 onmousedown="e_prevent(event)" onclick="fmt('superscript')" title="Sobrescrito"><i class="ti ti-superscript"></i></button>
+  <button class="tb-btn"                 onmousedown="e_prevent(event)" onclick="fmt('subscript')"   title="Subscrito"><i class="ti ti-subscript"></i></button>
+  <div class="tb-sep"></div>
+  <button class="tb-btn" onmousedown="e_prevent(event)" onclick="fmt('justifyLeft')"   title="Alinhar esquerda"><i class="ti ti-align-left"></i></button>
+  <button class="tb-btn" onmousedown="e_prevent(event)" onclick="fmt('justifyCenter')" title="Centralizar"><i class="ti ti-align-center"></i></button>
+  <button class="tb-btn" onmousedown="e_prevent(event)" onclick="fmt('justifyRight')"  title="Alinhar direita"><i class="ti ti-align-right"></i></button>
+  <button class="tb-btn" onmousedown="e_prevent(event)" onclick="fmt('justifyFull')"   title="Justificar"><i class="ti ti-align-justified"></i></button>
+  <div class="tb-sep"></div>
+  <button class="tb-btn" onmousedown="e_prevent(event)" onclick="fmt('insertUnorderedList')" title="Lista marcadores"><i class="ti ti-list"></i></button>
+  <button class="tb-btn" onmousedown="e_prevent(event)" onclick="fmt('insertOrderedList')"   title="Lista numerada"><i class="ti ti-list-numbers"></i></button>
+  <button class="tb-btn" onmousedown="e_prevent(event)" onclick="insertChecklist()"          title="Lista de tarefas"><i class="ti ti-checkbox"></i></button>
+  <button class="tb-btn" onmousedown="e_prevent(event)" onclick="fmt('outdent')"             title="Diminuir recuo"><i class="ti ti-indent-decrease"></i></button>
+  <button class="tb-btn" onmousedown="e_prevent(event)" onclick="fmt('indent')"              title="Aumentar recuo"><i class="ti ti-indent-increase"></i></button>
+  <div class="tb-sep"></div>
+  <button class="tb-btn" onmousedown="e_prevent(event)" onclick="insertLink()"      title="Inserir link (Ctrl+K)"><i class="ti ti-link"></i></button>
+  <button class="tb-btn" onmousedown="e_prevent(event)" onclick="insertImage()"     title="Inserir imagem"><i class="ti ti-photo"></i></button>
+  <button class="tb-btn" onmousedown="e_prevent(event)" onclick="insertTable()"     title="Inserir tabela"><i class="ti ti-table"></i></button>
+  <button class="tb-btn" onmousedown="e_prevent(event)" onclick="insertCodeBlock()" title="Bloco de código"><i class="ti ti-code"></i></button>
+  <button class="tb-btn" onmousedown="e_prevent(event)" onclick="insertBlockquote()" title="Citação"><i class="ti ti-quote"></i></button>
+  <button class="tb-btn" onmousedown="e_prevent(event)" onclick="insertHR()"        title="Linha divisória"><i class="ti ti-minus"></i></button>
+  <div class="tb-sep"></div>
+  <div style="display:flex;align-items:center;gap:4px">
+    <i class="ti ti-letter-a" style="font-size:16px;color:var(--text-muted)" title="Cor do texto"></i>
+    <input type="color" class="tb-color" id="text-color" value="#000000" onmousedown="saveSelectionBeforeColor()" onchange="applyColor('foreColor',this.value)" title="Cor do texto">
+    <i class="ti ti-highlight" style="font-size:16px;color:var(--text-muted)" title="Realçar"></i>
+    <input type="color" class="tb-color" id="bg-color" value="#ffff00" onmousedown="saveSelectionBeforeColor()" onchange="applyColor('hiliteColor',this.value)" title="Realçar texto">
+  </div>
+  <div class="tb-sep"></div>
+  <button class="tb-btn" onmousedown="e_prevent(event)" onclick="fmt('removeFormat')" title="Limpar formatação"><i class="ti ti-eraser"></i></button>
+  <button class="tb-btn" onmousedown="e_prevent(event)" onclick="execCmd('undo')"    title="Desfazer (Ctrl+Z)"><i class="ti ti-arrow-back-up"></i></button>
+  <button class="tb-btn" onmousedown="e_prevent(event)" onclick="execCmd('redo')"    title="Refazer (Ctrl+Y)"><i class="ti ti-arrow-forward-up"></i></button>
+  <div class="tb-sep"></div>
+  <button class="tb-btn" onmousedown="e_prevent(event)" onclick="toggleFind(false)"  title="Localizar (Ctrl+F)"><i class="ti ti-search"></i></button>
+  <div class="tb-sep"></div>
+  <button class="tb-btn" onmousedown="e_prevent(event)" onclick="zoomOut()" title="Zoom -"><i class="ti ti-zoom-out"></i></button>
+  <span id="zoom-display">100%</span>
+  <button class="tb-btn" onmousedown="e_prevent(event)" onclick="zoomIn()"  title="Zoom +"><i class="ti ti-zoom-in"></i></button>
+  <div class="tb-sep"></div>
+  <button class="tb-btn" id="btn-focus" onmousedown="e_prevent(event)" onclick="toggleFocusMode()" title="Modo foco"><i class="ti ti-eye"></i></button>
+  <button class="tb-btn" onmousedown="e_prevent(event)" onclick="printDoc()"   title="Imprimir"><i class="ti ti-printer"></i></button>
+  <button class="tb-btn" onmousedown="e_prevent(event)" onclick="saveAs('html')" title="Exportar HTML"><i class="ti ti-download"></i></button>
+</div>
+
+<!-- RULER -->
+<div id="rulers">
+  <div id="v-ruler-corner"></div>
+  <canvas id="h-ruler" height="20"></canvas>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+
+  <!-- SIDEBAR LEFT -->
+  <div id="sidebar-left">
+
+    <div class="panel-title" onclick="togglePanelCollapse('toc-wrap')" id="toc-panel-title">
+      <span><i class="ti ti-list" style="margin-right:5px"></i>Estrutura do doc.</span>
+      <i class="ti ti-chevron-down"></i>
+    </div>
+    <div class="panel-wrap open" id="toc-wrap">
+      <div class="panel-inner">
+        <div class="tree-container">
+          <div id="toc-list" style="padding:4px 0"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-title open" onclick="togglePanelCollapse('snip-wrap')" id="snip-panel-title">
+      <span><i class="ti ti-files" style="margin-right:5px"></i>Trechos salvos</span>
+      <i class="ti ti-chevron-down"></i>
+    </div>
+    <div class="panel-wrap open" id="snip-wrap">
+      <div class="panel-inner panel-body">
+        <div id="snippets-list"></div>
+        <button class="tb-btn" onmousedown="e_prevent(event)" onclick="addSnippet()" style="font-size:11px;padding:4px 8px;margin-top:6px;width:100%;border:1px dashed var(--border);border-radius:var(--radius);background:var(--bg-panel)">
+          <i class="ti ti-plus"></i> Salvar seleção
+        </button>
+      </div>
+    </div>
+
+    <div class="panel-title open" onclick="togglePanelCollapse('stat-wrap')" id="stat-panel-title">
+      <span><i class="ti ti-chart-bar" style="margin-right:5px"></i>Estatísticas</span>
+      <i class="ti ti-chevron-down"></i>
+    </div>
+    <div class="panel-wrap open" id="stat-wrap">
+      <div class="panel-inner panel-body">
+        <div class="prop-row"><span class="prop-label">Palavras</span><span id="s-words" style="font-weight:500">0</span></div>
+        <div class="prop-row"><span class="prop-label">Caracteres</span><span id="s-chars">0</span></div>
+        <div class="prop-row"><span class="prop-label">Parágrafos</span><span id="s-paras">0</span></div>
+        <div class="prop-row"><span class="prop-label">Páginas</span><span id="s-pages">1</span></div>
+        <div class="prop-row"><span class="prop-label">Leitura</span><span id="s-read">0 min</span></div>
+        <div class="prop-row"><span class="prop-label">Fala</span><span id="s-speak">0 min</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CANVAS -->
+  <div id="canvas-area">
+    <div id="pages-wrapper"></div>
+  </div>
+
+  <!-- SIDEBAR RIGHT -->
+  <div id="sidebar-right">
+    <div class="tab-bar">
+      <div class="tab active" onclick="switchRTab('format')">Formato</div>
+      <div class="tab" onclick="switchRTab('page')">Página</div>
+      <div class="tab" onclick="switchRTab('insert')">Inserir</div>
+    </div>
+
+    <!-- TAB FORMAT -->
+    <div id="rtab-format">
+      <div class="panel-title open" onclick="togglePanelCollapse('para-wrap')">
+        <span>Parágrafo</span><i class="ti ti-chevron-down"></i>
+      </div>
+      <div class="panel-wrap open" id="para-wrap">
+        <div class="panel-inner panel-body">
+          <div class="prop-row">
+            <span class="prop-label">Alinhamento</span>
+            <div style="display:flex;gap:2px">
+              <button class="tb-btn" onmousedown="e_prevent(event)" onclick="fmt('justifyLeft')"   style="min-width:24px;height:24px;font-size:13px" title="Esquerda"><i class="ti ti-align-left"></i></button>
+              <button class="tb-btn" onmousedown="e_prevent(event)" onclick="fmt('justifyCenter')" style="min-width:24px;height:24px;font-size:13px" title="Centro"><i class="ti ti-align-center"></i></button>
+              <button class="tb-btn" onmousedown="e_prevent(event)" onclick="fmt('justifyRight')"  style="min-width:24px;height:24px;font-size:13px" title="Direita"><i class="ti ti-align-right"></i></button>
+              <button class="tb-btn" onmousedown="e_prevent(event)" onclick="fmt('justifyFull')"   style="min-width:24px;height:24px;font-size:13px" title="Justificar"><i class="ti ti-align-justified"></i></button>
+            </div>
+          </div>
+          <div class="prop-row">
+            <span class="prop-label">Espaçamento</span>
+            <select class="prop-input" onmousedown="e_prevent(event)" onchange="applyLineHeight(this.value)">
+              <option value="1.2">Simples</option>
+              <option value="1.5">1.5x</option>
+              <option value="1.7" selected>Padrão</option>
+              <option value="2">Duplo</option>
+              <option value="2.5">2.5x</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-title open" onclick="togglePanelCollapse('char-wrap')">
+        <span>Caractere</span><i class="ti ti-chevron-down"></i>
+      </div>
+      <div class="panel-wrap open" id="char-wrap">
+        <div class="panel-inner panel-body">
+          <div class="style-btn-row">
+            <button class="style-btn" onmousedown="e_prevent(event)" onclick="fmt('bold')"><strong>N</strong></button>
+            <button class="style-btn" onmousedown="e_prevent(event)" onclick="fmt('italic')"><em>I</em></button>
+            <button class="style-btn" onmousedown="e_prevent(event)" onclick="fmt('underline')"><u>S</u></button>
+            <button class="style-btn" onmousedown="e_prevent(event)" onclick="fmt('strikeThrough')"><s>T</s></button>
+            <button class="style-btn" onmousedown="e_prevent(event)" onclick="fmt('superscript')">x²</button>
+            <button class="style-btn" onmousedown="e_prevent(event)" onclick="fmt('subscript')">x₂</button>
+          </div>
+          <div class="prop-row">
+            <span class="prop-label">Cor do texto</span>
+            <input type="color" style="width:36px;height:26px;border:1px solid var(--border);border-radius:var(--radius);cursor:pointer" value="#000000" onmousedown="saveSelectionBeforeColor()" onchange="applyColor('foreColor',this.value)">
+          </div>
+          <div class="prop-row">
+            <span class="prop-label">Realçar</span>
+            <input type="color" style="width:36px;height:26px;border:1px solid var(--border);border-radius:var(--radius);cursor:pointer" value="#fef08a" onmousedown="saveSelectionBeforeColor()" onchange="applyColor('hiliteColor',this.value)">
+          </div>
+          <div class="prop-row">
+            <span class="prop-label">Caixa</span>
+            <div style="display:flex;gap:3px">
+              <button class="style-btn" onmousedown="e_prevent(event)" onclick="changeCase('upper')" title="MAIÚSCULAS">AA</button>
+              <button class="style-btn" onmousedown="e_prevent(event)" onclick="changeCase('lower')" title="minúsculas">aa</button>
+              <button class="style-btn" onmousedown="e_prevent(event)" onclick="changeCase('title')" title="Capitalizar">Aa</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-title open" onclick="togglePanelCollapse('pal-wrap')">
+        <span>Paleta de cores</span><i class="ti ti-chevron-down"></i>
+      </div>
+      <div class="panel-wrap open" id="pal-wrap">
+        <div class="panel-inner panel-body">
+          <div class="color-swatches" id="color-palette"></div>
+          <p style="font-size:10px;color:var(--text-muted);margin-top:6px">Clique = texto &nbsp;·&nbsp; Shift+clique = realce</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB PAGE -->
+    <div id="rtab-page" style="display:none">
+      <div class="panel-body">
+        <div class="prop-row">
+          <span class="prop-label">Tamanho</span>
+          <select class="prop-input" onmousedown="e_prevent(event)" onchange="setPageSize(this.value)">
+            <option value="794x1123">A4</option>
+            <option value="816x1056">Carta</option>
+            <option value="1123x794">A4 paisagem</option>
+            <option value="960x540">Widescreen</option>
+          </select>
+        </div>
+        <div class="prop-row">
+          <span class="prop-label">Margem</span>
+          <select class="prop-input" onmousedown="e_prevent(event)" onchange="setMargin(this.value)">
+            <option value="72px 80px">Normal</option>
+            <option value="36px 40px">Estreita</option>
+            <option value="96px 120px">Larga</option>
+          </select>
+        </div>
+        <div class="prop-row">
+          <span class="prop-label">Fundo da página</span>
+          <input type="color" style="width:36px;height:26px;border:1px solid var(--border);border-radius:var(--radius)" value="#ffffff" onchange="setPageBg(this.value)">
+        </div>
+      </div>
+      <div class="panel-title open" onclick="togglePanelCollapse('hf-wrap')">
+        <span>Cabeçalho / Rodapé</span><i class="ti ti-chevron-down"></i>
+      </div>
+      <div class="panel-wrap open" id="hf-wrap">
+        <div class="panel-inner panel-body">
+          <div class="modal-field">
+            <label>Cabeçalho</label>
+            <input type="text" id="header-text" placeholder="Texto do cabeçalho..." oninput="updateHeaderFooter()">
+          </div>
+          <div class="modal-field">
+            <label>Rodapé</label>
+            <input type="text" id="footer-text" placeholder="Texto do rodapé..." oninput="updateHeaderFooter()">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB INSERT -->
+    <div id="rtab-insert" style="display:none">
+      <div class="insert-grid">
+        <button class="insert-btn" onmousedown="e_prevent(event)" onclick="insertTable()"><i class="ti ti-table"></i>Tabela</button>
+        <button class="insert-btn" onmousedown="e_prevent(event)" onclick="insertImage()"><i class="ti ti-photo"></i>Imagem</button>
+        <button class="insert-btn" onmousedown="e_prevent(event)" onclick="insertLink()"><i class="ti ti-link"></i>Link</button>
+        <button class="insert-btn" onmousedown="e_prevent(event)" onclick="insertCodeBlock()"><i class="ti ti-code"></i>Código</button>
+        <button class="insert-btn" onmousedown="e_prevent(event)" onclick="insertHR()"><i class="ti ti-minus"></i>Divisória</button>
+        <button class="insert-btn" onmousedown="e_prevent(event)" onclick="insertBlockquote()"><i class="ti ti-quote"></i>Citação</button>
+        <button class="insert-btn" onmousedown="e_prevent(event)" onclick="insertChecklist()"><i class="ti ti-checkbox"></i>Tarefas</button>
+        <button class="insert-btn" onmousedown="e_prevent(event)" onclick="insertEmoji()"><i class="ti ti-mood-smile"></i>Emoji</button>
+        <button class="insert-btn" onmousedown="e_prevent(event)" onclick="insertSpecialChar()"><i class="ti ti-omega"></i>Especial</button>
+        <button class="insert-btn" onmousedown="e_prevent(event)" onclick="addPageManual()"><i class="ti ti-file-plus"></i>Nova página</button>
+      </div>
+      <div class="panel-title open" onclick="togglePanelCollapse('tmpl-wrap')">
+        <span>Modelos prontos</span><i class="ti ti-chevron-down"></i>
+      </div>
+      <div class="panel-wrap open" id="tmpl-wrap">
+        <div class="panel-inner panel-body">
+          <div class="snippet-item" onclick="applyTemplate('carta')"><span>Carta formal</span></div>
+          <div class="snippet-item" onclick="applyTemplate('relatorio')"><span>Relatório</span></div>
+          <div class="snippet-item" onclick="applyTemplate('ata')"><span>Ata de reunião</span></div>
+          <div class="snippet-item" onclick="applyTemplate('resumo')"><span>Currículo</span></div>
+          <div class="snippet-item" onclick="applyTemplate('proposta')"><span>Proposta comercial</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STATUSBAR -->
+<div id="statusbar">
+  <span class="status-item"><i class="ti ti-circle-check" style="color:#16a34a"></i><span id="save-status">Salvo</span></span>
+  <span class="status-item"><i class="ti ti-cursor-text"></i>Ln <span id="cur-line">1</span>, Col <span id="cur-col">1</span></span>
+  <span class="status-item"><i class="ti ti-file-text"></i><span id="sb-words">0</span> palavras</span>
+  <span class="status-item"><i class="ti ti-clock"></i><span id="sb-read">0 min</span></span>
+  <span class="status-item" style="margin-left:auto"><i class="ti ti-files"></i>Pág. <span id="sb-pages">1</span></span>
+  <span class="status-item"><i class="ti ti-zoom"></i><span id="sb-zoom">100%</span></span>
+  <span class="status-item"><i class="ti ti-keyboard"></i><span id="sb-mode">Editar</span></span>
+</div>
+
+<!-- MODAL -->
+<div id="modal-overlay" onclick="closeModalOverlay(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <h3 id="modal-title"></h3>
+    <div id="modal-content"></div>
+    <div class="modal-actions" id="modal-actions"></div>
+  </div>
+</div>
+
+<!-- CONTEXT MENU -->
+<div id="context-menu"></div>
+
+<script>
+// ── GLOBALS ──
+let zoom = 100;
+let autoSave = true;
+let autoSaveTimer;
+let focusMode = false;
+let darkPage = false;
+let snippets = [];
+let savedRange = null;
+let activeEditor = null; // currently focused page-content
+let pages = []; // array of page DOM elements
+let pageW = 794, pageH = 1123;
+let contentH = 979; // 1123 - 72top - 72bottom
+let pageMargin = '72px 80px';
+let headerText = '', footerText = '';
+
+const pagesWrapper = document.getElementById('pages-wrapper');
+
+// ── MODO INCORPORADO (<iframe> em sistemas externos) ──
+// Quando aberto com ?embedded=1, o editor não usa localStorage como fonte
+// de verdade: o conteúdo inicial chega via postMessage do sistema host, e o
+// conteúdo editado é devolvido ao host do mesmo jeito (ver protocolo abaixo).
+const EMBEDDED = new URLSearchParams(location.search).get('embedded') === '1';
+
+function getDocHTML() {
+  return pages
+    .map(pg => pg.querySelector('.page-content')?.innerHTML || '')
+    .join('<div class="wysiwyg-page-break" style="page-break-after:always"></div>');
+}
+function loadDocHTML(html) {
+  pagesWrapper.innerHTML = '';
+  pages = [];
+  const { ed } = createPage(1);
+  ed.innerHTML = (html && String(html).trim()) ? html : '<p><br></p>';
+  triggerChange();
+}
+window.addEventListener('message', (e) => {
+  const msg = e.data;
+  if (!msg || typeof msg !== 'object') return;
+  // {type:'wysiwyg:init', html} — carrega o conteúdo inicial enviado pelo host
+  if (msg.type === 'wysiwyg:init') {
+    loadDocHTML(msg.html);
+  }
+  // {type:'wysiwyg:requestContent'} — host pede o HTML atual (botão "Salvar" externo)
+  else if (msg.type === 'wysiwyg:requestContent') {
+    window.parent.postMessage({ type: 'wysiwyg:content', html: getDocHTML() }, '*');
+  }
+});
+
+// ── PREVENT DEFAULT (preserve selection) ──
+function e_prevent(e){ e.preventDefault(); }
+
+// ── PAGE MANAGEMENT ──
+function createPage(num) {
+  const isFirst = num === 1;
+
+  // Page break band (between pages)
+  if (!isFirst) {
+    const band = document.createElement('div');
+    band.className = 'page-break-band';
+    band.innerHTML = `<span>— Página ${num} —</span><span class="page-num-badge">${num}</span>`;
+    pagesWrapper.appendChild(band);
+  }
+
+  const pg = document.createElement('div');
+  pg.className = 'page';
+  pg.dataset.pageNum = num;
+  pg.style.width = pageW + 'px';
+  pg.style.minHeight = pageH + 'px';
+  pg.style.transform = `scale(${zoom/100})`;
+  pg.style.transformOrigin = 'top center';
+
+  if (headerText) {
+    const hb = document.createElement('div');
+    hb.className = 'page-header-bar page-header';
+    hb.textContent = headerText;
+    pg.appendChild(hb);
+  }
+
+  const ed = document.createElement('div');
+  ed.className = 'page-content';
+  ed.contentEditable = 'true';
+  ed.spellcheck = true;
+  ed.style.padding = pageMargin;
+  if (isFirst) {
+    ed.innerHTML = `<h1>Bem-vindo ao Editor WYSIWYG</h1>
+<p>Este é um editor de texto rico completo com <strong>negrito</strong>, <em>itálico</em>, <u>sublinhado</u> e muito mais.</p>
+<h2>Recursos principais</h2>
+<p>Use a barra de ferramentas para formatar. Insira tabelas, imagens, links, listas e muito mais.</p>
+<h3>Formatação</h3>
+<ul><li>Negrito, itálico, sublinhado, tachado</li><li>Cores de texto e realce</li><li>Fontes e tamanhos variados</li></ul>
+<h3>Inserções</h3>
+<ol><li>Tabelas configuráveis</li><li>Imagens por URL</li><li>Links clicáveis</li><li>Blocos de código</li></ol>
+<blockquote>Escrever bem é a habilidade mais importante de um profissional. — William Zinsser</blockquote>
+<p>Experimente todos os recursos. Clique com o botão direito para o menu de contexto!</p>`;
+  } else {
+    ed.innerHTML = '<p><br></p>';
+  }
+
+  pg.appendChild(ed);
+
+  if (footerText) {
+    const fb = document.createElement('div');
+    fb.className = 'page-footer-bar page-footer';
+    fb.textContent = footerText;
+    pg.appendChild(fb);
+  }
+
+  pagesWrapper.appendChild(pg);
+  pages.push(pg);
+
+  // Wire up events
+  ed.addEventListener('input', () => { onEditorInput(ed, pg); });
+  ed.addEventListener('keyup', updateCursorPos);
+  ed.addEventListener('mouseup', () => { activeEditor = ed; updateToolbarState(); updateCursorPos(); });
+  ed.addEventListener('focus', () => { activeEditor = ed; updateToolbarState(); });
+  ed.addEventListener('keydown', handleKeydown);
+  ed.addEventListener('contextmenu', showContextMenu);
+
+  activeEditor = ed;
+  updateStats();
+  return { pg, ed };
+}
+
+function addPageManual() {
+  const num = pages.length + 1;
+  const { ed } = createPage(num);
+  updateStats();
+  setTimeout(() => { ed.focus(); }, 50);
+  showNotif('Página ' + num + ' criada');
+}
+
+// ── PAGE HELPERS ──
+function isPageEmpty(ed) {
+  const text = (ed.innerText || '').replace(/​/g, '').trim();
+  return text === '' || text === '\n';
+}
+
+function isCursorAtStart(ed) {
+  const sel = window.getSelection();
+  if (!sel || !sel.rangeCount || !sel.isCollapsed) return false;
+  try {
+    const range = sel.getRangeAt(0);
+    const pre = range.cloneRange();
+    pre.selectNodeContents(ed);
+    pre.setEnd(range.startContainer, range.startOffset);
+    return pre.toString().length === 0;
+  } catch(e) { return false; }
+}
+
+function moveCursorToEnd(ed) {
+  ed.focus();
+  activeEditor = ed;
+  const range = document.createRange();
+  range.selectNodeContents(ed);
+  range.collapse(false);
+  const sel = window.getSelection();
+  sel.removeAllRanges();
+  sel.addRange(range);
+}
+
+function removePage(pg) {
+  const idx = pages.indexOf(pg);
+  if (idx <= 0) return; // nunca remove a primeira página
+  // Remove a banda separadora que precede esta página
+  const prev = pg.previousElementSibling;
+  if (prev && prev.classList.contains('page-break-band')) prev.remove();
+  pg.remove();
+  pages.splice(idx, 1);
+  renumberPages();
+  updateStats();
+  updateTOC();
+}
+
+function renumberPages() {
+  pages.forEach((pg, i) => {
+    pg.dataset.pageNum = i + 1;
+  });
+  // Re-numera as bandas
+  pagesWrapper.querySelectorAll('.page-break-band').forEach((band, i) => {
+    band.innerHTML = `<span>— Página ${i + 2} —</span><span class="page-num-badge">${i + 2}</span>`;
+  });
+  document.getElementById('sb-pages').textContent = pages.length;
+}
+
+// Auto page creation when content overflows
+function onEditorInput(ed, pg) {
+  triggerChange();
+
+  // Auto-remove página vazia (não primeira) após deletar
+  const idx = pages.indexOf(pg);
+  if (idx > 0 && isPageEmpty(ed)) {
+    clearTimeout(ed._removeTimer);
+    ed._removeTimer = setTimeout(() => {
+      if (isPageEmpty(ed)) {
+        const prevEd = pages[idx - 1].querySelector('.page-content');
+        removePage(pg);
+        if (prevEd) moveCursorToEnd(prevEd);
+      }
+    }, 80);
+    return;
+  }
+
+  // Auto-cria nova página quando conteúdo transborda
+  const limit = contentH + 20;
+  if (ed.scrollHeight > limit) {
+    const pgIdx = pages.indexOf(pg);
+    if (!pages[pgIdx + 1]) {
+      addPageManual();
+    }
+  }
+}
+
+// ── ACTIVE EDITOR HELPERS ──
+function getEditor() {
+  return activeEditor || pages[0]?.querySelector('.page-content');
+}
+
+function execCmd(cmd, val) {
+  const ed = getEditor();
+  if (!ed) return;
+  ed.focus();
+  document.execCommand(cmd, false, val || null);
+}
+
+function fmt(cmd) {
+  execCmd(cmd);
+  updateToolbarState();
+}
+
+// ── SELECTION SAVE/RESTORE (for color pickers) ──
+function saveSelectionBeforeColor() {
+  const sel = window.getSelection();
+  if (sel && sel.rangeCount > 0) savedRange = sel.getRangeAt(0).cloneRange();
+}
+
+function restoreSelection() {
+  if (!savedRange) return;
+  const sel = window.getSelection();
+  sel.removeAllRanges();
+  sel.addRange(savedRange);
+}
+
+function applyColor(cmd, color) {
+  restoreSelection();
+  const ed = getEditor();
+  if (!ed) return;
+  ed.focus();
+  document.execCommand(cmd, false, color);
+}
+
+// ── FONT / SIZE ──
+function applyFont(f) {
+  const ed = getEditor();
+  if (!ed) return;
+  ed.focus();
+  document.execCommand('fontName', false, f);
+}
+
+function applyFontSize(px) {
+  const ed = getEditor();
+  if (!ed) return;
+  ed.focus();
+  const sel = window.getSelection();
+  if (!sel || sel.isCollapsed) return;
+  const range = sel.getRangeAt(0);
+  // Wrap selection in a span with font-size
+  try {
+    const span = document.createElement('span');
+    span.style.fontSize = px + 'px';
+    range.surroundContents(span);
+    sel.removeAllRanges();
+    const newRange = document.createRange();
+    newRange.selectNodeContents(span);
+    sel.addRange(newRange);
+  } catch(e) {
+    document.execCommand('fontSize', false, '3');
+  }
+}
+
+function applyBlockType(tag) {
+  const ed = getEditor();
+  if (!ed) return;
+  ed.focus();
+  document.execCommand('formatBlock', false, tag);
+}
+
+function applyLineHeight(v) {
+  const ed = getEditor();
+  if (!ed) return;
+  const sel = window.getSelection();
+  if (!sel || !sel.rangeCount) return;
+  let node = sel.anchorNode;
+  while (node && node.nodeType !== 1) node = node.parentNode;
+  if (node && node !== ed) node.style.lineHeight = v;
+  else ed.style.lineHeight = v;
+}
+
+// ── FORMAT ──
+function changeCase(type) {
+  const ed = getEditor(); if (!ed) return;
+  ed.focus();
+  const sel = window.getSelection();
+  if (!sel || sel.isCollapsed) return;
+  const text = sel.toString();
+  let result;
+  if (type === 'upper') result = text.toUpperCase();
+  else if (type === 'lower') result = text.toLowerCase();
+  else result = text.replace(/\b\w/g, c => c.toUpperCase());
+  document.execCommand('insertText', false, result);
+}
+
+// ── INSERTS ──
+function insertLink() {
+  const ed = getEditor(); if (!ed) return;
+  const sel = window.getSelection();
+  const selected = (!sel || sel.isCollapsed) ? '' : sel.toString();
+  showModal('Inserir link', [
+    { label: 'Texto do link', type: 'text', id: 'link-text', value: selected, placeholder: 'Texto exibido' },
+    { label: 'URL', type: 'url', id: 'link-url', placeholder: 'https://' },
+    { label: 'Abrir em nova aba', type: 'checkbox', id: 'link-target' }
+  ], () => {
+    const text = document.getElementById('link-text').value;
+    const url = document.getElementById('link-url').value;
+    if (!url) return;
+    const newTab = document.getElementById('link-target').checked;
+    ed.focus();
+    const a = document.createElement('a');
+    a.href = url; a.textContent = text || url;
+    if (newTab) a.target = '_blank';
+    const s = window.getSelection();
+    if (s && !s.isCollapsed) s.getRangeAt(0).deleteContents();
+    if (s && s.rangeCount) s.getRangeAt(0).insertNode(a);
+    closeModal();
+  }, 'Inserir');
+}
+
+function insertImage() {
+  showModal('Inserir imagem', [
+    { label: 'URL da imagem', type: 'url', id: 'img-url', placeholder: 'https://...' },
+    { label: 'Texto alternativo', type: 'text', id: 'img-alt', placeholder: 'Descrição' },
+    { label: 'Largura (px)', type: 'number', id: 'img-w', placeholder: 'auto' },
+    { label: 'Alinhamento', type: 'select', id: 'img-align', options: ['nenhum','esquerda','centro','direita'] }
+  ], () => {
+    const url = document.getElementById('img-url').value; if (!url) return;
+    const alt = document.getElementById('img-alt').value;
+    const w = document.getElementById('img-w').value;
+    const align = document.getElementById('img-align').value;
+    const img = document.createElement('img');
+    img.src = url; img.alt = alt;
+    if (w) img.style.width = w + 'px';
+    img.style.maxWidth = '100%';
+    if (align === 'centro') { img.style.display = 'block'; img.style.margin = '0 auto'; }
+    else if (align === 'esquerda') { img.style.float = 'left'; img.style.marginRight = '12px'; }
+    else if (align === 'direita') { img.style.float = 'right'; img.style.marginLeft = '12px'; }
+    const ed = getEditor(); if (!ed) return;
+    ed.focus();
+    const s = window.getSelection();
+    if (s && s.rangeCount) s.getRangeAt(0).insertNode(img);
+    closeModal();
+  }, 'Inserir');
+}
+
+function insertTable() {
+  showModal('Inserir tabela', [
+    { label: 'Linhas', type: 'number', id: 'tbl-rows', value: '3', min: '1', max: '20' },
+    { label: 'Colunas', type: 'number', id: 'tbl-cols', value: '3', min: '1', max: '10' },
+    { label: 'Com cabeçalho', type: 'checkbox', id: 'tbl-header', checked: true }
+  ], () => {
+    const rows = parseInt(document.getElementById('tbl-rows').value) || 3;
+    const cols = parseInt(document.getElementById('tbl-cols').value) || 3;
+    const header = document.getElementById('tbl-header').checked;
+    let html = '<table style="width:100%">';
+    if (header) {
+      html += '<thead><tr>' + Array.from({length:cols},(_,i)=>`<th>Coluna ${i+1}</th>`).join('') + '</tr></thead>';
+    }
+    html += '<tbody>' + Array.from({length:rows},()=>'<tr>'+Array.from({length:cols},()=>'<td>&nbsp;</td>').join('')+'</tr>').join('') + '</tbody></table><p></p>';
+    execCmd('insertHTML', html);
+    closeModal();
+  }, 'Inserir');
+}
+
+function insertCodeBlock() {
+  const ed = getEditor();
+  const sel = window.getSelection();
+  const text = (!sel || sel.isCollapsed) ? '// código aqui' : sel.toString();
+  showModal('Inserir bloco de código', [
+    { label: 'Linguagem', type: 'select', id: 'code-lang', options: ['javascript','typescript','python','html','css','java','c','c++','sql','bash','json','xml','php','ruby','go','rust','swift','kotlin'] },
+    { label: 'Código', type: 'textarea', id: 'code-text', value: text, rows: 6 }
+  ], () => {
+    const lang = document.getElementById('code-lang').value;
+    const code = document.getElementById('code-text').value;
+    execCmd('insertHTML', `<pre data-lang="${lang}"><code>${escapeHTML(code)}</code></pre><p></p>`);
+    closeModal();
+  }, 'Inserir');
+}
+
+function insertBlockquote() {
+  const sel = window.getSelection();
+  const text = (!sel || sel.isCollapsed) ? 'Citação aqui...' : sel.toString();
+  execCmd('insertHTML', `<blockquote>${text}</blockquote><p></p>`);
+}
+
+function insertHR() { execCmd('insertHorizontalRule'); }
+
+function insertChecklist() {
+  execCmd('insertHTML', `<ul class="checklist"><li><input type="checkbox"> Tarefa 1</li><li><input type="checkbox"> Tarefa 2</li><li><input type="checkbox"> Tarefa 3</li></ul><p></p>`);
+}
+
+function insertFootnote() {
+  const num = document.querySelectorAll('.footnote-ref').length + 1;
+  execCmd('insertHTML', `<sup class="footnote-ref" id="fn-${num}">[${num}]</sup>`);
+}
+
+const EMOJIS = '😀😃😄😁😆😅😂🤣😊😇🙂😉😌😍🥰😘😋😛😝😜🤪🤨🧐🤓😎🤩🥳😏😒😞😔😟🙁☹😣😖😫😩🥺😢😭😤😠😡🤬🤯😳🥵🥶😱😨😰😥😓🤗🤔🤫🤥😶😐😑😬🙄😯😲🥱😴🤤😪😵🤐🥴🤢🤧😷🤒🤕🤑🤠😈👿👹💀👻👽👾🤖💩';
+function insertEmoji() {
+  const chars = [...EMOJIS];
+  const grid = chars.map(e => `<span style="cursor:pointer;font-size:24px;padding:5px;display:inline-block;border-radius:4px;transition:background .15s" onmouseover="this.style.background='#f4f4f5'" onmouseout="this.style.background=''" onclick="doInsertEmoji('${e}')">${e}</span>`).join('');
+  showModal('Inserir emoji', [{ type: 'html', html: `<div style="max-height:220px;overflow-y:auto">${grid}</div>` }], null, '');
+}
+function doInsertEmoji(e) { closeModal(); getEditor()?.focus(); document.execCommand('insertText', false, e); }
+
+const SPECIAL_CHARS = ['©','®','™','°','±','×','÷','≠','≤','≥','∞','∑','√','∫','α','β','γ','δ','ε','π','σ','φ','ω','Ω','μ','λ','€','£','¥','¢','§','¶','†','‡','•','…','—','–','«','»','‹','›','"','"','\'','\'','¡','¿'];
+function insertSpecialChar() {
+  const grid = SPECIAL_CHARS.map(c => `<span style="cursor:pointer;font-size:16px;padding:6px;display:inline-block;border-radius:4px;border:1px solid var(--border);min-width:34px;text-align:center;transition:background .15s" onmouseover="this.style.background='#f4f4f5'" onmouseout="this.style.background=''" onclick="doInsertChar('${c}')">${c}</span>`).join('');
+  showModal('Caracteres especiais', [{ type: 'html', html: `<div style="max-height:200px;overflow-y:auto;display:flex;flex-wrap:wrap;gap:4px">${grid}</div>` }], null, '');
+}
+function doInsertChar(c) { closeModal(); getEditor()?.focus(); document.execCommand('insertText', false, c); }
+function escapeHTML(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+// ── MODAL ──
+function showModal(title, fields, onOk, okLabel = 'Confirmar') {
+  document.getElementById('modal-title').textContent = title;
+  const content = document.getElementById('modal-content');
+  content.innerHTML = '';
+  fields.forEach(f => {
+    if (f.type === 'html') { content.innerHTML += f.html; return; }
+    const div = document.createElement('div'); div.className = 'modal-field';
+    if (f.type === 'checkbox') {
+      div.innerHTML = `<label style="display:flex;align-items:center;gap:8px"><input type="checkbox" id="${f.id}"${f.checked?' checked':''}> ${f.label}</label>`;
+    } else if (f.type === 'select') {
+      div.innerHTML = `<label>${f.label}</label><select id="${f.id}">${f.options.map(o=>`<option>${o}</option>`).join('')}</select>`;
+    } else if (f.type === 'textarea') {
+      div.innerHTML = `<label>${f.label}</label><textarea id="${f.id}" rows="${f.rows||4}">${f.value||''}</textarea>`;
+    } else {
+      div.innerHTML = `<label>${f.label}</label><input type="${f.type}" id="${f.id}" value="${(f.value||'').toString().replace(/"/g,'&quot;')}" placeholder="${f.placeholder||''}" min="${f.min||''}" max="${f.max||''}">`;
+    }
+    content.appendChild(div);
+  });
+  const actions = document.getElementById('modal-actions');
+  actions.innerHTML = '<button class="btn-secondary" onclick="closeModal()">Cancelar</button>';
+  if (okLabel && onOk) actions.innerHTML += `<button class="btn-primary" id="modal-ok">${okLabel}</button>`;
+  document.getElementById('modal-overlay').classList.add('visible');
+  if (onOk) { const ok = document.getElementById('modal-ok'); if(ok) ok.onclick = onOk; }
+  setTimeout(() => { const inp = content.querySelector('input,textarea,select'); if(inp) inp.focus(); }, 60);
+}
+function closeModalOverlay(e) { if (e.target === document.getElementById('modal-overlay')) closeModal(); }
+function closeModal() { document.getElementById('modal-overlay').classList.remove('visible'); }
+
+// ── FIND / REPLACE ──
+function toggleFind(withReplace) {
+  const bar = document.getElementById('find-bar');
+  const showing = bar.classList.contains('visible');
+  if (!showing) { bar.classList.add('visible'); }
+  const ri = document.getElementById('replace-input');
+  const rb = document.getElementById('replace-btn');
+  const rab = document.getElementById('replace-all-btn');
+  if (withReplace) { ri.style.display=''; rb.style.display=''; rab.style.display=''; }
+  else { ri.style.display='none'; rb.style.display='none'; rab.style.display='none'; }
+  if (!showing || withReplace) document.getElementById('find-input').focus();
+  else closeFindBar();
+}
+function closeFindBar() { document.getElementById('find-bar').classList.remove('visible'); }
+
+function findNext() {
+  const q = document.getElementById('find-input').value; if (!q) return;
+  let total = 0;
+  pages.forEach(pg => { const t = pg.querySelector('.page-content')?.innerText || ''; total += (t.match(new RegExp(q,'gi'))||[]).length; });
+  document.getElementById('find-count').textContent = total ? `${total} ocorrência(s)` : 'Não encontrado';
+  window.find(q, false, false, true, false, true, false);
+}
+function replaceCurrent() {
+  const find = document.getElementById('find-input').value;
+  const rep = document.getElementById('replace-input').value;
+  if (!find) return;
+  const sel = window.getSelection();
+  if (sel && sel.toString().toLowerCase() === find.toLowerCase()) document.execCommand('insertText', false, rep);
+  findNext();
+}
+function replaceAll() {
+  const find = document.getElementById('find-input').value;
+  const rep = document.getElementById('replace-input').value;
+  if (!find) return;
+  pages.forEach(pg => {
+    const ed = pg.querySelector('.page-content');
+    if (ed) ed.innerHTML = ed.innerHTML.replace(new RegExp(find,'gi'), rep);
+  });
+  triggerChange();
+}
+
+// ── ZOOM ──
+function setZoom(v) {
+  zoom = v;
+  pages.forEach(pg => { pg.style.transform = `scale(${v/100})`; pg.style.transformOrigin = 'top center'; });
+  document.getElementById('zoom-display').textContent = v + '%';
+  document.getElementById('sb-zoom').textContent = v + '%';
+}
+function zoomIn()  { setZoom(Math.min(zoom + 10, 200)); }
+function zoomOut() { setZoom(Math.max(zoom - 10, 30));  }
+
+// ── PANEL TOGGLES ──
+function togglePanel(side) {
+  document.getElementById('sidebar-' + side).classList.toggle('hidden');
+}
+function toggleRuler() {
+  const r = document.getElementById('rulers');
+  r.style.display = r.style.display === 'none' ? '' : 'none';
+}
+function togglePanelCollapse(wrapId) {
+  const wrap = document.getElementById(wrapId);
+  if (!wrap) return;
+  wrap.classList.toggle('open');
+  // Rotate chevron in parent title
+  const titleId = wrapId.replace('-wrap', '-panel-title');
+  const titleEl = document.getElementById(titleId) || wrap.previousElementSibling;
+  const chev = titleEl?.querySelector('.ti-chevron-down');
+  if (chev) chev.style.transform = wrap.classList.contains('open') ? '' : 'rotate(-90deg)';
+}
+function switchRTab(tab) {
+  ['format','page','insert'].forEach(t => {
+    document.getElementById('rtab-'+t).style.display = t===tab ? '' : 'none';
+  });
+  document.querySelectorAll('.tab').forEach((el,i) => {
+    el.classList.toggle('active', ['format','page','insert'][i] === tab);
+  });
+}
+function toggleFocusMode() {
+  focusMode = !focusMode;
+  ['sidebar-left','sidebar-right'].forEach(id => document.getElementById(id).classList.toggle('hidden', focusMode));
+  document.getElementById('menubar').style.display = focusMode ? 'none' : '';
+  document.getElementById('toolbar').style.display  = focusMode ? 'none' : '';
+  document.getElementById('btn-focus').classList.toggle('active', focusMode);
+  document.getElementById('sb-mode').textContent = focusMode ? 'Foco' : 'Editar';
+  if (focusMode) showNotif('Modo foco — pressione Esc para sair');
+}
+function toggleHTMLView() {
+  const ed = getEditor(); if (!ed) return;
+  const on = ed.getAttribute('data-html-view') === '1';
+  if (on) { ed.innerHTML = ed.innerText; ed.removeAttribute('data-html-view'); ed.style.fontFamily=''; ed.style.fontSize=''; ed.style.background=''; }
+  else { const h = ed.innerHTML; ed.textContent = h; ed.setAttribute('data-html-view','1'); ed.style.fontFamily='monospace'; ed.style.fontSize='13px'; ed.style.background='#f8fafc'; }
+}
+function toggleDarkPage() {
+  darkPage = !darkPage;
+  pages.forEach(pg => { pg.style.background = darkPage ? '#1e1e2e' : '#fff'; const ed = pg.querySelector('.page-content'); if(ed) ed.style.color = darkPage ? '#e0e0e0' : '#111'; });
+}
+
+// ── PAGE SIZE / MARGIN / BG ──
+function setPageSize(v) {
+  const [w,h] = v.split('x').map(Number);
+  pageW = w; pageH = h; contentH = h - 144;
+  pages.forEach(pg => { pg.style.width = w + 'px'; pg.style.minHeight = h + 'px'; });
+}
+function setMargin(v) {
+  pageMargin = v;
+  pages.forEach(pg => { const ed = pg.querySelector('.page-content'); if(ed) ed.style.padding = v; });
+}
+function setPageBg(v) { pages.forEach(pg => { pg.style.background = v; }); }
+
+function updateHeaderFooter() {
+  headerText = document.getElementById('header-text').value;
+  footerText = document.getElementById('footer-text').value;
+  pages.forEach(pg => {
+    let hel = pg.querySelector('.page-header');
+    let fel = pg.querySelector('.page-footer');
+    if (headerText) {
+      if (!hel) { hel = document.createElement('div'); hel.className='page-header-bar page-header'; pg.insertBefore(hel, pg.querySelector('.page-content')); }
+      hel.textContent = headerText;
+    } else if (hel) hel.remove();
+    if (footerText) {
+      if (!fel) { fel = document.createElement('div'); fel.className='page-footer-bar page-footer'; pg.appendChild(fel); }
+      fel.textContent = footerText;
+    } else if (fel) fel.remove();
+  });
+}
+
+// ── TOC ──
+function updateTOC() {
+  const list = document.getElementById('toc-list');
+  list.innerHTML = '';
+  let found = 0;
+  pages.forEach((pg, pIdx) => {
+    const headings = pg.querySelectorAll('.page-content h1,.page-content h2,.page-content h3,.page-content h4');
+    headings.forEach(h => {
+      found++;
+      const level = parseInt(h.tagName[1]);
+      const div = document.createElement('div');
+      div.className = 'toc-item' + (level===2?' toc-h2':level>=3?' toc-h3':'');
+      div.innerHTML = `<i class="ti ti-hash" style="font-size:11px;flex-shrink:0;color:var(--amber)"></i><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${h.textContent}</span>${pages.length>1?`<span class="toc-badge">P${pIdx+1}</span>`:''}`;
+      div.onclick = () => h.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      list.appendChild(div);
+    });
+  });
+  if (!found) list.innerHTML = '<div style="font-size:11px;color:var(--text-muted);padding:6px 10px">Sem títulos ainda</div>';
+}
+
+// ── STATS ──
+function updateStats() {
+  let words=0, chars=0, paras=0;
+  pages.forEach(pg => {
+    const ed = pg.querySelector('.page-content');
+    if (!ed) return;
+    const text = ed.innerText || '';
+    words += text.trim() ? text.trim().split(/\s+/).length : 0;
+    chars += text.length;
+    paras += ed.querySelectorAll('p,h1,h2,h3,h4,h5,h6,li').length;
+  });
+  const readMin = Math.ceil(words / 238);
+  const speakMin = Math.ceil(words / 150);
+  const numPages = pages.length;
+  document.getElementById('s-words').textContent = words.toLocaleString('pt-BR');
+  document.getElementById('s-chars').textContent = chars.toLocaleString('pt-BR');
+  document.getElementById('s-paras').textContent = paras;
+  document.getElementById('s-pages').textContent = numPages;
+  document.getElementById('s-read').textContent = readMin + ' min';
+  document.getElementById('s-speak').textContent = speakMin + ' min';
+  document.getElementById('sb-words').textContent = words.toLocaleString('pt-BR') + ' palavras';
+  document.getElementById('sb-read').textContent = readMin + ' min';
+  document.getElementById('sb-pages').textContent = numPages;
+}
+
+// ── CURSOR POS ──
+function updateCursorPos() {
+  const sel = window.getSelection();
+  if (!sel || !sel.rangeCount) return;
+  const range = sel.getRangeAt(0);
+  const preRange = range.cloneRange();
+  const ed = getEditor(); if (!ed) return;
+  try {
+    preRange.selectNodeContents(ed);
+    preRange.setEnd(range.startContainer, range.startOffset);
+    const text = preRange.toString();
+    const lines = text.split('\n');
+    document.getElementById('cur-line').textContent = lines.length;
+    document.getElementById('cur-col').textContent = lines[lines.length-1].length + 1;
+  } catch(e){}
+}
+
+// ── TOOLBAR STATE ──
+function updateToolbarState() {
+  document.getElementById('btn-bold').classList.toggle('active', document.queryCommandState('bold'));
+  document.getElementById('btn-italic').classList.toggle('active', document.queryCommandState('italic'));
+  document.getElementById('btn-under').classList.toggle('active', document.queryCommandState('underline'));
+}
+
+// ── CHANGE TRIGGER ──
+let changeTimer;
+function triggerChange() {
+  clearTimeout(changeTimer);
+  changeTimer = setTimeout(() => { updateTOC(); updateStats(); if(autoSave) doAutoSave(); }, 350);
+}
+
+// ── SAVE ──
+function doAutoSave() {
+  document.getElementById('save-status').textContent = 'Salvando...';
+  clearTimeout(autoSaveTimer);
+  autoSaveTimer = setTimeout(() => {
+    try { const data = pages.map((pg,i) => ({ num: i+1, html: pg.querySelector('.page-content')?.innerHTML || '' })); localStorage.setItem('wysiwyg_pages', JSON.stringify(data)); } catch(e){}
+    document.getElementById('save-status').textContent = 'Salvo';
+  }, 900);
+}
+function saveDoc() {
+  try { const data = pages.map((pg,i)=>({num:i+1,html:pg.querySelector('.page-content')?.innerHTML||''})); localStorage.setItem('wysiwyg_pages', JSON.stringify(data)); } catch(e){}
+  document.getElementById('save-status').textContent = 'Salvo';
+  showNotif('Documento salvo!');
+  // Em modo incorporado, também devolve o conteúdo ao sistema host (Ctrl+S).
+  if (EMBEDDED) window.parent.postMessage({ type: 'wysiwyg:save', html: getDocHTML() }, '*');
+}
+function autoSaveToggle() { autoSave = !autoSave; showNotif(autoSave ? 'Auto-salvar ativado' : 'Auto-salvar desativado'); }
+
+// ── EXPORT ──
+function saveAs(format) {
+  let content='', ext=format;
+  if (format==='html') {
+    const body = pages.map(pg=>`<div class="page">${pg.querySelector('.page-content')?.innerHTML||''}</div>`).join('<hr style="page-break-after:always">');
+    content = `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Documento</title><style>body{font-family:Georgia,serif;font-size:16px;line-height:1.7;max-width:800px;margin:40px auto;padding:0 20px;color:#111}.page{margin-bottom:40px}h1{font-size:28px}h2{font-size:22px}h3{font-size:18px}table{border-collapse:collapse;width:100%}td,th{border:1px solid #ddd;padding:8px}th{background:#f0f0f0}pre{background:#f5f5f5;padding:14px;border-radius:6px;font-family:monospace}blockquote{border-left:3px solid #ccc;padding-left:16px;color:#555;font-style:italic}@media print{.page{page-break-after:always}}</style></head><body>${body}</body></html>`;
+  } else if (format==='txt') {
+    content = pages.map(pg=>pg.querySelector('.page-content')?.innerText||'').join('\n\n--- Nova página ---\n\n');
+  } else if (format==='md') {
+    content = pages.map(pg=>htmlToMarkdown(pg.querySelector('.page-content')?.innerHTML||'')).join('\n\n---\n\n');
+  }
+  const blob = new Blob([content], { type: 'text/plain' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'documento.' + ext; a.click();
+}
+function htmlToMarkdown(html) {
+  return html
+    .replace(/<h1[^>]*>(.*?)<\/h1>/gi,'# $1\n\n').replace(/<h2[^>]*>(.*?)<\/h2>/gi,'## $1\n\n')
+    .replace(/<h3[^>]*>(.*?)<\/h3>/gi,'### $1\n\n').replace(/<strong[^>]*>(.*?)<\/strong>/gi,'**$1**')
+    .replace(/<b[^>]*>(.*?)<\/b>/gi,'**$1**').replace(/<em[^>]*>(.*?)<\/em>/gi,'*$1*')
+    .replace(/<i[^>]*>(.*?)<\/i>/gi,'*$1*').replace(/<a[^>]*href="([^"]*)"[^>]*>(.*?)<\/a>/gi,'[$2]($1)')
+    .replace(/<li[^>]*>(.*?)<\/li>/gi,'- $1\n').replace(/<br\s*\/?>/gi,'\n').replace(/<[^>]+>/g,'')
+    .replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&nbsp;/g,' ');
+}
+
+function newDoc() {
+  if (!confirm('Criar novo documento? O conteúdo atual será perdido.')) return;
+  pagesWrapper.innerHTML = ''; pages = [];
+  createPage(1);
+}
+function openFile() {
+  const inp = document.createElement('input'); inp.type='file'; inp.accept='.html,.txt,.md';
+  inp.onchange = e => {
+    const file = e.target.files[0]; if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      pagesWrapper.innerHTML=''; pages=[];
+      const {ed} = createPage(1);
+      if (file.name.endsWith('.html')) ed.innerHTML = ev.target.result;
+      else ed.innerHTML = ev.target.result.replace(/\n/g,'<br>');
+      triggerChange();
+    };
+    reader.readAsText(file);
+  };
+  inp.click();
+}
+function printDoc() {
+  const w = window.open('','_blank');
+  const body = pages.map(pg=>`<div class="page">${pg.querySelector('.page-content')?.innerHTML||''}</div>`).join('');
+  w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><style>body{font-family:Georgia,serif;font-size:12pt;line-height:1.7;margin:2cm;color:#000}.page{page-break-after:always}h1{font-size:22pt}h2{font-size:16pt}h3{font-size:14pt}table{border-collapse:collapse;width:100%}td,th{border:1px solid #ccc;padding:6px}th{background:#f0f0f0}pre{background:#f5f5f5;padding:10px;font-family:monospace}blockquote{border-left:3px solid #ccc;padding-left:12px;color:#555}@media print{body{margin:0}}</style></head><body>${body}</body></html>`);
+  w.document.close(); setTimeout(()=>w.print(),300);
+}
+
+// ── WORD COUNT ──
+function wordCount() {
+  let w=0,c=0; pages.forEach(pg=>{const t=pg.querySelector('.page-content')?.innerText||'';w+=(t.trim()?t.trim().split(/\s+/).length:0);c+=t.length;});
+  alert(`Palavras: ${w}\nCaracteres: ${c}\nPáginas: ${pages.length}\nEstimativa: ${Math.ceil(w/250)} folha(s)`);
+}
+
+// ── SNIPPETS ──
+function addSnippet() {
+  const sel = window.getSelection();
+  if (!sel || sel.isCollapsed) { showNotif('Selecione um texto primeiro'); return; }
+  const name = prompt('Nome para este trecho:'); if (!name) return;
+  const div = document.createElement('div'); div.appendChild(sel.getRangeAt(0).cloneContents());
+  snippets.push({ name, html: div.innerHTML });
+  renderSnippets(); showNotif('Trecho salvo!');
+}
+function renderSnippets() {
+  const list = document.getElementById('snippets-list');
+  list.innerHTML = '';
+  if (!snippets.length) { list.innerHTML = '<div style="font-size:11px;color:var(--text-muted);padding:4px 0">Nenhum trecho</div>'; return; }
+  snippets.forEach((s,i) => {
+    const div = document.createElement('div'); div.className = 'snippet-item';
+    div.innerHTML = `<span onclick="insertSnippet(${i})" style="flex:1">${s.name}</span><span onclick="snippets.splice(${i},1);renderSnippets()" style="cursor:pointer;color:var(--border);padding:0 4px" title="Remover"><i class="ti ti-x" style="font-size:12px"></i></span>`;
+    list.appendChild(div);
+  });
+}
+function insertSnippet(i) { execCmd('insertHTML', snippets[i].html); }
+
+// ── TEMPLATES ──
+const TEMPLATES = {
+  carta:`<h2>Carta Formal</h2><p>[Cidade], [Data]</p><br><p>Prezado(a) [Nome],</p><p>[Conteúdo da carta]</p><p>Atenciosamente,<br><strong>[Seu Nome]</strong></p>`,
+  relatorio:`<h1>Relatório</h1><p><strong>Data:</strong> [Data] | <strong>Autor:</strong> [Nome]</p><hr><h2>Resumo</h2><p>[Resumo]</p><h2>Desenvolvimento</h2><p>[Conteúdo]</p><h2>Conclusão</h2><p>[Conclusão]</p>`,
+  ata:`<h1>Ata de Reunião</h1><table><thead><tr><th>Data</th><th>Hora</th><th>Local</th></tr></thead><tbody><tr><td>[Data]</td><td>[Hora]</td><td>[Local]</td></tr></tbody></table><h2>Participantes</h2><ul><li>[Nome] — [Cargo]</li></ul><h2>Deliberações</h2><p>[Decisões]</p>`,
+  resumo:`<h1>[Seu Nome]</h1><p style="text-align:center">[Cargo] | [E-mail] | [Telefone]</p><hr><h2>Objetivo</h2><p>[Objetivo profissional]</p><h2>Experiência</h2><h3>[Cargo] — [Empresa]</h3><ul><li>[Responsabilidade]</li></ul><h2>Formação</h2><p><strong>[Curso]</strong> — [Instituição]</p>`,
+  proposta:`<h1>Proposta Comercial</h1><p><strong>Para:</strong> [Cliente] | <strong>De:</strong> [Empresa] | <strong>Data:</strong> [Data]</p><hr><h2>Solução proposta</h2><p>[Descrição]</p><h2>Investimento</h2><table><thead><tr><th>Item</th><th>Valor</th></tr></thead><tbody><tr><td>[Item]</td><td>R$ [Valor]</td></tr></tbody></table>`
+};
+function applyTemplate(key) {
+  if (!confirm('Substituir conteúdo pelo modelo?')) return;
+  const ed = getEditor(); if (!ed) return;
+  ed.innerHTML = TEMPLATES[key]; triggerChange();
+}
+function insertTemplate() {
+  const names={carta:'Carta formal',relatorio:'Relatório',ata:'Ata de reunião',resumo:'Currículo',proposta:'Proposta comercial'};
+  const grid = Object.keys(TEMPLATES).map(k=>`<button class="style-btn" onclick="applyTemplate('${k}');closeModal()" style="padding:10px 8px;width:100%;text-align:left;margin-bottom:6px">${names[k]}</button>`).join('');
+  showModal('Modelos prontos',[{type:'html',html:grid}],null,'');
+}
+
+// ── SHORTCUTS DIALOG ──
+function showShortcuts() {
+  showModal('Atalhos de teclado',[{type:'html',html:`<table style="width:100%;font-size:12px;border-collapse:collapse">
+    <tr style="background:var(--bg-hover)"><td style="padding:5px 8px"><kbd>Ctrl+B</kbd></td><td>Negrito</td><td><kbd>Ctrl+I</kbd></td><td>Itálico</td></tr>
+    <tr><td style="padding:5px 8px"><kbd>Ctrl+U</kbd></td><td>Sublinhado</td><td><kbd>Ctrl+Z</kbd></td><td>Desfazer</td></tr>
+    <tr style="background:var(--bg-hover)"><td style="padding:5px 8px"><kbd>Ctrl+Y</kbd></td><td>Refazer</td><td><kbd>Ctrl+K</kbd></td><td>Link</td></tr>
+    <tr><td style="padding:5px 8px"><kbd>Ctrl+F</kbd></td><td>Localizar</td><td><kbd>Ctrl+H</kbd></td><td>Substituir</td></tr>
+    <tr style="background:var(--bg-hover)"><td style="padding:5px 8px"><kbd>Ctrl+S</kbd></td><td>Salvar</td><td><kbd>Ctrl+P</kbd></td><td>Imprimir</td></tr>
+    <tr><td style="padding:5px 8px"><kbd>Tab</kbd></td><td>Indentar</td><td><kbd>Esc</kbd></td><td>Sair do foco</td></tr>
+  </table>`}],null,'');
+}
+
+// ── CONTEXT MENU ──
+function showContextMenu(e) {
+  e.preventDefault();
+  const menu = document.getElementById('context-menu');
+  menu.style.display = 'block';
+  menu.style.left = Math.min(e.clientX, window.innerWidth-180) + 'px';
+  menu.style.top  = Math.min(e.clientY, window.innerHeight-260) + 'px';
+  menu.innerHTML = `
+    <div class="ctx-item" onclick="execCmd('cut')"><i class="ti ti-cut"></i> Recortar</div>
+    <div class="ctx-item" onclick="execCmd('copy')"><i class="ti ti-copy"></i> Copiar</div>
+    <div class="ctx-item" onclick="execCmd('paste')"><i class="ti ti-clipboard"></i> Colar</div>
+    <div class="ctx-sep"></div>
+    <div class="ctx-item" onclick="fmt('bold')"><i class="ti ti-bold"></i> Negrito</div>
+    <div class="ctx-item" onclick="fmt('italic')"><i class="ti ti-italic"></i> Itálico</div>
+    <div class="ctx-item" onclick="insertLink()"><i class="ti ti-link"></i> Inserir link</div>
+    <div class="ctx-sep"></div>
+    <div class="ctx-item" onclick="fmt('removeFormat')"><i class="ti ti-eraser"></i> Limpar formatação</div>
+    <div class="ctx-item" onclick="addSnippet()"><i class="ti ti-files"></i> Salvar como trecho</div>
+    <div class="ctx-sep"></div>
+    <div class="ctx-item danger" onclick="execCmd('delete')"><i class="ti ti-trash"></i> Excluir seleção</div>
+  `;
+}
+document.addEventListener('click', () => { document.getElementById('context-menu').style.display='none'; });
+
+// ── KEYDOWN HANDLER ──
+function handleKeydown(e) {
+  const mod = e.ctrlKey || e.metaKey;
+  if (mod && e.key==='k') { e.preventDefault(); insertLink(); }
+  if (mod && e.key==='s') { e.preventDefault(); saveDoc(); }
+  if (mod && e.key==='f') { e.preventDefault(); toggleFind(false); }
+  if (mod && e.key==='h') { e.preventDefault(); toggleFind(true); }
+  if (mod && e.key==='p') { e.preventDefault(); printDoc(); }
+  if (e.key==='Escape' && focusMode) toggleFocusMode();
+  if (e.key==='Tab') { e.preventDefault(); document.execCommand('insertHTML',false,'&nbsp;&nbsp;&nbsp;&nbsp;'); }
+
+  // Backspace no início de página não-primeira: volta para o fim da página anterior
+  if (e.key === 'Backspace') {
+    const ed = e.currentTarget;
+    const pg = ed.closest('.page');
+    const idx = pages.indexOf(pg);
+    if (idx > 0 && isCursorAtStart(ed)) {
+      e.preventDefault();
+      const prevEd = pages[idx - 1].querySelector('.page-content');
+      if (isPageEmpty(ed)) {
+        removePage(pg);
+      }
+      if (prevEd) moveCursorToEnd(prevEd);
+    }
+  }
+}
+
+// ── PASTE PLAIN ──
+function pastePlain() {
+  navigator.clipboard.readText().then(t => { getEditor()?.focus(); document.execCommand('insertText',false,t); }).catch(()=>{});
+}
+
+// ── RULER ──
+function drawRuler() {
+  const canvas = document.getElementById('h-ruler');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const w = canvas.parentElement.offsetWidth - 20;
+  canvas.width = w; canvas.height = 20;
+  ctx.clearRect(0,0,w,20);
+  ctx.fillStyle = '#a1a1aa';
+  ctx.font = '9px Arial';
+  for (let x=0; x<w; x+=10) {
+    const major = x%50===0;
+    ctx.fillRect(x, major?0:12, 0.5, major?12:6);
+    if (major && x>0) ctx.fillText(Math.round(x/3.78)+'mm', x+2, 11);
+  }
+}
+
+// ── NOTIF ──
+function showNotif(msg) {
+  const n = document.createElement('div'); n.className='notif'; n.textContent=msg;
+  document.body.appendChild(n);
+  setTimeout(()=>{n.style.opacity='0';n.style.transition='opacity .2s';setTimeout(()=>n.remove(),200);},2200);
+}
+
+// ── COLOR PALETTE ──
+const COLORS=['#000000','#434343','#666666','#999999','#b7b7b7','#cccccc','#d9d9d9','#ffffff','#ff0000','#ff9900','#ffff00','#00ff00','#00ffff','#4a86e8','#9900ff','#ff00ff','#e6b8a2','#f4cccc','#fce5cd','#fff2cc','#d9ead3','#d0e0e3','#c9daf8','#ead1dc','#dd7e6b','#ea9999','#f9cb9c','#ffe599','#b6d7a8','#a2c4c9','#a4c2f4','#d5a6bd','#cc4125','#e06666','#f6b26b','#ffd966','#93c47d','#76a5af','#6d9eeb','#c27ba0','#a61c00','#cc0000','#e69138','#f1c232','#6aa84f','#45818e','#3c78d8','#a64d79','#85200c','#990000','#b45f06','#bf9000','#38761d','#134f5c','#1155cc','#741b47'];
+function initPalette() {
+  const p = document.getElementById('color-palette');
+  COLORS.forEach(c => {
+    const s = document.createElement('div'); s.className='swatch'; s.style.background=c; s.title=c;
+    s.onmousedown = e_prevent;
+    s.onclick = e => { if(e.shiftKey) applyColor('hiliteColor',c); else applyColor('foreColor',c); };
+    p.appendChild(s);
+  });
+}
+
+// ── FIND BAR KEYDOWN ──
+document.getElementById('find-input').addEventListener('keydown', e => {
+  if (e.key==='Enter') findNext();
+  if (e.key==='Escape') closeFindBar();
+});
+
+// ── WINDOW ──
+window.addEventListener('resize', ()=>setTimeout(drawRuler,100));
+
+// ── INIT ──
+function init() {
+  if (EMBEDDED) {
+    // O conteúdo real chega via postMessage ({type:'wysiwyg:init'}) assim que
+    // o host receber o aviso 'wysiwyg:ready' abaixo — aqui só preparamos a página.
+    createPage(1);
+  } else {
+    // Restore saved or create fresh
+    let restored = false;
+    try {
+      const saved = localStorage.getItem('wysiwyg_pages');
+      if (saved) {
+        const data = JSON.parse(saved);
+        data.forEach((item, i) => {
+          const {ed} = createPage(i+1);
+          ed.innerHTML = item.html;
+        });
+        restored = true;
+      }
+    } catch(e){}
+    if (!restored) createPage(1);
+  }
+
+  initPalette();
+  renderSnippets();
+  updateTOC();
+  updateStats();
+  setTimeout(drawRuler, 200);
+
+  // Focus first editor
+  setTimeout(() => { pages[0]?.querySelector('.page-content')?.focus(); }, 100);
+
+  if (EMBEDDED) {
+    // Avisa o sistema host que o editor está pronto para receber o conteúdo inicial.
+    window.parent.postMessage({ type: 'wysiwyg:ready' }, '*');
+  }
+}
+
+init();
+</script>
+</body>
+</html>
