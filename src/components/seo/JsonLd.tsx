@@ -11,8 +11,10 @@ export function LegalServiceJsonLd() {
     areaServed: "BR",
     address: {
       "@type": "PostalAddress",
+      streetAddress: site.contact.address.street,
       addressLocality: site.contact.address.city,
       addressRegion: site.contact.address.state,
+      postalCode: site.contact.address.zip,
       addressCountry: "BR",
     },
     founder: {

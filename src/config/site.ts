@@ -20,10 +20,10 @@ export const site = {
     whatsapp: process.env.NEXT_PUBLIC_WHATSAPP ?? "5562998710007",
     email: "[PREENCHER: contato@dominio.com.br]",
     address: {
-      street: "[PREENCHER: Rua/Av., nº, sala]",
+      street: "Av. Edmundo P. de Abreu, 387 — Setor Bela Vista (Cond. Portal da Cidade)",
       city: "Goiânia",
       state: "GO",
-      zip: "[PREENCHER: CEP]",
+      zip: "74823-030",
     },
     hours: "Seg. a Sex., das 9h às 18h",
   },
